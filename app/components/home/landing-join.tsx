@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { SectionEyebrow } from "./section-eyebrow";
