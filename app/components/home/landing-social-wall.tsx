@@ -43,17 +43,16 @@ interface TileProps {
 }
 
 function SocialTile({ plat, title, sub, hasPlay, span, delay = 0 }: TileProps) {
-  const spanStyle: React.CSSProperties = {
-    ...(span === "feature" ? { gridColumn: "span 2", gridRow: "span 2" } : {}),
-    ...(span === "wide" ? { gridColumn: "span 2" } : {}),
-    ...(span === "tall" ? { gridRow: "span 2" } : {}),
-  };
+  const spanClass =
+    span === "feature" ? "[grid-column:span_2] [grid-row:span_2]" :
+    span === "wide" ? "[grid-column:span_2]" :
+    span === "tall" ? "[grid-row:span_2]" :
+    "";
 
   return (
-    <Reveal delay={delay}>
+    <Reveal delay={delay} className={spanClass}>
       <div
         className="rounded-[20px] overflow-hidden relative border border-cn-line h-full group transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1 hover:scale-[1.01] hover:border-cn-line-strong hover:shadow-[0_24px_60px_-26px_rgba(255,45,45,0.4)]"
-        style={spanStyle}
       >
         <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)]" />
         {hasPlay && <PlayMini />}

@@ -1,22 +1,25 @@
 "use client";
 import { useState, useEffect } from "react";
+import { cn } from "~/lib/utils";
 
 export default function LandingLoader() {
   const [gone, setGone] = useState(false);
+  const [unmounted, setUnmounted] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setGone(true), 1200);
     return () => clearTimeout(t);
   }, []);
 
-  if (gone) return null;
+  if (unmounted) return null;
 
   return (
     <div
-      className={gone
-        ? "fixed inset-0 z-[200] bg-cn-bg grid place-items-center transition-[opacity,visibility] duration-[600ms] ease-out opacity-0 invisible"
-        : "fixed inset-0 z-[200] bg-cn-bg grid place-items-center transition-[opacity,visibility] duration-[600ms] ease-out opacity-100 visible"
-      }
+      className={cn(
+        "fixed inset-0 z-[200] bg-cn-bg grid place-items-center transition-[opacity,visibility] duration-[600ms] ease-out",
+        gone ? "opacity-0 invisible" : "opacity-100 visible"
+      )}
+      onTransitionEnd={() => { if (gone) setUnmounted(true); }}
     >
       <div className="text-center">
         <div className="font-display font-extrabold text-[clamp(38px,7vw,76px)] uppercase tracking-[-0.02em]">

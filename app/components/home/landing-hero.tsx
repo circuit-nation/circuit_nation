@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { Button } from "~/components/ui/button";
+import { SectionEyebrow } from "./section-eyebrow";
 
 const RACES = [
   ["F1", "Monaco GP", "May 24"], ["MotoGP", "Mugello", "Jun 01"],
@@ -126,10 +127,10 @@ export default function LandingHero() {
         />
 
         <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
-          <span className="font-mono text-[12px] font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px] animate-cn-fade opacity-0 [animation-delay:0.1s]">
-            <span className="w-[26px] h-px bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
-            // Your ultimate hub to everything motorsports
-          </span>
+          <SectionEyebrow
+            label="// Your ultimate hub to everything motorsports"
+            className="animate-cn-fade opacity-0 [animation-delay:0.1s]"
+          />
 
           <h1 className="font-display font-extrabold uppercase tracking-[-0.04em] leading-[0.9] text-[clamp(56px,11vw,172px)] mt-[22px]">
             {[["One nation.", ""], ["Every", "outline"], ["circuit.", "accent"]].map(([text, variant], i) => (
