@@ -90,3 +90,9 @@ export {
   CardDescription,
   CardContent,
 }
+
+export const cnCardClass =
+  "border border-cn-line rounded-[20px] bg-gradient-to-b from-white/[0.028] to-white/[0.004] p-[30px] transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_22px_50px_-24px_rgba(0,0,0,0.8)]"
+
+export const cnAccentCardClass =
+  "border border-cn-line rounded-[20px] bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] p-[30px] transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_22px_50px_-24px_rgba(0,0,0,0.8)]"
