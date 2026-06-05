@@ -19,7 +19,7 @@ export function Reveal({ children, delay = 0, className, threshold = 0.15 }: Rev
         opacity: inView ? 1 : 0,
         transform: inView ? "none" : "translateY(26px)",
         transitionTimingFunction: "cubic-bezier(.16,1,.3,1)",
-        transitionDelay: delay ? `${delay}s` : "0s",
+        transitionDelay: delay > 0 ? `${delay}s` : undefined,
       }}
     >
       {children}
