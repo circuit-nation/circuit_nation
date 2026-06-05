@@ -13,8 +13,10 @@ export default function LandingLoader() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] bg-cn-bg grid place-items-center transition-[opacity,visibility] duration-[600ms] ease-out"
-      style={{ opacity: gone ? 0 : 1, visibility: gone ? "hidden" : "visible" }}
+      className={gone
+        ? "fixed inset-0 z-[200] bg-cn-bg grid place-items-center transition-[opacity,visibility] duration-[600ms] ease-out opacity-0 invisible"
+        : "fixed inset-0 z-[200] bg-cn-bg grid place-items-center transition-[opacity,visibility] duration-[600ms] ease-out opacity-100 visible"
+      }
     >
       <div className="text-center">
         <div className="font-display font-extrabold text-[clamp(38px,7vw,76px)] uppercase tracking-[-0.02em]">

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Button } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 
 export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,12 +17,12 @@ export default function LandingNav() {
 
   return (
     <header
-      className={[
+      className={cn(
         "fixed top-0 left-0 right-0 z-50 border-b transition-[background,border-color,backdrop-filter] duration-[350ms] ease-out",
         scrolled
           ? "border-cn-line bg-[rgba(10,10,11,0.72)] backdrop-blur-[18px] saturate-[1.4]"
           : "border-transparent bg-transparent",
-      ].join(" ")}
+      )}
     >
       <div className="max-w-[var(--cn-maxw)] mx-auto px-8 py-[18px] flex items-center justify-between gap-6">
         {/* Brand */}
