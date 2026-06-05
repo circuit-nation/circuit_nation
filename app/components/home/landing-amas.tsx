@@ -1,0 +1,149 @@
+"use client";
+import { useInView } from "react-intersection-observer";
+import { cn } from "~/lib/utils";
+import { Reveal } from "./reveal";
+import { SectionEyebrow } from "./section-eyebrow";
+import { cnCardClass } from "~/components/ui/card";
+
+function Avatar({ initials, red = false }: { initials: string; red?: boolean }) {
+  return (
+    <div className={cn(
+      "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-[13px] font-bold",
+      red
+        ? "bg-[linear-gradient(150deg,rgba(255,90,31,0.5),#161619)] text-white"
+        : "bg-[linear-gradient(150deg,#2a2a30,#161619)] text-cn-muted",
+    )}>
+      {initials}
+    </div>
+  );
+}
+
+function UpvoteIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-[13px] h-[13px] stroke-cn-orange fill-none [stroke-width:1.8]">
+      <path d="M12 4l7 8h-4v8H9v-8H5z" />
+    </svg>
+  );
+}
+
+function Badge({ type }: { type: "live" | "up" | "trend" }) {
+  return (
+    <span className={cn(
+      "font-mono text-[10.5px] font-medium tracking-[0.14em] uppercase px-[11px] py-[6px] rounded-[20px] inline-flex items-center gap-[7px] w-fit",
+      type === "live" && "bg-[rgba(255,45,45,0.14)] text-[#ff7676] border border-[rgba(255,45,45,0.3)]",
+      type === "up" && "bg-[rgba(255,90,31,0.12)] text-cn-orange border border-[rgba(255,90,31,0.28)]",
+      type === "trend" && "bg-white/[0.05] text-cn-muted border border-cn-line-strong",
+    )}>
+      {type === "live" && (
+        <span className="inline-block w-2 h-2 rounded-full bg-cn-accent animate-cn-pulse" />
+      )}
+      {type === "live" ? "Live now" : type === "up" ? "Upcoming · Fri 18:00 GMT" : "Trending this week"}
+    </span>
+  );
+}
+
+const readBtnClass = "font-mono text-[12px] tracking-[0.08em] uppercase text-cn-text no-underline inline-flex items-center gap-2 px-[14px] py-[9px] border border-cn-line-strong rounded-[9px] transition-all duration-200 hover:border-cn-orange hover:text-cn-orange";
+
+export default function LandingAMAs() {
+  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
+
+  return (
+    <section id="amas" className="pt-[30px] pb-[130px]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+        <div
+          ref={headRef}
+          className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"
+          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
+        >
+          <SectionEyebrow label="// Reddit AMAs" />
+          <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
+            Ask the<br />paddock anything.
+          </h2>
+          <p className="text-cn-muted mt-[22px] text-[18px] max-w-[600px]">
+            We bring racing's most interesting voices straight into the community — creators, engineers, sim aces and commentators, live and unfiltered.
+          </p>
+        </div>
+
+        <div className="grid [grid-template-columns:1.4fr_1fr] max-nav:grid-cols-1 gap-[18px] mt-16">
+
+          <Reveal>
+            <div className={cn(cnCardClass, "!p-0 overflow-hidden")}>
+              <div className="h-[280px] w-full border-b border-cn-line bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
+                <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+                  AMA host portrait
+                </span>
+              </div>
+              <div className="p-7">
+                <Badge type="live" />
+                <h3 className="font-display font-bold text-[clamp(26px,3vw,38px)] tracking-[-0.02em] leading-[1.1] mt-4">
+                  "I spent 9 years on an F1 pit wall. Ask me about strategy calls under pressure."
+                </h3>
+                <p className="text-cn-muted text-[14.5px] mt-[14px]">
+                  A former race strategist breaks down the undercut, the gamble that won a title, and the radio messages you never heard.
+                </p>
+                <div className="flex items-center gap-3 mt-[18px]">
+                  <Avatar initials="JR" red />
+                  <div className="flex flex-col">
+                    <b className="font-body font-semibold text-[14.5px]">Jamie Renault</b>
+                    <span className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em]">u/pitwall_jr · ex-Race Strategist</span>
+                  </div>
+                </div>
+                <div className="mt-[22px] flex items-center justify-between gap-[14px]">
+                  <a href="#" className={readBtnClass}>Read AMA →</a>
+                  <span className="font-mono text-[12px] text-cn-muted-2 inline-flex items-center gap-[6px]">
+                    <UpvoteIcon />4.2k upvotes
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-[18px] content-start">
+            <Reveal delay={0.08}>
+              <div className={cn(cnCardClass, "flex flex-col gap-4")}>
+                <Badge type="up" />
+                <h3 className="font-display font-bold text-[clamp(22px,2.4vw,30px)] tracking-[-0.02em] leading-[1.1]">
+                  The sim racer who turned laps into a pro F4 seat.
+                </h3>
+                <div className="flex items-center gap-3">
+                  <Avatar initials="KS" />
+                  <div className="flex flex-col">
+                    <b className="font-body font-semibold text-[14.5px]">Kai Sorensen</b>
+                    <span className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em]">u/apex_kai · Sim to Real</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between gap-[14px]">
+                  <a href="#" className={readBtnClass}>Set reminder →</a>
+                  <span className="font-mono text-[12px] text-cn-muted-2 inline-flex items-center gap-[6px]">
+                    <UpvoteIcon />880 waiting
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <div className={cn(cnCardClass, "flex flex-col gap-4")}>
+                <Badge type="trend" />
+                <h3 className="font-display font-bold text-[clamp(22px,2.4vw,30px)] tracking-[-0.02em] leading-[1.1]">
+                  Aero engineer explains why the floor is everything.
+                </h3>
+                <div className="flex items-center gap-3">
+                  <Avatar initials="MA" />
+                  <div className="flex flex-col">
+                    <b className="font-body font-semibold text-[14.5px]">Dr. Mara Aoki</b>
+                    <span className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em]">u/ground_effect · Aerodynamicist</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between gap-[14px]">
+                  <a href="#" className={readBtnClass}>Read AMA →</a>
+                  <span className="font-mono text-[12px] text-cn-muted-2 inline-flex items-center gap-[6px]">
+                    <UpvoteIcon />2.7k upvotes
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
