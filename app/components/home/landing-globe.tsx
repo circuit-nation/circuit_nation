@@ -140,11 +140,11 @@ export default function LandingGlobe() {
               className="absolute rounded-full border border-dashed border-white/[0.06] pointer-events-none animate-cn-spin-slow"
               style={{ inset: "-7%" }}
             />
-            <span className="absolute top-[12%] left-[-6%] font-mono text-[10.5px] font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-[rgba(10,10,11,0.7)] backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
+            <span className="absolute top-[12%] left-[-6%] font-mono text-[10.5px] font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-cn-bg/70 backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
               <span className="w-[6px] h-[6px] rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)]" />
               F1 · Monaco
             </span>
-            <span className="absolute bottom-[16%] right-[-4%] font-mono text-[10.5px] font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-[rgba(10,10,11,0.7)] backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
+            <span className="absolute bottom-[16%] right-[-4%] font-mono text-[10.5px] font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-cn-bg/70 backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
               <span className="w-[6px] h-[6px] rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)]" />
               MotoGP · Mugello
             </span>
