@@ -69,7 +69,7 @@ export default function LandingAMAs() {
         <div className="grid grid-cols-[1.4fr_1fr] max-nav:grid-cols-1 gap-4 mt-16">
 
           <Reveal>
-            <div className={cn(cnCardClass, "p-0 overflow-hidden")}>
+            <div className={cn(cnCardClass, "!p-0 overflow-hidden")}>
               <div className="h-70 w-full border-b border-cn-line bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
                 <span className="absolute left-4 bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                   AMA host portrait
