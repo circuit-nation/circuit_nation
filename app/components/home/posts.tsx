@@ -35,22 +35,22 @@ export default function LandingPosts() {
           <Reveal>
             <article className={cn(cnCardClass, "!p-0 flex flex-col overflow-hidden")}>
               <div className="h-[360px] border-b border-cn-line flex-1 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
-                <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+                <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                   Featured article hero
                 </span>
               </div>
               <div className="p-8">
-                <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-accent inline-flex items-center gap-[9px]">
+                <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent inline-flex items-center gap-[9px]">
                   <span className="w-[6px] h-[6px] rounded-full bg-cn-accent inline-block" />
                   Race Analysis
                 </span>
                 <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.06] mt-3 text-[clamp(26px,3vw,40px)]">
                   The undercut that wasn't: how three teams misread the same pit window
                 </h3>
-                <p className="text-cn-muted mt-4 max-w-[540px] text-[15px]">
+                <p className="text-cn-muted mt-4 max-w-[540px] text-sm">
                   We charted every stint from the weekend and found the strategy call everyone defended was the slowest path to the podium.
                 </p>
-                <div className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em] mt-3 flex gap-[14px]">
+                <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-3 flex gap-[14px]">
                   <span>12 min read</span><span>·</span><span>May 26, 2026</span><span>·</span><span>318 comments</span>
                 </div>
               </div>
@@ -63,9 +63,9 @@ export default function LandingPosts() {
                 <article className={cn(cnCardClass, "!p-[22px_24px] flex gap-5 items-center cursor-pointer")}>
                   <div className="w-24 h-24 rounded-[12px] shrink-0 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] border border-cn-line" />
                   <div>
-                    <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-accent">{p.cat}</span>
-                    <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.2] mt-2 text-[17px]">{p.title}</h3>
-                    <div className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em] mt-2">{p.meta}</div>
+                    <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{p.cat}</span>
+                    <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.2] mt-2 text-sm">{p.title}</h3>
+                    <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-2">{p.meta}</div>
                   </div>
                 </article>
               </Reveal>

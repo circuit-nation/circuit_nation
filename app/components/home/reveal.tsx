@@ -15,8 +15,8 @@ export function Reveal({ children, delay = 0, className, threshold = 0.15 }: Rev
     <div
       ref={ref}
       className={cn(
-        "transition-[opacity,transform] duration-[800ms] ease-spring",
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+        "transition-[opacity,transform] duration-800 ease-spring",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
         className,
       )}
       style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}

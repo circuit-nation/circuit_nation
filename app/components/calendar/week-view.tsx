@@ -81,7 +81,7 @@ export const WeekView = ({ currentDate, events }: WeekViewProps) => {
     return (
         <div className="animate-fade-in">
             <div className="overflow-hidden rounded-xl border border-muted/40 bg-background/80">
-                <div className="grid grid-cols-[80px_repeat(7,minmax(0,1fr))] border-b border-muted/40 bg-muted/10 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                <div className="grid grid-cols-[80px_repeat(7,minmax(0,1fr))] border-b border-muted/40 bg-muted/10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                     <div className="px-3 py-2">Time</div>
                     {days.map((date) => (
                         <div key={date.toISOString()} className="px-3 py-2 text-center">
@@ -111,7 +111,7 @@ export const WeekView = ({ currentDate, events }: WeekViewProps) => {
                             {HOURS.map((hour) => (
                                 <div
                                     key={hour}
-                                    className="absolute left-0 right-0 border-t border-muted/30 px-2 text-[10px] text-muted-foreground"
+                                    className="absolute left-0 right-0 border-t border-muted/30 px-2 text-xs text-muted-foreground"
                                     style={{ top: hour * HOUR_HEIGHT }}
                                 >
                                     {hour === 0 ? "12 AM" : hour < 12 ? `${hour} AM` : hour === 12 ? "12 PM" : `${hour - 12} PM`}

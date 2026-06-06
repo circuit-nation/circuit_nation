@@ -1,18 +1,18 @@
 import type { Route } from "./+types/home";
-import LandingNav from "~/components/home/landing-nav";
-import LandingHero from "~/components/home/landing-hero";
-import LandingGlobe from "~/components/home/landing-globe";
-import LandingWhat from "~/components/home/landing-what";
-import LandingProof from "~/components/home/landing-proof";
-import LandingAMAs from "~/components/home/landing-amas";
-import LandingCollab from "~/components/home/landing-collab";
-import LandingPosts from "~/components/home/landing-posts";
-import LandingVideos from "~/components/home/landing-videos";
-import LandingTestimonials from "~/components/home/landing-testimonials";
-import LandingSocialWall from "~/components/home/landing-social-wall";
-import LandingJoin from "~/components/home/landing-join";
-import LandingFooter from "~/components/home/landing-footer";
-import LandingLoader from "~/components/home/landing-loader";
+import LandingNav from "~/components/home/nav";
+import LandingHero from "~/components/home/hero";
+import LandingGlobe from "~/components/home/globe";
+import LandingWhat from "~/components/home/what";
+import LandingProof from "~/components/home/proof";
+import LandingAMAs from "~/components/home/amas";
+import LandingCollab from "~/components/home/collab";
+import LandingPosts from "~/components/home/posts";
+import LandingVideos from "~/components/home/videos";
+import LandingTestimonials from "~/components/home/testimonials";
+import LandingSocialWall from "~/components/home/social-wall";
+import LandingJoin from "~/components/home/join";
+import LandingFooter from "~/components/home/footer";
+import LandingLoader from "~/components/home/loader";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -43,9 +43,9 @@ export default function Home() {
       <LandingProof />
       <LandingAMAs />
       <LandingCollab />
-      <LandingPosts />
-      <LandingVideos />
-      <LandingTestimonials />
+      {/*<LandingPosts />*/}
+      {/*<LandingVideos />*/}
+      {/*<LandingTestimonials />*/}
       <LandingSocialWall />
       <LandingJoin />
       <LandingFooter />

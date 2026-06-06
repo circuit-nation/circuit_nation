@@ -1,118 +1,238 @@
-import { IconBrandInstagram as Instagram, IconBrandYoutube as Youtube, IconBrandReddit as Reddit } from "@tabler/icons-react";
-import { motion } from "motion/react";
-import { RaceCountdownCounter } from "~/components/common/counter";
-import UpdateCard from "../common/update-card";
-import type { EventParsed } from "~/schema";
-import SocialStats from "./social-stats";
+"use client";
+import { useEffect, useRef } from "react";
+import { cn } from "~/lib/utils";
+import { Button } from "~/components/ui/button";
+import { SectionEyebrow } from "./section-eyebrow";
+import { Link } from "react-router";
 
-interface HeroPageProps {
-    counterData: EventParsed[]; // Array of upcoming events with parsed data
-    socialStats: {
-        reddit: number;
-        youtube: number;
-        instagram: number;
+const RACES = [
+  ["F1", "Monaco GP", "May 24"],
+  ["MotoGP", "Mugello", "Jun 01"],
+  ["F1", "Canadian GP", "Jun 15"],
+  ["WEC", "Le Mans 24h", "Jun 14"],
+  ["MotoGP", "Assen TT", "Jun 29"],
+  ["F1", "British GP · Silverstone", "Jul 06"],
+  ["F1", "Spa-Francorchamps", "Jul 27"],
+  ["MotoGP", "Red Bull Ring", "Aug 17"],
+  ["F1", "Monza", "Sep 07"],
+  ["F1", "Singapore GP", "Oct 05"],
+  ["MotoGP", "Phillip Island", "Oct 19"],
+  ["F1", "Las Vegas GP", "Nov 22"],
+];
+
+function useCounter(
+  target: number,
+  suffix: string,
+  compact = false,
+  plain = false,
+) {
+  const ref = useRef<HTMLDivElement>(null);
+  const ran = useRef(false);
+  const cf = new Intl.NumberFormat("en", {
+    notation: "compact",
+    maximumFractionDigits: 0,
+  });
+
+  useEffect(() => {
+    if (ran.current || !ref.current) return;
+    ran.current = true;
+    const el = ref.current;
+    const dur = 1500;
+    const t0 = performance.now();
+    const disp = (v: number) =>
+      compact ? cf.format(v) : plain ? v.toLocaleString("en-US") : String(v);
+    const step = (now: number) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = Math.round(eased * target);
+      el.textContent =
+        disp(v) + (p === 1 ? suffix : suffix.replace(/[^+]/g, ""));
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = disp(target) + suffix;
     };
+    requestAnimationFrame(step);
+  }, []);
+
+  return ref;
 }
 
-const Hero = (props: HeroPageProps) => {
-    const { counterData, socialStats } = props;
+export function HudCard({
+  label,
+  target,
+  suffix,
+  compact = false,
+  plain = false,
+  live = false,
+}: {
+  label: string;
+  target: number;
+  suffix?: string;
+  compact?: boolean;
+  plain?: boolean;
+  live?: boolean;
+}) {
+  const countRef = useCounter(target, suffix || "", compact, plain);
 
-    const f1Data = counterData.find(event => event.sportData?.type === "formula");
-    const motoGpData = counterData.find(event => event.sportData?.type === "motogp");
+  return (
+    <div className="border border-cn-line bg-linear-to-b from-white/4 to-transparent rounded-[14px] px-5 py-4 min-w-sm relative overflow-hidden flex-1 basis-36">
+      <span className="absolute top-2 left-2 w-2 h-2 border-t border-l border-cn-accent" />
+      <span className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-cn-accent" />
+      <div className="font-mono text-xs font-medium tracking-[0.14em] uppercase text-cn-muted-2">
+        {label}
+      </div>
+      <div className="font-display font-extrabold text-xl leading-none mt-2 flex items-center gap-2">
+        {live ? (
+          <>
+            <span ref={countRef} className="text-cn-accent">
+              0
+            </span>
+            <span className="inline-block w-2 h-2 rounded-full bg-cn-accent animate-cn-pulse" />
+          </>
+        ) : (
+          <span ref={countRef}>0</span>
+        )}
+      </div>
+    </div>
+  );
+}
 
-    const stats = [
-        { label: "reddit", count: socialStats.reddit, icon: Reddit, color: "text-cn-orange" },
-        { label: "youtube", count: socialStats.youtube, icon: Youtube, color: "text-cn-red" },
-        { label: "instagram", count: socialStats.instagram, icon: Instagram, color: "text-cn-pink" },
-    ]
+export function RaceTicker() {
+  return (
+    <div className="border-t border-b border-cn-line bg-cn-bg-2 my-4 overflow-hidden relative z-3">
+      <div
+        className="flex w-max animate-cn-marquee"
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.animationPlayState = "paused")
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.animationPlayState = "running")
+        }
+      >
+        {[...RACES, ...RACES].map(([series, name, date], i) => (
+          <div
+            key={i}
+            className="flex items-center gap-4 px-8 py-4 font-mono text-xs tracking-[0.1em] uppercase text-cn-muted whitespace-nowrap"
+          >
+            <span className="size-2 rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)] shrink-0" />
+            <span className="text-cn-muted-2 text-xs">{series}</span>
+            <b className="text-cn-text font-medium">{name}</b>
+            <span>{date}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-    return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-48 lg:pt-0">
-            {/* Content */}
-            <div className="relative z-10 container mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    {/* Left Column */}
-                    <motion.div
-                        className="space-y-8"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        {/* Logo/Brand */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <h1 className="text-4xl md:text-6xl font-medium tracking-tight leading-tight">
-                                Ultimate Hub for
-                                <span className="text-cn-red"> Everything</span>
-                                <span className="text-cn-blue"> Motorsports</span>
-                            </h1>
-                        </motion.div>
+export default function LandingHero() {
+  const streaksRef = useRef<HTMLDivElement>(null);
 
-                        {/* Social Stats */}
-                        <motion.div
-                            className="flex items-center gap-6"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <SocialStats stats={stats} />
-                        </motion.div>
+  useEffect(() => {
+    const container = streaksRef.current;
+    if (!container) return;
+    for (let i = 0; i < 7; i++) {
+      const s = document.createElement("div");
+      s.style.cssText = `
+        position:absolute; height:1px; width:${28 + Math.random() * 30}vw;
+        background:linear-gradient(90deg,transparent,rgba(255,45,45,0) 10%,rgba(255,45,45,0.45) 70%,rgba(255,255,255,0.6));
+        top:${8 + i * 13}%;
+        animation:cn-streak ${3.2 + Math.random() * 3}s linear infinite;
+        animation-delay:${Math.random() * 4}s;
+        opacity:${0.3 + Math.random() * 0.5};
+        transform:translateX(-120%) rotate(-14deg);
+        will-change:transform,opacity;
+      `;
+      container.appendChild(s);
+    }
+  }, []);
 
-                        {/* CTA Button */}
-                        {/* <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <button className="px-8 py-3 bg-foreground text-background font-medium rounded-md hover:opacity-90 transition-opacity">
-                                Join Community
-                            </button>
-                        </motion.div> */}
-                    </motion.div>
+  return (
+    <>
+      <section
+        className="min-h-dvh flex flex-col justify-center py-24 overflow-hidden relative"
+        id="top"
+      >
+        {/* Speed streaks — JS-injected, inline styles intentional */}
+        <div
+          ref={streaksRef}
+          className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-50"
+        />
 
-                    {/* Right Column */}
-                    <motion.div
-                        className="flex items-center justify-center"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        <div className="w-full rounded-xl border border-border p-4">
-                            <div className="grid h-auto gap-4">
-                                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                                    {f1Data && (
-                                        <RaceCountdownCounter
-                                            title={f1Data.sportData?.name || "Formula 1"}
-                                            subtitle={f1Data.title}
-                                            targetDate={new Date(f1Data.event_start_at)}
-                                            accentClass="text-cn-red"
-                                            backgroundImage="/assets/f1-car.png"
-                                        />
-                                    )}
-                                    {motoGpData && (
-                                        <RaceCountdownCounter
-                                            title={motoGpData.sportData?.name || "MotoGP"}
-                                            subtitle={motoGpData.title}
-                                            targetDate={new Date(motoGpData.event_start_at)}
-                                            accentClass="text-cn-blue"
-                                            backgroundImage="/assets/motogp-bike.png"
-                                        />
-                                    )}
-                                </div>
+        {/* Grid floor — perspective transform, inline style intentional */}
+        <div
+          className="absolute left-0 right-0 -bottom-0.5 h-[42vh] z-0 pointer-events-none opacity-50"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg,var(--cn-line) 1px,transparent 1px),linear-gradient(0deg,var(--cn-line) 1px,transparent 1px)",
+            backgroundSize: "70px 70px",
+            WebkitMaskImage: "linear-gradient(180deg,transparent,#000 80%)",
+            maskImage: "linear-gradient(180deg,transparent,#000 80%)",
+            transform: "perspective(420px) rotateX(62deg) scale(1.6)",
+            transformOrigin: "bottom",
+          }}
+        />
+        <RaceTicker />
 
-                                <div className="grid grid-cols-1">
-                                    <UpdateCard />
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            </div>
-        </section>
-    );
-};
+        <div className="max-w-(--cn-maxw) mx-auto relative z-2">
+          <SectionEyebrow
+            label="// Your ultimate hub to everything motorsports"
+            className="animate-cn-fade opacity-0 [animation-delay:0.1s]"
+          />
 
-export default Hero;
+          <h1 className="font-display font-extrabold uppercase tracking-[-0.04em] leading-[0.9] text-[clamp(56px,11vw,172px)] mt-6">
+            {[
+              ["Circuit", ""],
+              ["Nation.", "accent"],
+            ].map(([text, variant], i) => (
+              <span key={i} className="block overflow-hidden">
+                <span
+                  className={cn(
+                    "block animate-cn-rise",
+                    variant === "accent" && "text-cn-accent",
+                  )}
+                  style={{
+                    transform: "translateY(105%)",
+                    animationDelay: `${i * 0.08}s`,
+                    ...(variant === "outline"
+                      ? {
+                          color: "transparent",
+                          WebkitTextStroke: "1.5px rgba(255,255,255,0.32)",
+                        }
+                      : {}),
+                  }}
+                >
+                  {text}
+                </span>
+              </span>
+            ))}
+          </h1>
+
+          <p className="max-w-md text-cn-muted text-sm mt-8 animate-cn-fade opacity-0 [animation-delay:0.5s]">
+            Formula 1, MotoGP, sim racing and the engineering obsession behind
+            it all, gathered into one home for the fans who never miss
+            lights-out.
+          </p>
+
+          <div className="flex gap-4 mt-9 flex-wrap animate-cn-fade opacity-0 [animation-delay:0.62s]">
+            <Button variant="cn-primary" size="cn" asChild>
+              <Link to="#join">
+                <span className="w-1.5 h-1.5 rounded-full bg-current shadow-[0_0_8px_currentColor]" />
+                Join the Community
+              </Link>
+            </Button>
+            <Button variant="cn-ghost" size="cn" asChild>
+              <a href="#content">Explore Content →</a>
+            </Button>
+          </div>
+
+          {/* HUD stats */}
+          <div className="flex flex-wrap gap-4 items-stretch mt-14 animate-cn-fade opacity-0 [animation-delay:0.8s]">
+            <HudCard label="Weekly Visitors" target={95} suffix="K+" />
+            <HudCard label="Live right now" target={1240} live plain />
+            <HudCard label="Discussion threads" target={150} suffix="+" />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

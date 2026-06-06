@@ -52,7 +52,7 @@ export default function LandingVideos() {
             <div className={cn(cnCardClass, "!p-0 overflow-hidden group cursor-pointer")}>
               <div className="relative overflow-hidden">
                 <div className="h-[420px] w-full bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105 relative">
-                  <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+                  <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                     Featured video
                   </span>
                 </div>
@@ -61,14 +61,14 @@ export default function LandingVideos() {
                     <PlayIcon />
                   </div>
                 </div>
-                <span className="absolute right-3 bottom-3 z-[3] font-mono text-[11px] bg-black/70 px-2 py-1 rounded-[6px] text-cn-text">18:42</span>
+                <span className="absolute right-3 bottom-3 z-[3] font-mono text-xs bg-black/70 px-2 py-1 rounded-[6px] text-cn-text">18:42</span>
               </div>
               <div className="px-6 py-[22px]">
-                <span className="font-mono text-[10.5px] tracking-[0.12em] uppercase text-cn-accent">Watch-along</span>
+                <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">Watch-along</span>
                 <h3 className="font-display font-bold tracking-[-0.01em] mt-[10px] leading-[1.2] text-[clamp(22px,2.4vw,30px)]">
                   Monaco GP, every radio call decoded — live community reaction
                 </h3>
-                <div className="font-mono text-[11px] text-cn-muted-2 mt-[10px]">142K views · 2 days ago</div>
+                <div className="font-mono text-xs text-cn-muted-2 mt-[10px]">142K views · 2 days ago</div>
               </div>
             </div>
           </Reveal>
@@ -82,12 +82,12 @@ export default function LandingVideos() {
                     <div className="absolute inset-0 grid place-items-center z-[3]">
                       <PlayIcon size={40} small />
                     </div>
-                    <span className="absolute right-2 bottom-2 z-[3] font-mono text-[11px] bg-black/70 px-[6px] py-[3px] rounded-[5px] text-cn-text">{v.dur}</span>
+                    <span className="absolute right-2 bottom-2 z-[3] font-mono text-xs bg-black/70 px-[6px] py-[3px] rounded-[5px] text-cn-text">{v.dur}</span>
                   </div>
                   <div className="px-[18px] py-4 flex flex-col justify-center">
-                    <span className="font-mono text-[10.5px] tracking-[0.12em] uppercase text-cn-accent">{v.cat}</span>
-                    <h3 className="font-display font-bold tracking-[-0.01em] mt-[6px] leading-[1.2] text-[16px]">{v.title}</h3>
-                    <div className="font-mono text-[11px] text-cn-muted-2 mt-2">{v.views}</div>
+                    <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{v.cat}</span>
+                    <h3 className="font-display font-bold tracking-[-0.01em] mt-[6px] leading-[1.2] text-sm">{v.title}</h3>
+                    <div className="font-mono text-xs text-cn-muted-2 mt-2">{v.views}</div>
                   </div>
                 </div>
               </Reveal>

@@ -30,11 +30,11 @@ function QuoteCard({ body, name, role, highlight = false, red = false, delay = 0
       )}
       style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
     >
-      <div className="font-display font-extrabold text-[48px] leading-[0.6] text-cn-accent h-6">"</div>
-      <p className="text-[16px] text-cn-text leading-[1.55]">{body}</p>
+      <div className="font-display font-extrabold text-2xl leading-[0.6] text-cn-accent h-6">"</div>
+      <p className="text-sm text-cn-text leading-[1.55]">{body}</p>
       <div className="flex items-center gap-3 mt-auto">
         <div className={cn(
-          "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-[13px] font-bold",
+          "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-sm font-bold",
           red
             ? "bg-[linear-gradient(150deg,rgba(255,90,31,0.5),#161619)] text-white"
             : "bg-[linear-gradient(150deg,#2a2a30,#161619)] text-cn-muted",
@@ -42,8 +42,8 @@ function QuoteCard({ body, name, role, highlight = false, red = false, delay = 0
           {initials}
         </div>
         <div>
-          <b className="font-body font-semibold text-[14.5px] block">{name}</b>
-          <span className="font-mono text-[11px] text-cn-muted-2">{role}</span>
+          <b className="font-body font-semibold text-sm block">{name}</b>
+          <span className="font-mono text-xs text-cn-muted-2">{role}</span>
         </div>
       </div>
     </div>

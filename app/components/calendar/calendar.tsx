@@ -210,7 +210,7 @@ export const MotorsportCalendar = ({ className, events }: MotorsportCalendarProp
                         />
                         <label
                             htmlFor={`filter-${sport.type}`}
-                            className="flex cursor-pointer items-center gap-2 text-[11px] font-medium text-muted-foreground"
+                            className="flex cursor-pointer items-center gap-2 text-xs font-medium text-muted-foreground"
                         >
                             <span
                                 className="h-2 w-2 rounded-full"

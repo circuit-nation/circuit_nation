@@ -42,45 +42,45 @@ export default function LandingWhat() {
   const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
 
   return (
-    <section id="about" className="py-[130px]">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
+    <section id="about" className="py-24">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
 
         <div
           ref={headRef}
           className={cn(
-            "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
-            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+            "max-w-3xl transition-[opacity,transform] duration-800 ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           )}
         >
           <SectionEyebrow label="// What is Circuit Nation" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
             A paddock that<br />never closes.
           </h2>
-          <p className="text-cn-muted mt-[22px] text-[18px] max-w-[600px]">
+          <p className="text-cn-muted mt-6 text-sm max-w-lg">
             Not a feed. Not a fan club. A living garage where strategy nerds, sim racers, meme lords and lifelong tifosi argue, analyse and celebrate every lap together.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 max-nav:grid-cols-2 max-[620px]:grid-cols-1 gap-[18px] mt-16">
+        <div className="grid grid-cols-3 max-nav:grid-cols-2 max-[620px]:grid-cols-1 gap-4 mt-16">
 
           <Reveal className="col-span-2 max-[620px]:col-span-1">
-            <div className={cn(cnCardClass, "flex flex-col justify-between gap-[30px] min-h-[280px]")}>
+            <div className={cn(cnCardClass, "flex flex-col justify-between gap-8 min-h-56")}>
               <div className="font-display font-bold text-[clamp(24px,2.6vw,34px)] leading-[1.2] tracking-[-0.02em]">
                 We built Circuit Nation because the best part of race weekend isn't the race — it's the{" "}
                 <b className="text-cn-accent font-bold">people you watch it with.</b>
               </div>
-              <div className="flex gap-[26px] flex-wrap font-mono text-[12px] tracking-[0.08em] uppercase text-cn-muted-2">
-                {["EST. 2023", "FAN-OWNED", "SERIES-AGNOSTIC", "ALWAYS ONLINE"].map(t => <span key={t}>{t}</span>)}
+              <div className="flex gap-6 flex-wrap font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">
+                {["EST. 2025", "FAN-OWNED", "SERIES-AGNOSTIC", "ALWAYS ONLINE"].map(t => <span key={t}>{t}</span>)}
               </div>
             </div>
           </Reveal>
 
           <Reveal delay={0.08}>
             <div className={cn(cnAccentCardClass, "flex flex-col justify-center gap-4")}>
-              <div className="font-display font-bold text-[21px]">Who's inside?</div>
-              <ul className="list-none flex flex-col gap-[9px]">
+              <div className="font-display font-bold text-lg">Who's inside?</div>
+              <ul className="list-none flex flex-col gap-2">
                 {["Day-one F1 & MotoGP diehards", "Sim racers chasing the apex", "Engineers who read the regs for fun", "Newcomers who just caught the bug"].map(item => (
-                  <li key={item} className="text-cn-muted text-[14.5px] flex gap-[9px] items-start">
+                  <li key={item} className="text-cn-muted text-sm flex gap-2 items-start">
                     <span className="text-cn-accent font-bold">›</span>
                     {item}
                   </li>
@@ -92,14 +92,14 @@ export default function LandingWhat() {
           {FEATURES.map((f, i) => (
             <Reveal key={f.idx} delay={i % 3 === 1 ? 0.08 : i % 3 === 2 ? 0.16 : 0}>
               <div className={cn(cnCardClass, "relative overflow-hidden hover:border-cn-accent/40 hover:shadow-[0_22px_60px_-22px_(--cn-accent-glow)]")}>
-                <span className="absolute top-6 right-[26px] font-mono text-[12px] text-cn-muted-2">{f.idx}</span>
-                <div className="w-[46px] h-[46px] rounded-[12px] border border-cn-line-strong bg-cn-accent/6 grid place-items-center">
-                  <svg viewBox="0 0 24 24" className="w-[22px] h-[22px] stroke-cn-accent fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]">
+                <span className="absolute top-6 right-6 font-mono text-sm text-cn-muted-2">{f.idx}</span>
+                <div className="size-12 rounded-2xl border border-cn-line-strong bg-cn-accent/6 grid place-items-center">
+                  <svg viewBox="0 0 24 24" className="size-6 stroke-cn-accent fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]">
                     {f.icon}
                   </svg>
                 </div>
-                <h3 className="font-display font-bold text-[20px] mt-5 tracking-[-0.01em]">{f.title}</h3>
-                <p className="text-cn-muted text-[14.5px] mt-[10px]">{f.desc}</p>
+                <h3 className="font-display font-bold text-sm mt-5 tracking-[-0.01em]">{f.title}</h3>
+                <p className="text-cn-muted text-sm mt-2">{f.desc}</p>
               </div>
             </Reveal>
           ))}

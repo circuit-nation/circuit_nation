@@ -203,9 +203,9 @@ const buttonVariants = cva(
         "view-switcher": "",
         link: "text-primary underline-offset-4 hover:underline",
         "cn-primary":
-          "border-0 font-mono text-[12.5px] tracking-[0.1em] uppercase font-medium rounded-[10px] text-white cursor-pointer no-underline bg-gradient-to-b from-[#ff3b3b] to-cn-accent-deep shadow-[0_8px_30px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.25)] transition-[transform_.18s_ease,box-shadow_.25s_ease] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.3)]",
+          "border-0 font-mono text-xs tracking-[0.1em] uppercase font-medium rounded-[10px] text-white cursor-pointer no-underline bg-gradient-to-b from-[#ff3b3b] to-cn-accent-deep shadow-[0_8px_30px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.25)] transition-[transform_.18s_ease,box-shadow_.25s_ease] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.3)]",
         "cn-ghost":
-          "border border-cn-line-strong font-mono text-[12.5px] tracking-[0.1em] uppercase font-medium rounded-[10px] bg-white/[0.03] text-cn-text cursor-pointer no-underline transition-[transform_.18s_ease,background_.25s_ease,border-color_.25s_ease] hover:-translate-y-0.5 hover:bg-white/[0.06] hover:border-cn-text",
+          "border border-cn-line-strong font-mono text-xs tracking-[0.1em] uppercase font-medium rounded-[10px] bg-white/[0.03] text-cn-text cursor-pointer no-underline transition-[transform_.18s_ease,background_.25s_ease,border-color_.25s_ease] hover:-translate-y-0.5 hover:bg-white/[0.06] hover:border-cn-text",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -319,7 +319,7 @@ interface SectionEyebrowProps {
 export function SectionEyebrow({ label, className }: SectionEyebrowProps) {
   return (
     <span className={cn(
-      "font-mono text-[12px] font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px]",
+      "font-mono text-xs font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px]",
       className
     )}>
       <span className="w-[26px] h-px bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
@@ -354,7 +354,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       type={type}
       data-slot="input"
       className={cn(
-        "flex w-full min-w-0 rounded-[12px] border border-cn-line-strong bg-[rgba(10,10,11,0.6)] px-[18px] py-[15px] text-[15px] font-body text-cn-text placeholder:text-cn-muted-2 outline-none transition-[border-color] duration-200 focus:border-cn-accent disabled:cursor-not-allowed disabled:opacity-50",
+        "flex w-full min-w-0 rounded-[12px] border border-cn-line-strong bg-[rgba(10,10,11,0.6)] px-[18px] py-[15px] text-sm font-body text-cn-text placeholder:text-cn-muted-2 outline-none transition-[border-color] duration-200 focus:border-cn-accent disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}
@@ -406,7 +406,7 @@ export default function LandingLoader() {
         <div className="w-[min(360px,70vw)] h-[3px] bg-white/[0.08] mx-auto mt-[22px] rounded-full overflow-hidden">
           <div className="block h-full w-0 bg-gradient-to-r from-cn-accent-deep to-[#ff5a5a] shadow-[0_0_14px_var(--cn-accent-glow)] animate-cn-load" />
         </div>
-        <div className="font-mono text-[11px] tracking-[0.3em] uppercase text-cn-muted-2 mt-4">
+        <div className="font-mono text-xs tracking-[0.3em] uppercase text-cn-muted-2 mt-4">
           Igniting the grid...
         </div>
       </div>
@@ -464,7 +464,7 @@ export default function LandingNav() {
           <span className="w-[34px] h-[34px] rounded-[9px] bg-gradient-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
             <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_38%,var(--cn-accent)_40%,var(--cn-accent)_46%,transparent_48%,transparent_54%,var(--cn-accent)_56%,var(--cn-accent)_62%,transparent_64%)] opacity-[0.95]" />
           </span>
-          <span className="font-display font-extrabold text-[19px] tracking-[-0.01em] uppercase leading-none">
+          <span className="font-display font-extrabold text-sm tracking-[-0.01em] uppercase leading-none">
             Circuit Nation
           </span>
         </a>
@@ -473,7 +473,7 @@ export default function LandingNav() {
         <nav className="hidden nav:flex items-center gap-8">
           {[["#about", "The Hub"], ["#globe", "Globe"], ["#amas", "AMAs"], ["#content", "Content"]].map(([href, label]) => (
             <a key={href} href={href}
-              className="font-mono text-[12.5px] tracking-[0.1em] uppercase text-cn-muted no-underline transition-colors duration-200 hover:text-cn-text"
+              className="font-mono text-xs tracking-[0.1em] uppercase text-cn-muted no-underline transition-colors duration-200 hover:text-cn-text"
             >
               {label}
             </a>
@@ -493,7 +493,7 @@ export default function LandingNav() {
           </Button>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="nav:hidden bg-white/[0.04] border border-cn-line-strong text-cn-text rounded-[10px] px-[14px] py-[11px] font-mono text-[11px] tracking-[0.1em] uppercase cursor-pointer"
+            className="nav:hidden bg-white/[0.04] border border-cn-line-strong text-cn-text rounded-[10px] px-[14px] py-[11px] font-mono text-xs tracking-[0.1em] uppercase cursor-pointer"
             aria-label="Menu"
           >
             Menu
@@ -510,7 +510,7 @@ export default function LandingNav() {
         >
           {[["#about", "The Hub"], ["#globe", "Globe"], ["#amas", "AMAs"], ["#content", "Content"], ["#join", "Join the Community"]].map(([href, label]) => (
             <a key={href} href={href} onClick={() => setMenuOpen(false)}
-              className="font-mono text-[13px] tracking-[0.1em] uppercase text-cn-text no-underline"
+              className="font-mono text-sm tracking-[0.1em] uppercase text-cn-text no-underline"
             >{label}</a>
           ))}
         </motion.div>
@@ -592,10 +592,10 @@ export function HudCard({ label, target, suffix, compact = false, plain = false,
     <div className="border border-cn-line bg-gradient-to-b from-white/[0.025] to-transparent rounded-[14px] px-5 py-4 min-w-[150px] relative overflow-hidden flex-1 basis-[150px]">
       <span className="absolute top-2 left-2 w-2 h-2 border-t border-l border-cn-accent" />
       <span className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-cn-accent" />
-      <div className="font-mono text-[11px] font-medium tracking-[0.14em] uppercase text-cn-muted-2">
+      <div className="font-mono text-xs font-medium tracking-[0.14em] uppercase text-cn-muted-2">
         {label}
       </div>
-      <div className="font-display font-extrabold text-[30px] leading-none mt-2 flex items-center gap-2">
+      <div className="font-display font-extrabold text-xl leading-none mt-2 flex items-center gap-2">
         {live ? (
           <>
             <span ref={countRef} className="text-cn-accent">0</span>
@@ -618,9 +618,9 @@ export function RaceTicker() {
         onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
       >
         {[...RACES, ...RACES].map(([series, name, date], i) => (
-          <div key={i} className="flex items-center gap-4 px-[30px] py-4 font-mono text-[12.5px] tracking-[0.1em] uppercase text-cn-muted whitespace-nowrap">
+          <div key={i} className="flex items-center gap-4 px-[30px] py-4 font-mono text-xs tracking-[0.1em] uppercase text-cn-muted whitespace-nowrap">
             <span className="w-[7px] h-[7px] rounded-full bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
-            <span className="text-cn-muted-2 text-[11px]">{series}</span>
+            <span className="text-cn-muted-2 text-xs">{series}</span>
             <b className="text-cn-text font-medium">{name}</b>
             <span>{date}</span>
           </div>
@@ -673,7 +673,7 @@ export default function LandingHero() {
 
         <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
           <span
-            className="font-mono text-[12px] font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px] animate-cn-fade opacity-0 [animation-delay:0.1s]"
+            className="font-mono text-xs font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px] animate-cn-fade opacity-0 [animation-delay:0.1s]"
           >
             <span className="w-[26px] h-px bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
             // Your ultimate hub to everything motorsports
@@ -697,13 +697,13 @@ export default function LandingHero() {
             ))}
           </h1>
 
-          <p className="max-w-[540px] text-cn-muted text-[18px] mt-[30px] animate-cn-fade opacity-0 [animation-delay:0.5s]">
+          <p className="max-w-[540px] text-cn-muted text-sm mt-[30px] animate-cn-fade opacity-0 [animation-delay:0.5s]">
             Formula 1, MotoGP, sim racing and the engineering obsession behind it all — gathered into one home for the fans who never miss lights-out.
           </p>
 
           <div className="flex gap-4 mt-9 flex-wrap animate-cn-fade opacity-0 [animation-delay:0.62s]">
             <Button variant="cn-primary" size="cn" asChild>
-              <a href="#join" className="text-[13px] px-[26px] py-[15px] rounded-[12px]">
+              <a href="#join" className="text-sm px-[26px] py-[15px] rounded-[12px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-current shadow-[0_0_8px_currentColor]" />
                 Join the Community
               </a>
@@ -801,7 +801,7 @@ export default function LandingWhat() {
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
             A paddock that<br />never closes.
           </h2>
-          <p className="text-cn-muted mt-[22px] text-[18px] max-w-[600px]">
+          <p className="text-cn-muted mt-[22px] text-sm max-w-[600px]">
             Not a feed. Not a fan club. A living garage where strategy nerds, sim racers, meme lords and lifelong tifosi argue, analyse and celebrate every lap together.
           </p>
         </div>
@@ -816,7 +816,7 @@ export default function LandingWhat() {
                 We built Circuit Nation because the best part of race weekend isn't the race — it's the{" "}
                 <b className="text-cn-accent font-bold">people you watch it with.</b>
               </div>
-              <div className="flex gap-[26px] flex-wrap font-mono text-[12px] tracking-[0.08em] uppercase text-cn-muted-2">
+              <div className="flex gap-[26px] flex-wrap font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">
                 {["EST. 2023", "FAN-OWNED", "SERIES-AGNOSTIC", "ALWAYS ONLINE"].map(t => <span key={t}>{t}</span>)}
               </div>
             </div>
@@ -825,10 +825,10 @@ export default function LandingWhat() {
           {/* Persona card */}
           <Reveal delay={0.08}>
             <div className={cn(cnAccentCardClass, "flex flex-col justify-center gap-4")}>
-              <div className="font-display font-bold text-[21px]">Who's inside?</div>
+              <div className="font-display font-bold text-lg">Who's inside?</div>
               <ul className="list-none flex flex-col gap-[9px]">
                 {["Day-one F1 & MotoGP diehards", "Sim racers chasing the apex", "Engineers who read the regs for fun", "Newcomers who just caught the bug"].map(item => (
-                  <li key={item} className="text-cn-muted text-[14.5px] flex gap-[9px] items-start">
+                  <li key={item} className="text-cn-muted text-sm flex gap-[9px] items-start">
                     <span className="text-cn-accent font-bold">›</span>
                     {item}
                   </li>
@@ -841,14 +841,14 @@ export default function LandingWhat() {
           {FEATURES.map((f, i) => (
             <Reveal key={f.idx} delay={i % 3 === 1 ? 0.08 : i % 3 === 2 ? 0.16 : 0}>
               <div className={cn(cnCardClass, "relative overflow-hidden hover:border-[rgba(255,45,45,0.4)] hover:shadow-[0_22px_60px_-22px_var(--cn-accent-glow)]")}>
-                <span className="absolute top-6 right-[26px] font-mono text-[12px] text-cn-muted-2">{f.idx}</span>
+                <span className="absolute top-6 right-[26px] font-mono text-xs text-cn-muted-2">{f.idx}</span>
                 <div className="w-[46px] h-[46px] rounded-[12px] border border-cn-line-strong bg-[rgba(255,45,45,0.06)] grid place-items-center">
                   <svg viewBox="0 0 24 24" className="w-[22px] h-[22px] stroke-cn-accent fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]">
                     {f.icon}
                   </svg>
                 </div>
-                <h3 className="font-display font-bold text-[20px] mt-5 tracking-[-0.01em]">{f.title}</h3>
-                <p className="text-cn-muted text-[14.5px] mt-[10px]">{f.desc}</p>
+                <h3 className="font-display font-bold text-sm mt-5 tracking-[-0.01em]">{f.title}</h3>
+                <p className="text-cn-muted text-sm mt-[10px]">{f.desc}</p>
               </div>
             </Reveal>
           ))}
@@ -925,7 +925,7 @@ function MetricCard({
         transitionDelay: `${delay}s`,
       }}
     >
-      {tag && <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-muted-2">{tag}</span>}
+      {tag && <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-muted-2">{tag}</span>}
       <div>
         <div
           ref={numRef}
@@ -936,7 +936,7 @@ function MetricCard({
         >
           0
         </div>
-        <div className="font-mono text-[12px] font-medium tracking-[0.1em] uppercase text-cn-muted mt-[14px]">
+        <div className="font-mono text-xs font-medium tracking-[0.1em] uppercase text-cn-muted mt-[14px]">
           {label}
         </div>
       </div>
@@ -1040,7 +1040,7 @@ export default function LandingCollab() {
           {[...BRANDS, ...BRANDS].map((b, i) => (
             <div
               key={i}
-              className="font-display font-bold text-[22px] tracking-[-0.01em] text-cn-muted-2 py-5 whitespace-nowrap opacity-70 transition-[color,opacity] duration-[250ms] hover:text-cn-text hover:opacity-100"
+              className="font-display font-bold text-lg tracking-[-0.01em] text-cn-muted-2 py-5 whitespace-nowrap opacity-70 transition-[color,opacity] duration-[250ms] hover:text-cn-text hover:opacity-100"
             >
               {b}
             </div>
@@ -1055,19 +1055,19 @@ export default function LandingCollab() {
             <Reveal key={c.title} delay={i * 0.08}>
               <div className={cn(cnCardClass, "!p-0 overflow-hidden")}>
                 <div className="h-[200px] border-b border-cn-line bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
-                  <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+                  <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                     {c.kicker.toLowerCase()} keyart
                   </span>
                 </div>
                 <div className="p-[26px]">
-                  <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-accent">{c.kicker}</span>
-                  <h3 className="font-display font-bold text-[22px] mt-3 tracking-[-0.01em]">{c.title}</h3>
-                  <p className="text-cn-muted text-[14.5px] mt-[10px]">{c.desc}</p>
+                  <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{c.kicker}</span>
+                  <h3 className="font-display font-bold text-lg mt-3 tracking-[-0.01em]">{c.title}</h3>
+                  <p className="text-cn-muted text-sm mt-[10px]">{c.desc}</p>
                   <div className="flex gap-[22px] mt-5">
                     {c.stats.map(([val, lbl]) => (
                       <div key={lbl}>
-                        <b className="font-display font-extrabold text-[24px] block">{val}</b>
-                        <span className="font-mono text-[10.5px] tracking-[0.08em] uppercase text-cn-muted-2">{lbl}</span>
+                        <b className="font-display font-extrabold text-lg block">{val}</b>
+                        <span className="font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">{lbl}</span>
                       </div>
                     ))}
                   </div>
@@ -1108,7 +1108,7 @@ import { cnCardClass } from "~/components/ui/card";
 function Avatar({ initials, red = false }: { initials: string; red?: boolean }) {
   return (
     <div className={cn(
-      "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-[13px] font-bold",
+      "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-sm font-bold",
       red
         ? "bg-[linear-gradient(150deg,rgba(255,90,31,0.5),#161619)] text-white"
         : "bg-[linear-gradient(150deg,#2a2a30,#161619)] text-cn-muted",
@@ -1129,7 +1129,7 @@ function UpvoteIcon() {
 function Badge({ type }: { type: "live" | "up" | "trend" }) {
   return (
     <span className={cn(
-      "font-mono text-[10.5px] font-medium tracking-[0.14em] uppercase px-[11px] py-[6px] rounded-[20px] inline-flex items-center gap-[7px] w-fit",
+      "font-mono text-xs font-medium tracking-[0.14em] uppercase px-[11px] py-[6px] rounded-[20px] inline-flex items-center gap-[7px] w-fit",
       type === "live" && "bg-[rgba(255,45,45,0.14)] text-[#ff7676] border border-[rgba(255,45,45,0.3)]",
       type === "up" && "bg-[rgba(255,90,31,0.12)] text-cn-orange border border-[rgba(255,90,31,0.28)]",
       type === "trend" && "bg-white/[0.05] text-cn-muted border border-cn-line-strong",
@@ -1142,7 +1142,7 @@ function Badge({ type }: { type: "live" | "up" | "trend" }) {
   );
 }
 
-const readBtnClass = "font-mono text-[12px] tracking-[0.08em] uppercase text-cn-text no-underline inline-flex items-center gap-2 px-[14px] py-[9px] border border-cn-line-strong rounded-[9px] transition-all duration-200 hover:border-cn-orange hover:text-cn-orange";
+const readBtnClass = "font-mono text-xs tracking-[0.08em] uppercase text-cn-text no-underline inline-flex items-center gap-2 px-[14px] py-[9px] border border-cn-line-strong rounded-[9px] transition-all duration-200 hover:border-cn-orange hover:text-cn-orange";
 
 export default function LandingAMAs() {
   const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
@@ -1159,7 +1159,7 @@ export default function LandingAMAs() {
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
             Ask the<br />paddock anything.
           </h2>
-          <p className="text-cn-muted mt-[22px] text-[18px] max-w-[600px]">
+          <p className="text-cn-muted mt-[22px] text-sm max-w-[600px]">
             We bring racing's most interesting voices straight into the community — creators, engineers, sim aces and commentators, live and unfiltered.
           </p>
         </div>
@@ -1170,7 +1170,7 @@ export default function LandingAMAs() {
           <Reveal>
             <div className={cn(cnCardClass, "!p-0 overflow-hidden")}>
               <div className="h-[280px] w-full border-b border-cn-line bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
-                <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+                <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                   AMA host portrait
                 </span>
               </div>
@@ -1179,19 +1179,19 @@ export default function LandingAMAs() {
                 <h3 className="font-display font-bold text-[clamp(26px,3vw,38px)] tracking-[-0.02em] leading-[1.1] mt-4">
                   "I spent 9 years on an F1 pit wall. Ask me about strategy calls under pressure."
                 </h3>
-                <p className="text-cn-muted text-[14.5px] mt-[14px]">
+                <p className="text-cn-muted text-sm mt-[14px]">
                   A former race strategist breaks down the undercut, the gamble that won a title, and the radio messages you never heard.
                 </p>
                 <div className="flex items-center gap-3 mt-[18px]">
                   <Avatar initials="JR" red />
                   <div className="flex flex-col">
-                    <b className="font-body font-semibold text-[14.5px]">Jamie Renault</b>
-                    <span className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em]">u/pitwall_jr · ex-Race Strategist</span>
+                    <b className="font-body font-semibold text-sm">Jamie Renault</b>
+                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">u/pitwall_jr · ex-Race Strategist</span>
                   </div>
                 </div>
                 <div className="mt-[22px] flex items-center justify-between gap-[14px]">
                   <a href="#" className={readBtnClass}>Read AMA →</a>
-                  <span className="font-mono text-[12px] text-cn-muted-2 inline-flex items-center gap-[6px]">
+                  <span className="font-mono text-xs text-cn-muted-2 inline-flex items-center gap-[6px]">
                     <UpvoteIcon />4.2k upvotes
                   </span>
                 </div>
@@ -1210,13 +1210,13 @@ export default function LandingAMAs() {
                 <div className="flex items-center gap-3">
                   <Avatar initials="KS" />
                   <div className="flex flex-col">
-                    <b className="font-body font-semibold text-[14.5px]">Kai Sorensen</b>
-                    <span className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em]">u/apex_kai · Sim to Real</span>
+                    <b className="font-body font-semibold text-sm">Kai Sorensen</b>
+                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">u/apex_kai · Sim to Real</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-[14px]">
                   <a href="#" className={readBtnClass}>Set reminder →</a>
-                  <span className="font-mono text-[12px] text-cn-muted-2 inline-flex items-center gap-[6px]">
+                  <span className="font-mono text-xs text-cn-muted-2 inline-flex items-center gap-[6px]">
                     <UpvoteIcon />880 waiting
                   </span>
                 </div>
@@ -1231,13 +1231,13 @@ export default function LandingAMAs() {
                 <div className="flex items-center gap-3">
                   <Avatar initials="MA" />
                   <div className="flex flex-col">
-                    <b className="font-body font-semibold text-[14.5px]">Dr. Mara Aoki</b>
-                    <span className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em]">u/ground_effect · Aerodynamicist</span>
+                    <b className="font-body font-semibold text-sm">Dr. Mara Aoki</b>
+                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">u/ground_effect · Aerodynamicist</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-[14px]">
                   <a href="#" className={readBtnClass}>Read AMA →</a>
-                  <span className="font-mono text-[12px] text-cn-muted-2 inline-flex items-center gap-[6px]">
+                  <span className="font-mono text-xs text-cn-muted-2 inline-flex items-center gap-[6px]">
                     <UpvoteIcon />2.7k upvotes
                   </span>
                 </div>
@@ -1303,22 +1303,22 @@ export default function LandingPosts() {
           <Reveal>
             <article className={cn(cnCardClass, "!p-0 flex flex-col overflow-hidden")}>
               <div className="h-[360px] border-b border-cn-line flex-1 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
-                <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+                <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                   Featured article hero
                 </span>
               </div>
               <div className="p-8">
-                <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-accent inline-flex items-center gap-[9px]">
+                <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent inline-flex items-center gap-[9px]">
                   <span className="w-[6px] h-[6px] rounded-full bg-cn-accent inline-block" />
                   Race Analysis
                 </span>
                 <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.06] mt-3 text-[clamp(26px,3vw,40px)]">
                   The undercut that wasn't: how three teams misread the same pit window
                 </h3>
-                <p className="text-cn-muted mt-4 max-w-[540px] text-[15px]">
+                <p className="text-cn-muted mt-4 max-w-[540px] text-sm">
                   We charted every stint from the weekend and found the strategy call everyone defended was the slowest path to the podium.
                 </p>
-                <div className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em] mt-3 flex gap-[14px]">
+                <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-3 flex gap-[14px]">
                   <span>12 min read</span><span>·</span><span>May 26, 2026</span><span>·</span><span>318 comments</span>
                 </div>
               </div>
@@ -1332,9 +1332,9 @@ export default function LandingPosts() {
                 <article className={cn(cnCardClass, "!p-[22px_24px] flex gap-5 items-center cursor-pointer")}>
                   <div className="w-24 h-24 rounded-[12px] shrink-0 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] border border-cn-line" />
                   <div>
-                    <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-accent">{p.cat}</span>
-                    <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.2] mt-2 text-[17px]">{p.title}</h3>
-                    <div className="font-mono text-[11px] text-cn-muted-2 tracking-[0.06em] mt-2">{p.meta}</div>
+                    <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{p.cat}</span>
+                    <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.2] mt-2 text-sm">{p.title}</h3>
+                    <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-2">{p.meta}</div>
                   </div>
                 </article>
               </Reveal>
@@ -1418,7 +1418,7 @@ export default function LandingVideos() {
             <div className={cn(cnCardClass, "!p-0 overflow-hidden group cursor-pointer")}>
               <div className="relative overflow-hidden">
                 <div className="h-[420px] w-full bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105 relative">
-                  <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+                  <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                     Featured video
                   </span>
                 </div>
@@ -1427,14 +1427,14 @@ export default function LandingVideos() {
                     <PlayIcon />
                   </div>
                 </div>
-                <span className="absolute right-3 bottom-3 z-[3] font-mono text-[11px] bg-black/70 px-2 py-1 rounded-[6px] text-cn-text">18:42</span>
+                <span className="absolute right-3 bottom-3 z-[3] font-mono text-xs bg-black/70 px-2 py-1 rounded-[6px] text-cn-text">18:42</span>
               </div>
               <div className="px-6 py-[22px]">
-                <span className="font-mono text-[10.5px] tracking-[0.12em] uppercase text-cn-accent">Watch-along</span>
+                <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">Watch-along</span>
                 <h3 className="font-display font-bold tracking-[-0.01em] mt-[10px] leading-[1.2] text-[clamp(22px,2.4vw,30px)]">
                   Monaco GP, every radio call decoded — live community reaction
                 </h3>
-                <div className="font-mono text-[11px] text-cn-muted-2 mt-[10px]">142K views · 2 days ago</div>
+                <div className="font-mono text-xs text-cn-muted-2 mt-[10px]">142K views · 2 days ago</div>
               </div>
             </div>
           </Reveal>
@@ -1449,12 +1449,12 @@ export default function LandingVideos() {
                     <div className="absolute inset-0 grid place-items-center z-[3]">
                       <PlayIcon size={40} small />
                     </div>
-                    <span className="absolute right-2 bottom-2 z-[3] font-mono text-[11px] bg-black/70 px-[6px] py-[3px] rounded-[5px] text-cn-text">{v.dur}</span>
+                    <span className="absolute right-2 bottom-2 z-[3] font-mono text-xs bg-black/70 px-[6px] py-[3px] rounded-[5px] text-cn-text">{v.dur}</span>
                   </div>
                   <div className="px-[18px] py-4 flex flex-col justify-center">
-                    <span className="font-mono text-[10.5px] tracking-[0.12em] uppercase text-cn-accent">{v.cat}</span>
-                    <h3 className="font-display font-bold tracking-[-0.01em] mt-[6px] leading-[1.2] text-[16px]">{v.title}</h3>
-                    <div className="font-mono text-[11px] text-cn-muted-2 mt-2">{v.views}</div>
+                    <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{v.cat}</span>
+                    <h3 className="font-display font-bold tracking-[-0.01em] mt-[6px] leading-[1.2] text-sm">{v.title}</h3>
+                    <div className="font-mono text-xs text-cn-muted-2 mt-2">{v.views}</div>
                   </div>
                 </div>
               </Reveal>
@@ -1520,11 +1520,11 @@ function QuoteCard({ body, name, role, highlight = false, red = false, delay = 0
         transitionDelay: `${delay}s`,
       }}
     >
-      <div className="font-display font-extrabold text-[48px] leading-[0.6] text-cn-accent h-6">"</div>
-      <p className="text-[16px] text-cn-text leading-[1.55]">{body}</p>
+      <div className="font-display font-extrabold text-2xl leading-[0.6] text-cn-accent h-6">"</div>
+      <p className="text-sm text-cn-text leading-[1.55]">{body}</p>
       <div className="flex items-center gap-3 mt-auto">
         <div className={cn(
-          "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-[13px] font-bold",
+          "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-sm font-bold",
           red
             ? "bg-[linear-gradient(150deg,rgba(255,90,31,0.5),#161619)] text-white"
             : "bg-[linear-gradient(150deg,#2a2a30,#161619)] text-cn-muted",
@@ -1532,8 +1532,8 @@ function QuoteCard({ body, name, role, highlight = false, red = false, delay = 0
           {initials}
         </div>
         <div>
-          <b className="font-body font-semibold text-[14.5px] block">{name}</b>
-          <span className="font-mono text-[11px] text-cn-muted-2">{role}</span>
+          <b className="font-body font-semibold text-sm block">{name}</b>
+          <span className="font-mono text-xs text-cn-muted-2">{role}</span>
         </div>
       </div>
     </div>
@@ -1600,7 +1600,7 @@ function PlatDot({ plat }: { plat: PlatType }) {
   };
   const labels: Record<PlatType, string> = { yt: "YouTube", reddit: "Reddit", ig: "Instagram", x: "X" };
   return (
-    <span className="absolute top-[14px] left-[14px] z-[3] font-mono text-[10.5px] font-medium tracking-[0.1em] uppercase px-[10px] py-[5px] rounded-[8px] bg-black/[0.55] backdrop-blur-[6px] inline-flex items-center gap-[7px]">
+    <span className="absolute top-[14px] left-[14px] z-[3] font-mono text-xs font-medium tracking-[0.1em] uppercase px-[10px] py-[5px] rounded-[8px] bg-black/[0.55] backdrop-blur-[6px] inline-flex items-center gap-[7px]">
       <span className="w-2 h-2 rounded-[2px] shrink-0" style={{ background: colors[plat] }} />
       {labels[plat]}
     </span>
@@ -1651,7 +1651,7 @@ function SocialTile({ plat, title, sub, hasPlay, span, delay = 0 }: TileProps) {
           >
             {title}
           </b>
-          <span className="font-mono text-[10.5px] text-cn-muted tracking-[0.06em]">{sub}</span>
+          <span className="font-mono text-xs text-cn-muted tracking-[0.06em]">{sub}</span>
         </div>
       </div>
     </Reveal>
@@ -1673,7 +1673,7 @@ export default function LandingSocialWall() {
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
             Everywhere<br />at once.
           </h2>
-          <p className="text-cn-muted mt-[22px] text-[18px] max-w-[600px]">
+          <p className="text-cn-muted mt-[22px] text-sm max-w-[600px]">
             One community, every platform. Here's what the grid is posting right now.
           </p>
         </div>
@@ -1765,7 +1765,7 @@ function Stat({ target, suffix, label }: { target: number; suffix: string; label
     <div ref={setRefs} className="border border-cn-line rounded-[16px] px-5 py-[22px] bg-gradient-to-b from-white/[0.025] to-transparent relative overflow-hidden">
       <span className="absolute left-0 top-0 h-[2px] w-9 bg-cn-accent shadow-[0_0_10px_var(--cn-accent-glow)]" />
       <div ref={numRef} className="font-display font-extrabold text-[clamp(36px,4vw,52px)] leading-none">0</div>
-      <div className="font-mono text-[11px] font-medium tracking-[0.1em] uppercase text-cn-muted mt-[10px] leading-[1.5]">
+      <div className="font-mono text-xs font-medium tracking-[0.1em] uppercase text-cn-muted mt-[10px] leading-[1.5]">
         {label}
       </div>
     </div>
@@ -1849,11 +1849,11 @@ export default function LandingGlobe() {
               className="absolute rounded-full border border-dashed border-white/[0.06] pointer-events-none animate-cn-spin-slow"
               style={{ inset: "-7%" }}
             />
-            <span className="absolute top-[12%] left-[-6%] font-mono text-[10.5px] font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-[rgba(10,10,11,0.7)] backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
+            <span className="absolute top-[12%] left-[-6%] font-mono text-xs font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-[rgba(10,10,11,0.7)] backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
               <span className="w-[6px] h-[6px] rounded-full bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)]" />
               F1 · Monaco
             </span>
-            <span className="absolute bottom-[16%] right-[-4%] font-mono text-[10.5px] font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-[rgba(10,10,11,0.7)] backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
+            <span className="absolute bottom-[16%] right-[-4%] font-mono text-xs font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-[rgba(10,10,11,0.7)] backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
               <span className="w-[6px] h-[6px] rounded-full bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)]" />
               MotoGP · Mugello
             </span>
@@ -1929,7 +1929,7 @@ export default function LandingJoin() {
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.94] text-[clamp(40px,6vw,92px)] max-w-[760px] relative mt-5">
             Pull onto<br />the grid.
           </h2>
-          <p className="text-cn-muted mt-[22px] max-w-[520px] text-[18px] relative">
+          <p className="text-cn-muted mt-[22px] max-w-[520px] text-sm relative">
             Pick your platform and jump in. The next race is always closer than you think — don't watch it alone.
           </p>
 
@@ -1941,10 +1941,10 @@ export default function LandingJoin() {
                 className="border border-cn-line rounded-[20px] p-[26px] flex flex-col gap-[14px] bg-[rgba(10,10,11,0.5)] transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-cn-line-strong"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-muted-2">{p.name}</span>
+                  <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-muted-2">{p.name}</span>
                 </div>
-                <div className="font-display font-extrabold text-[30px] tracking-[-0.02em]">{p.count}</div>
-                <h3 className="font-display font-bold text-[21px]">{p.desc}</h3>
+                <div className="font-display font-extrabold text-xl tracking-[-0.02em]">{p.count}</div>
+                <h3 className="font-display font-bold text-lg">{p.desc}</h3>
                 <Button
                   variant={p.red ? "cn-primary" : "cn-ghost"}
                   size="cn"
@@ -2027,9 +2027,9 @@ export default function LandingFooter() {
             <span className="w-[34px] h-[34px] rounded-[9px] bg-gradient-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
               <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_38%,var(--cn-accent)_40%,var(--cn-accent)_46%,transparent_48%,transparent_54%,var(--cn-accent)_56%,var(--cn-accent)_62%,transparent_64%)] opacity-[0.95]" />
             </span>
-            <span className="font-display font-extrabold text-[19px] tracking-[-0.01em] uppercase leading-none">Circuit Nation</span>
+            <span className="font-display font-extrabold text-sm tracking-[-0.01em] uppercase leading-none">Circuit Nation</span>
           </a>
-          <p className="text-cn-muted max-w-[300px] text-[14.5px]">
+          <p className="text-cn-muted max-w-[300px] text-sm">
             Your ultimate hub to everything motorsports. Built by fans, for fans — across every series, every weekend.
           </p>
         </div>
@@ -2041,12 +2041,12 @@ export default function LandingFooter() {
           { heading: "Follow", links: ["YouTube", "Instagram", "X / Twitter", "TikTok"] },
         ].map(col => (
           <div key={col.heading}>
-            <h4 className="font-mono text-[11px] tracking-[0.14em] uppercase text-cn-muted-2 mb-[18px]">{col.heading}</h4>
+            <h4 className="font-mono text-xs tracking-[0.14em] uppercase text-cn-muted-2 mb-[18px]">{col.heading}</h4>
             {col.links.map(l => (
               <a
                 key={l}
                 href="#"
-                className="block text-cn-muted no-underline text-[14.5px] py-[6px] transition-colors duration-200 hover:text-cn-text"
+                className="block text-cn-muted no-underline text-sm py-[6px] transition-colors duration-200 hover:text-cn-text"
               >
                 {l}
               </a>
@@ -2055,7 +2055,7 @@ export default function LandingFooter() {
         ))}
       </div>
 
-      <div className="border-t border-cn-line max-w-[var(--cn-maxw)] mx-auto px-8 py-6 flex justify-between items-center gap-5 flex-wrap font-mono text-[11.5px] tracking-[0.08em] uppercase text-cn-muted-2">
+      <div className="border-t border-cn-line max-w-[var(--cn-maxw)] mx-auto px-8 py-6 flex justify-between items-center gap-5 flex-wrap font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">
         <span>© 2026 Circuit Nation — Built by fans, for fans.</span>
         <span>Not affiliated with any racing series or governing body.</span>
       </div>

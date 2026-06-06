@@ -51,7 +51,7 @@ export default function LandingCollab() {
           {[...BRANDS, ...BRANDS].map((b, i) => (
             <div
               key={i}
-              className="font-display font-bold text-[22px] tracking-[-0.01em] text-cn-muted-2 py-5 whitespace-nowrap opacity-70 transition-[color,opacity] duration-[250ms] hover:text-cn-text hover:opacity-100"
+              className="font-display font-bold text-lg tracking-[-0.01em] text-cn-muted-2 py-5 whitespace-nowrap opacity-70 transition-[color,opacity] duration-[250ms] hover:text-cn-text hover:opacity-100"
             >
               {b}
             </div>
@@ -65,19 +65,19 @@ export default function LandingCollab() {
             <Reveal key={c.title} delay={i * 0.08}>
               <div className={cn(cnCardClass, "!p-0 overflow-hidden")}>
                 <div className="h-[200px] border-b border-cn-line bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
-                  <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+                  <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                     {c.kicker.toLowerCase()} keyart
                   </span>
                 </div>
                 <div className="p-[26px]">
-                  <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-accent">{c.kicker}</span>
-                  <h3 className="font-display font-bold text-[22px] mt-3 tracking-[-0.01em]">{c.title}</h3>
-                  <p className="text-cn-muted text-[14.5px] mt-[10px]">{c.desc}</p>
+                  <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{c.kicker}</span>
+                  <h3 className="font-display font-bold text-lg mt-3 tracking-[-0.01em]">{c.title}</h3>
+                  <p className="text-cn-muted text-sm mt-[10px]">{c.desc}</p>
                   <div className="flex gap-[22px] mt-5">
                     {c.stats.map(([val, lbl]) => (
                       <div key={lbl}>
-                        <b className="font-display font-extrabold text-[24px] block">{val}</b>
-                        <span className="font-mono text-[10.5px] tracking-[0.08em] uppercase text-cn-muted-2">{lbl}</span>
+                        <b className="font-display font-extrabold text-lg block">{val}</b>
+                        <span className="font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">{lbl}</span>
                       </div>
                     ))}
                   </div>

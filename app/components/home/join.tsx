@@ -35,7 +35,7 @@ export default function LandingJoin() {
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.94] text-[clamp(40px,6vw,92px)] max-w-[760px] relative mt-5">
             Pull onto<br />the grid.
           </h2>
-          <p className="text-cn-muted mt-[22px] max-w-[520px] text-[18px] relative">
+          <p className="text-cn-muted mt-[22px] max-w-[520px] text-sm relative">
             Pick your platform and jump in. The next race is always closer than you think — don't watch it alone.
           </p>
 
@@ -46,10 +46,10 @@ export default function LandingJoin() {
                 className="border border-cn-line rounded-[20px] p-[26px] flex flex-col gap-[14px] bg-cn-bg/50 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-cn-line-strong"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-muted-2">{p.name}</span>
+                  <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-muted-2">{p.name}</span>
                 </div>
-                <div className="font-display font-extrabold text-[30px] tracking-[-0.02em]">{p.count}</div>
-                <h3 className="font-display font-bold text-[21px]">{p.desc}</h3>
+                <div className="font-display font-extrabold text-xl tracking-[-0.02em]">{p.count}</div>
+                <h3 className="font-display font-bold text-lg">{p.desc}</h3>
                 <Button
                   variant={p.red ? "cn-primary" : "cn-ghost"}
                   size="cn"
