@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import { SectionEyebrow } from "./section-eyebrow";
 
@@ -136,12 +137,14 @@ export default function LandingHero() {
             {[["One nation.", ""], ["Every", "outline"], ["circuit.", "accent"]].map(([text, variant], i) => (
               <span key={i} className="block overflow-hidden">
                 <span
-                  className="block animate-cn-rise"
+                  className={cn(
+                    "block animate-cn-rise",
+                    variant === "accent" && "text-cn-accent",
+                  )}
                   style={{
                     transform: "translateY(105%)",
                     animationDelay: `${i * 0.08}s`,
                     ...(variant === "outline" ? { color: "transparent", WebkitTextStroke: "1.5px rgba(255,255,255,0.32)" } : {}),
-                    ...(variant === "accent" ? { color: "var(--cn-accent)" } : {}),
                   }}
                 >
                   {text}
