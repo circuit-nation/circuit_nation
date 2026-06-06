@@ -15,7 +15,7 @@ function PlatDot({ plat }: { plat: PlatType }) {
   };
   const labels: Record<PlatType, string> = { yt: "YouTube", reddit: "Reddit", ig: "Instagram", x: "X" };
   return (
-    <span className="absolute top-[14px] left-[14px] z-[3] font-mono text-xs font-medium tracking-[0.1em] uppercase px-[10px] py-[5px] rounded-[8px] bg-black/[0.55] backdrop-blur-[6px] inline-flex items-center gap-[7px]">
+    <span className="absolute top-[14px] left-[14px] z-3 font-mono text-xs font-medium tracking-[0.1em] uppercase px-[10px] py-[5px] rounded-[8px] bg-black/[0.55] backdrop-blur-[6px] inline-flex items-center gap-[7px]">
       <span className={cn("w-2 h-2 rounded-[2px] shrink-0", platformDotClass[plat])} />
       {labels[plat]}
     </span>
@@ -24,7 +24,7 @@ function PlatDot({ plat }: { plat: PlatType }) {
 
 function PlayMini() {
   return (
-    <div className="absolute inset-0 grid place-items-center z-[4]">
+    <div className="absolute inset-0 grid place-items-center z-4">
       <div className="w-14 h-14 rounded-full bg-cn-accent/92 grid place-items-center shadow-[0_10px_36px_-8px_(--cn-accent-glow)] transition-transform duration-300 group-hover:scale-110">
         <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-0.5">
           <path d="M6 4l14 8-14 8z" />
@@ -58,7 +58,7 @@ function SocialTile({ plat, title, sub, hasPlay, span, delay = 0 }: TileProps) {
         <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)]" />
         {hasPlay && <PlayMini />}
         <PlatDot plat={plat} />
-        <div className="absolute left-0 right-0 bottom-0 z-[3] p-4 bg-[linear-gradient(0deg,rgba(8,8,9,0.92),transparent)]">
+        <div className="absolute left-0 right-0 bottom-0 z-3 p-4 bg-[linear-gradient(0deg,rgba(8,8,9,0.92),transparent)]">
           <b
             className="font-display font-bold block leading-[1.2]"
             style={{ fontSize: span === "feature" ? "clamp(20px,2vw,28px)" : 15 }}
@@ -77,12 +77,12 @@ export default function LandingSocialWall() {
 
   return (
     <section className="pt-[30px] pb-[120px]">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={headRef}
           className={cn(
-            "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
-            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+            "max-w-2xl transition-[opacity,transform] duration-800 ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           )}
         >
           <SectionEyebrow label="// Social wall" />

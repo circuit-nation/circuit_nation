@@ -12,28 +12,28 @@
 
 ## File Map
 
-| Action | File | Purpose |
-|--------|------|---------|
-| Modify | `app/app.css` | Add font tokens, CN color tokens, easing, custom breakpoint, animation utilities |
-| Modify | `app/components/ui/button.tsx` | Add `cn-primary`, `cn-ghost` variants and `cn` size |
-| Modify | `app/components/ui/card.tsx` | Export `cnCardClass` and `cnAccentCardClass` className strings |
-| Create | `app/components/ui/input.tsx` | CN-styled email input |
-| Create | `app/components/home/reveal.tsx` | Shared scroll-reveal wrapper (replaces per-file Reveal functions) |
-| Create | `app/components/home/section-eyebrow.tsx` | Shared `// Section label` eyebrow with red accent line |
-| Modify | `app/components/home/landing-loader.tsx` | Full conversion |
-| Modify | `app/components/home/landing-nav.tsx` | Full conversion |
-| Modify | `app/components/home/landing-hero.tsx` | Full conversion |
-| Modify | `app/components/home/landing-what.tsx` | Full conversion |
-| Modify | `app/components/home/landing-proof.tsx` | Full conversion |
-| Modify | `app/components/home/landing-collab.tsx` | Full conversion |
-| Modify | `app/components/home/landing-amas.tsx` | Full conversion |
-| Modify | `app/components/home/landing-posts.tsx` | Full conversion |
-| Modify | `app/components/home/landing-videos.tsx` | Full conversion |
-| Modify | `app/components/home/landing-testimonials.tsx` | Full conversion |
-| Modify | `app/components/home/landing-social-wall.tsx` | Full conversion |
-| Modify | `app/components/home/landing-globe.tsx` | Full conversion |
-| Modify | `app/components/home/landing-join.tsx` | Full conversion |
-| Modify | `app/components/home/landing-footer.tsx` | Full conversion |
+| Action | File                                           | Purpose                                                                          |
+| ------ | ---------------------------------------------- | -------------------------------------------------------------------------------- |
+| Modify | `app/app.css`                                  | Add font tokens, CN color tokens, easing, custom breakpoint, animation utilities |
+| Modify | `app/components/ui/button.tsx`                 | Add `cn-primary`, `cn-ghost` variants and `cn` size                              |
+| Modify | `app/components/ui/card.tsx`                   | Export `cnCardClass` and `cnAccentCardClass` className strings                   |
+| Create | `app/components/ui/input.tsx`                  | CN-styled email input                                                            |
+| Create | `app/components/home/reveal.tsx`               | Shared scroll-reveal wrapper (replaces per-file Reveal functions)                |
+| Create | `app/components/home/section-eyebrow.tsx`      | Shared `// Section label` eyebrow with red accent line                           |
+| Modify | `app/components/home/landing-loader.tsx`       | Full conversion                                                                  |
+| Modify | `app/components/home/landing-nav.tsx`          | Full conversion                                                                  |
+| Modify | `app/components/home/landing-hero.tsx`         | Full conversion                                                                  |
+| Modify | `app/components/home/landing-what.tsx`         | Full conversion                                                                  |
+| Modify | `app/components/home/landing-proof.tsx`        | Full conversion                                                                  |
+| Modify | `app/components/home/landing-collab.tsx`       | Full conversion                                                                  |
+| Modify | `app/components/home/landing-amas.tsx`         | Full conversion                                                                  |
+| Modify | `app/components/home/landing-posts.tsx`        | Full conversion                                                                  |
+| Modify | `app/components/home/landing-videos.tsx`       | Full conversion                                                                  |
+| Modify | `app/components/home/landing-testimonials.tsx` | Full conversion                                                                  |
+| Modify | `app/components/home/landing-social-wall.tsx`  | Full conversion                                                                  |
+| Modify | `app/components/home/landing-globe.tsx`        | Full conversion                                                                  |
+| Modify | `app/components/home/landing-join.tsx`         | Full conversion                                                                  |
+| Modify | `app/components/home/landing-footer.tsx`       | Full conversion                                                                  |
 
 ---
 
@@ -41,45 +41,46 @@
 
 These inline-style → Tailwind mappings are used throughout:
 
-| Inline style | Tailwind class |
-|---|---|
-| `fontFamily: "var(--cn-display)"` | `font-display` |
-| `fontFamily: "var(--cn-mono)"` | `font-mono` |
-| `fontFamily: "var(--cn-body)"` | `font-body` |
-| `fontWeight: 800` | `font-extrabold` |
-| `fontWeight: 700` | `font-bold` |
-| `fontWeight: 500` | `font-medium` |
-| `letterSpacing: "0.26em"` | `tracking-[0.26em]` |
-| `letterSpacing: "0.1em"` | `tracking-[0.1em]` |
-| `textTransform: "uppercase"` | `uppercase` |
-| `color: "var(--cn-accent)"` | `text-cn-accent` |
-| `color: "var(--cn-muted)"` | `text-cn-muted` |
-| `color: "var(--cn-muted-2)"` or `var(--cn-muted-2)` | `text-cn-muted-2` |
-| `color: "var(--cn-text)"` | `text-cn-text` |
-| `color: "var(--cn-orange)"` | `text-cn-orange` |
-| `background: "var(--cn-bg)"` | `bg-cn-bg` |
-| `background: "var(--cn-bg-2)"` | `bg-cn-bg-2` |
-| `border: "1px solid var(--cn-line)"` | `border border-cn-line` |
-| `border: "1px solid var(--cn-line-strong)"` | `border border-cn-line-strong` |
-| `borderRadius: 20` | `rounded-[20px]` |
-| `padding: 30` | `p-[30px]` |
-| `position: "relative/absolute/fixed"` | `relative`/`absolute`/`fixed` |
-| `inset: 0` | `inset-0` |
-| `display: "flex"` | `flex` |
-| `alignItems: "center"` | `items-center` |
-| `justifyContent: "space-between"` | `justify-between` |
-| `overflow: "hidden"` | `overflow-hidden` |
-| `pointerEvents: "none"` | `pointer-events-none` |
-| `flexShrink: 0` | `shrink-0` |
-| `whiteSpace: "nowrap"` | `whitespace-nowrap` |
-| `cursor: "pointer"` | `cursor-pointer` |
-| hover translateY(-4px) | `hover:-translate-y-1` |
-| hover translateY(-2px) | `hover:-translate-y-0.5` |
-| hover border brightens | `hover:border-cn-line-strong` |
-| hover card lift shadow | `hover:shadow-[0_22px_50px_-24px_rgba(0,0,0,0.8)]` |
-| hover button glow intensifies | `hover:shadow-[0_14px_40px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.3)]` |
+| Inline style                                        | Tailwind class                                                                              |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `fontFamily: "var(--cn-display)"`                   | `font-display`                                                                              |
+| `fontFamily: "var(--cn-mono)"`                      | `font-mono`                                                                                 |
+| `fontFamily: "var(--cn-body)"`                      | `font-body`                                                                                 |
+| `fontWeight: 800`                                   | `font-extrabold`                                                                            |
+| `fontWeight: 700`                                   | `font-bold`                                                                                 |
+| `fontWeight: 500`                                   | `font-medium`                                                                               |
+| `letterSpacing: "0.26em"`                           | `tracking-[0.26em]`                                                                         |
+| `letterSpacing: "0.1em"`                            | `tracking-[0.1em]`                                                                          |
+| `textTransform: "uppercase"`                        | `uppercase`                                                                                 |
+| `color: "var(--cn-accent)"`                         | `text-cn-accent`                                                                            |
+| `color: "var(--cn-muted)"`                          | `text-cn-muted`                                                                             |
+| `color: "var(--cn-muted-2)"` or `var(--cn-muted-2)` | `text-cn-muted-2`                                                                           |
+| `color: "var(--cn-text)"`                           | `text-cn-text`                                                                              |
+| `color: "var(--cn-orange)"`                         | `text-cn-orange`                                                                            |
+| `background: "var(--cn-bg)"`                        | `bg-cn-bg`                                                                                  |
+| `background: "var(--cn-bg-2)"`                      | `bg-cn-bg-2`                                                                                |
+| `border: "1px solid var(--cn-line)"`                | `border border-cn-line`                                                                     |
+| `border: "1px solid var(--cn-line-strong)"`         | `border border-cn-line-strong`                                                              |
+| `borderRadius: 20`                                  | `rounded-[20px]`                                                                            |
+| `padding: 30`                                       | `p-[30px]`                                                                                  |
+| `position: "relative/absolute/fixed"`               | `relative`/`absolute`/`fixed`                                                               |
+| `inset: 0`                                          | `inset-0`                                                                                   |
+| `display: "flex"`                                   | `flex`                                                                                      |
+| `alignItems: "center"`                              | `items-center`                                                                              |
+| `justifyContent: "space-between"`                   | `justify-between`                                                                           |
+| `overflow: "hidden"`                                | `overflow-hidden`                                                                           |
+| `pointerEvents: "none"`                             | `pointer-events-none`                                                                       |
+| `flexShrink: 0`                                     | `shrink-0`                                                                                  |
+| `whiteSpace: "nowrap"`                              | `whitespace-nowrap`                                                                         |
+| `cursor: "pointer"`                                 | `cursor-pointer`                                                                            |
+| hover translateY(-4px)                              | `hover:-translate-y-1`                                                                      |
+| hover translateY(-2px)                              | `hover:-translate-y-0.5`                                                                    |
+| hover border brightens                              | `hover:border-cn-line-strong`                                                               |
+| hover card lift shadow                              | `hover:shadow-[0_22px_50px_-24px_rgba(0,0,0,0.8)]`                                          |
+| hover button glow intensifies                       | `hover:shadow-[0_14px_40px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.3)]` |
 
 **Keep as inline styles:**
+
 - `opacity` and `transform` driven by JS state (Reveal, hero animations)
 - `animationDelay` when dynamic (per-item delay from props)
 - `gridRow: "span 2"` / `gridColumn: "span 2"` when dynamic (SocialTile span prop)
@@ -98,13 +99,14 @@ Replace the existing `@theme` block with:
 
 ```css
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-handwriting: "Mea Culpa", cursive;
   --font-display: "DM Sans", system-ui, sans-serif;
   --font-body: "Space Grotesk", system-ui, sans-serif;
   --font-mono: "Space Grotesk", ui-monospace, monospace;
-  --ease-spring: cubic-bezier(.16, 1, .3, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --breakpoint-nav: 61.25rem;
 }
 ```
@@ -116,19 +118,19 @@ This generates: `font-display`, `font-body`, `font-mono` (overrides system mono 
 Inside the `@theme inline {}` block, after the sidebar color mappings (after `--color-sidebar-ring`), add:
 
 ```css
-  /* Circuit Nation landing color tokens */
-  --color-cn-bg: var(--cn-bg);
-  --color-cn-bg-2: var(--cn-bg-2);
-  --color-cn-panel: var(--cn-panel);
-  --color-cn-panel-2: var(--cn-panel-2);
-  --color-cn-accent: var(--cn-accent);
-  --color-cn-accent-deep: var(--cn-accent-deep);
-  --color-cn-orange: var(--cn-orange);
-  --color-cn-text: var(--cn-text);
-  --color-cn-muted: var(--cn-muted);
-  --color-cn-muted-2: var(--cn-muted-2);
-  --color-cn-line: var(--cn-line);
-  --color-cn-line-strong: var(--cn-line-strong);
+/* Circuit Nation landing color tokens */
+--color-cn-bg: var(--cn-bg);
+--color-cn-bg-2: var(--cn-bg-2);
+--color-cn-panel: var(--cn-panel);
+--color-cn-panel-2: var(--cn-panel-2);
+--color-cn-accent: var(--cn-accent);
+--color-cn-accent-deep: var(--cn-accent-deep);
+--color-cn-orange: var(--cn-orange);
+--color-cn-text: var(--cn-text);
+--color-cn-muted: var(--cn-muted);
+--color-cn-muted-2: var(--cn-muted-2);
+--color-cn-line: var(--cn-line);
+--color-cn-line-strong: var(--cn-line-strong);
 ```
 
 - [ ] **Step 3: Add CN animation utilities to `@layer utilities {}` block**
@@ -136,28 +138,28 @@ Inside the `@theme inline {}` block, after the sidebar color mappings (after `--
 At the end of the existing `@layer utilities {}` block, before the closing `}`, add:
 
 ```css
-  /* Circuit Nation animation utilities */
-  .animate-cn-rise {
-    animation: cn-rise .9s cubic-bezier(.16,1,.3,1) forwards;
-  }
-  .animate-cn-fade {
-    animation: cn-fade .8s ease forwards;
-  }
-  .animate-cn-marquee {
-    animation: cn-marquee 38s linear infinite;
-  }
-  .animate-cn-marquee-32 {
-    animation: cn-marquee 32s linear infinite;
-  }
-  .animate-cn-pulse {
-    animation: cn-pulse 1.8s infinite;
-  }
-  .animate-cn-spin-slow {
-    animation: cn-spin 60s linear infinite;
-  }
-  .animate-cn-load {
-    animation: cn-load 1.15s cubic-bezier(.7,0,.3,1) forwards;
-  }
+/* Circuit Nation animation utilities */
+.animate-cn-rise {
+  animation: cn-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-cn-fade {
+  animation: cn-fade 0.8s ease forwards;
+}
+.animate-cn-marquee {
+  animation: cn-marquee 38s linear infinite;
+}
+.animate-cn-marquee-32 {
+  animation: cn-marquee 32s linear infinite;
+}
+.animate-cn-pulse {
+  animation: cn-pulse 1.8s infinite;
+}
+.animate-cn-spin-slow {
+  animation: cn-spin 60s linear infinite;
+}
+.animate-cn-load {
+  animation: cn-load 1.15s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
 ```
 
 - [ ] **Step 4: Verify dev server compiles**
@@ -203,7 +205,7 @@ const buttonVariants = cva(
         "view-switcher": "",
         link: "text-primary underline-offset-4 hover:underline",
         "cn-primary":
-          "border-0 font-mono text-xs tracking-[0.1em] uppercase font-medium rounded-[10px] text-white cursor-pointer no-underline bg-gradient-to-b from-[#ff3b3b] to-cn-accent-deep shadow-[0_8px_30px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.25)] transition-[transform_.18s_ease,box-shadow_.25s_ease] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.3)]",
+          "border-0 font-mono text-xs tracking-[0.1em] uppercase font-medium rounded-[10px] text-white cursor-pointer no-underline bg-linear-to-b from-[#ff3b3b] to-cn-accent-deep shadow-[0_8px_30px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.25)] transition-[transform_.18s_ease,box-shadow_.25s_ease] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.3)]",
         "cn-ghost":
           "border border-cn-line-strong font-mono text-xs tracking-[0.1em] uppercase font-medium rounded-[10px] bg-white/[0.03] text-cn-text cursor-pointer no-underline transition-[transform_.18s_ease,background_.25s_ease,border-color_.25s_ease] hover:-translate-y-0.5 hover:bg-white/[0.06] hover:border-cn-text",
       },
@@ -223,8 +225,8 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
-)
+  },
+);
 ```
 
 - [ ] **Step 2: Verify TypeScript**
@@ -254,7 +256,7 @@ After the existing `export { Card, ... }` line, add:
 
 ```tsx
 export const cnCardClass =
-  "border border-cn-line rounded-[20px] bg-gradient-to-b from-white/[0.028] to-white/[0.004] p-[30px] transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_22px_50px_-24px_rgba(0,0,0,0.8)]";
+  "border border-cn-line rounded-[20px] bg-linear-to-b from-white/[0.028] to-white/[0.004] p-[30px] transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_22px_50px_-24px_rgba(0,0,0,0.8)]";
 
 export const cnAccentCardClass =
   "border border-cn-line rounded-[20px] bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] p-[30px] transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_22px_50px_-24px_rgba(0,0,0,0.8)]";
@@ -287,12 +289,17 @@ interface RevealProps {
   threshold?: number;
 }
 
-export function Reveal({ children, delay = 0, className, threshold = 0.15 }: RevealProps) {
+export function Reveal({
+  children,
+  delay = 0,
+  className,
+  threshold = 0.15,
+}: RevealProps) {
   const { ref, inView } = useInView({ threshold, triggerOnce: true });
   return (
     <div
       ref={ref}
-      className={cn("transition-[opacity,transform] duration-[800ms]", className)}
+      className={cn("transition-[opacity,transform] duration-800", className)}
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "none" : "translateY(26px)",
@@ -318,10 +325,12 @@ interface SectionEyebrowProps {
 
 export function SectionEyebrow({ label, className }: SectionEyebrowProps) {
   return (
-    <span className={cn(
-      "font-mono text-xs font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px]",
-      className
-    )}>
+    <span
+      className={cn(
+        "font-mono text-xs font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px]",
+        className,
+      )}
+    >
       <span className="w-[26px] h-px bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
       {label}
     </span>
@@ -355,7 +364,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       data-slot="input"
       className={cn(
         "flex w-full min-w-0 rounded-[12px] border border-cn-line-strong bg-[rgba(10,10,11,0.6)] px-[18px] py-[15px] text-sm font-body text-cn-text placeholder:text-cn-muted-2 outline-none transition-[border-color] duration-200 focus:border-cn-accent disabled:cursor-not-allowed disabled:opacity-50",
-        className
+        className,
       )}
       {...props}
     />
@@ -396,7 +405,7 @@ export default function LandingLoader() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] bg-cn-bg grid place-items-center transition-[opacity,visibility] duration-[600ms] ease-out"
+      className="fixed inset-0 z-20] bg-cn-bg grid place-items-center transition-[opacity,visibility] duration-600 ease-out"
       style={{ opacity: gone ? 0 : 1, visibility: gone ? "hidden" : "visible" }}
     >
       <div className="text-center">
@@ -404,7 +413,7 @@ export default function LandingLoader() {
           CIRCUIT <span className="text-cn-accent">NATION</span>
         </div>
         <div className="w-[min(360px,70vw)] h-[3px] bg-white/[0.08] mx-auto mt-[22px] rounded-full overflow-hidden">
-          <div className="block h-full w-0 bg-gradient-to-r from-cn-accent-deep to-[#ff5a5a] shadow-[0_0_14px_var(--cn-accent-glow)] animate-cn-load" />
+          <div className="block h-full w-0 bg-linear-to-r from-cn-accent-deep to-[#ff5a5a] shadow-[0_0_14px_var(--cn-accent-glow)] animate-cn-load" />
         </div>
         <div className="font-mono text-xs tracking-[0.3em] uppercase text-cn-muted-2 mt-4">
           Igniting the grid...
@@ -452,7 +461,7 @@ export default function LandingNav() {
   return (
     <header
       className={[
-        "fixed top-0 left-0 right-0 z-50 border-b transition-[background,border-color,backdrop-filter] duration-[350ms] ease-out",
+        "fixed top-0 left-0 right-0 z-50 border-b transition-[background,border-color,backdrop-filter] duration-350 ease-out",
         scrolled
           ? "border-cn-line bg-[rgba(10,10,11,0.72)] backdrop-blur-[18px] saturate-[1.4]"
           : "border-transparent bg-transparent",
@@ -460,8 +469,11 @@ export default function LandingNav() {
     >
       <div className="max-w-[var(--cn-maxw)] mx-auto px-8 py-[18px] flex items-center justify-between gap-6">
         {/* Brand */}
-        <a href="#top" className="flex items-center gap-3 no-underline text-cn-text">
-          <span className="w-[34px] h-[34px] rounded-[9px] bg-gradient-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
+        <a
+          href="#top"
+          className="flex items-center gap-3 no-underline text-cn-text"
+        >
+          <span className="w-[34px] h-[34px] rounded-sm bg-linear-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
             <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_38%,var(--cn-accent)_40%,var(--cn-accent)_46%,transparent_48%,transparent_54%,var(--cn-accent)_56%,var(--cn-accent)_62%,transparent_64%)] opacity-[0.95]" />
           </span>
           <span className="font-display font-extrabold text-sm tracking-[-0.01em] uppercase leading-none">
@@ -471,8 +483,15 @@ export default function LandingNav() {
 
         {/* Desktop nav — hidden below 980px */}
         <nav className="hidden nav:flex items-center gap-8">
-          {[["#about", "The Hub"], ["#globe", "Globe"], ["#amas", "AMAs"], ["#content", "Content"]].map(([href, label]) => (
-            <a key={href} href={href}
+          {[
+            ["#about", "The Hub"],
+            ["#globe", "Globe"],
+            ["#amas", "AMAs"],
+            ["#content", "Content"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
               className="font-mono text-xs tracking-[0.1em] uppercase text-cn-muted no-underline transition-colors duration-200 hover:text-cn-text"
             >
               {label}
@@ -482,7 +501,12 @@ export default function LandingNav() {
 
         {/* CTAs */}
         <div className="flex items-center gap-[14px]">
-          <Button variant="cn-ghost" size="cn" asChild className="hidden nav:inline-flex">
+          <Button
+            variant="cn-ghost"
+            size="cn"
+            asChild
+            className="hidden nav:inline-flex"
+          >
             <a href="#content">Explore Content</a>
           </Button>
           <Button variant="cn-primary" size="cn" asChild>
@@ -508,10 +532,21 @@ export default function LandingNav() {
           animate={{ opacity: 1, y: 0 }}
           className="bg-[rgba(10,10,11,0.95)] backdrop-blur-[20px] border-t border-cn-line px-6 py-5 flex flex-col gap-4"
         >
-          {[["#about", "The Hub"], ["#globe", "Globe"], ["#amas", "AMAs"], ["#content", "Content"], ["#join", "Join the Community"]].map(([href, label]) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}
+          {[
+            ["#about", "The Hub"],
+            ["#globe", "Globe"],
+            ["#amas", "AMAs"],
+            ["#content", "Content"],
+            ["#join", "Join the Community"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              onClick={() => setMenuOpen(false)}
               className="font-mono text-sm tracking-[0.1em] uppercase text-cn-text no-underline"
-            >{label}</a>
+            >
+              {label}
+            </a>
           ))}
         </motion.div>
       )}
@@ -534,6 +569,7 @@ git commit -m "refactor: convert landing-nav to Tailwind + shadcn Button"
 **Files:** Modify `app/components/home/landing-hero.tsx`
 
 Key notes:
+
 - Speed streaks are JS DOM-injected — keep the `useEffect` and inline `s.style.cssText` unchanged
 - Grid floor uses `perspective()` — keep as inline style on that one div
 - HudCard counter ref text content stays as inline style (JS driven)
@@ -549,18 +585,32 @@ import { useEffect, useRef } from "react";
 import { Button } from "~/components/ui/button";
 
 const RACES = [
-  ["F1", "Monaco GP", "May 24"], ["MotoGP", "Mugello", "Jun 01"],
-  ["F1", "Canadian GP", "Jun 15"], ["WEC", "Le Mans 24h", "Jun 14"],
-  ["MotoGP", "Assen TT", "Jun 29"], ["F1", "British GP · Silverstone", "Jul 06"],
-  ["F1", "Spa-Francorchamps", "Jul 27"], ["MotoGP", "Red Bull Ring", "Aug 17"],
-  ["F1", "Monza", "Sep 07"], ["F1", "Singapore GP", "Oct 05"],
-  ["MotoGP", "Phillip Island", "Oct 19"], ["F1", "Las Vegas GP", "Nov 22"],
+  ["F1", "Monaco GP", "May 24"],
+  ["MotoGP", "Mugello", "Jun 01"],
+  ["F1", "Canadian GP", "Jun 15"],
+  ["WEC", "Le Mans 24h", "Jun 14"],
+  ["MotoGP", "Assen TT", "Jun 29"],
+  ["F1", "British GP · Silverstone", "Jul 06"],
+  ["F1", "Spa-Francorchamps", "Jul 27"],
+  ["MotoGP", "Red Bull Ring", "Aug 17"],
+  ["F1", "Monza", "Sep 07"],
+  ["F1", "Singapore GP", "Oct 05"],
+  ["MotoGP", "Phillip Island", "Oct 19"],
+  ["F1", "Las Vegas GP", "Nov 22"],
 ];
 
-function useCounter(target: number, suffix: string, compact = false, plain = false) {
+function useCounter(
+  target: number,
+  suffix: string,
+  compact = false,
+  plain = false,
+) {
   const ref = useRef<HTMLDivElement>(null);
   const ran = useRef(false);
-  const cf = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 0 });
+  const cf = new Intl.NumberFormat("en", {
+    notation: "compact",
+    maximumFractionDigits: 0,
+  });
 
   useEffect(() => {
     if (ran.current || !ref.current) return;
@@ -568,12 +618,14 @@ function useCounter(target: number, suffix: string, compact = false, plain = fal
     const el = ref.current;
     const dur = 1500;
     const t0 = performance.now();
-    const disp = (v: number) => compact ? cf.format(v) : plain ? v.toLocaleString("en-US") : String(v);
+    const disp = (v: number) =>
+      compact ? cf.format(v) : plain ? v.toLocaleString("en-US") : String(v);
     const step = (now: number) => {
       const p = Math.min(1, (now - t0) / dur);
       const eased = 1 - Math.pow(1 - p, 3);
       const v = Math.round(eased * target);
-      el.textContent = disp(v) + (p === 1 ? suffix : suffix.replace(/[^+]/g, ""));
+      el.textContent =
+        disp(v) + (p === 1 ? suffix : suffix.replace(/[^+]/g, ""));
       if (p < 1) requestAnimationFrame(step);
       else el.textContent = disp(target) + suffix;
     };
@@ -583,13 +635,25 @@ function useCounter(target: number, suffix: string, compact = false, plain = fal
   return ref;
 }
 
-export function HudCard({ label, target, suffix, compact = false, plain = false, live = false }: {
-  label: string; target: number; suffix?: string; compact?: boolean; plain?: boolean; live?: boolean;
+export function HudCard({
+  label,
+  target,
+  suffix,
+  compact = false,
+  plain = false,
+  live = false,
+}: {
+  label: string;
+  target: number;
+  suffix?: string;
+  compact?: boolean;
+  plain?: boolean;
+  live?: boolean;
 }) {
   const countRef = useCounter(target, suffix || "", compact, plain);
 
   return (
-    <div className="border border-cn-line bg-gradient-to-b from-white/[0.025] to-transparent rounded-[14px] px-5 py-4 min-w-[150px] relative overflow-hidden flex-1 basis-[150px]">
+    <div className="border border-cn-line bg-linear-to-b from-white/[0.025] to-transparent rounded-[14px] px-5 py-4 min-w-[150px] relative overflow-hidden flex-1 basis-[150px]">
       <span className="absolute top-2 left-2 w-2 h-2 border-t border-l border-cn-accent" />
       <span className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-cn-accent" />
       <div className="font-mono text-xs font-medium tracking-[0.14em] uppercase text-cn-muted-2">
@@ -598,7 +662,9 @@ export function HudCard({ label, target, suffix, compact = false, plain = false,
       <div className="font-display font-extrabold text-xl leading-none mt-2 flex items-center gap-2">
         {live ? (
           <>
-            <span ref={countRef} className="text-cn-accent">0</span>
+            <span ref={countRef} className="text-cn-accent">
+              0
+            </span>
             <span className="inline-block w-2 h-2 rounded-full bg-cn-accent animate-cn-pulse" />
           </>
         ) : (
@@ -611,14 +677,21 @@ export function HudCard({ label, target, suffix, compact = false, plain = false,
 
 export function RaceTicker() {
   return (
-    <div className="border-t border-b border-cn-line bg-cn-bg-2 overflow-hidden relative z-[3]">
+    <div className="border-t border-b border-cn-line bg-cn-bg-2 overflow-hidden relative z-3">
       <div
         className="flex w-max animate-cn-marquee"
-        onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
-        onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.animationPlayState = "paused")
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.animationPlayState = "running")
+        }
       >
         {[...RACES, ...RACES].map(([series, name, date], i) => (
-          <div key={i} className="flex items-center gap-4 px-[30px] py-4 font-mono text-xs tracking-[0.1em] uppercase text-cn-muted whitespace-nowrap">
+          <div
+            key={i}
+            className="flex items-center gap-4 px-[30px] py-4 font-mono text-xs tracking-[0.1em] uppercase text-cn-muted whitespace-nowrap"
+          >
             <span className="w-[7px] h-[7px] rounded-full bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
             <span className="text-cn-muted-2 text-xs">{series}</span>
             <b className="text-cn-text font-medium">{name}</b>
@@ -654,15 +727,22 @@ export default function LandingHero() {
 
   return (
     <>
-      <section className="min-h-dvh flex flex-col justify-center pt-[150px] pb-[80px] overflow-hidden relative" id="top">
+      <section
+        className="min-h-dvh flex flex-col justify-center pt-[150px] pb-[80px] overflow-hidden relative"
+        id="top"
+      >
         {/* Speed streaks */}
-        <div ref={streaksRef} className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-50" />
+        <div
+          ref={streaksRef}
+          className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-50"
+        />
 
         {/* Grid floor */}
         <div
           className="absolute left-0 right-0 bottom-[-2px] h-[42vh] z-0 pointer-events-none opacity-50"
           style={{
-            backgroundImage: "linear-gradient(90deg,var(--cn-line) 1px,transparent 1px),linear-gradient(0deg,var(--cn-line) 1px,transparent 1px)",
+            backgroundImage:
+              "linear-gradient(90deg,var(--cn-line) 1px,transparent 1px),linear-gradient(0deg,var(--cn-line) 1px,transparent 1px)",
             backgroundSize: "70px 70px",
             WebkitMaskImage: "linear-gradient(180deg,transparent,#000 80%)",
             maskImage: "linear-gradient(180deg,transparent,#000 80%)",
@@ -671,24 +751,33 @@ export default function LandingHero() {
           }}
         />
 
-        <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
-          <span
-            className="font-mono text-xs font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px] animate-cn-fade opacity-0 [animation-delay:0.1s]"
-          >
+        <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
+          <span className="font-mono text-xs font-medium tracking-[0.26em] uppercase text-cn-muted inline-flex items-center gap-[10px] animate-cn-fade opacity-0 [animation-delay:0.1s]">
             <span className="w-[26px] h-px bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
             // Your ultimate hub to everything motorsports
           </span>
 
           <h1 className="font-display font-extrabold uppercase tracking-[-0.04em] leading-[0.9] text-[clamp(56px,11vw,172px)] mt-[22px]">
-            {[["One nation.", ""], ["Every", "outline"], ["circuit.", "accent"]].map(([text, variant], i) => (
+            {[
+              ["One nation.", ""],
+              ["Every", "outline"],
+              ["circuit.", "accent"],
+            ].map(([text, variant], i) => (
               <span key={i} className="block overflow-hidden">
                 <span
                   className="block animate-cn-rise"
                   style={{
                     transform: "translateY(105%)",
                     animationDelay: `${i * 0.08}s`,
-                    ...(variant === "outline" ? { color: "transparent", WebkitTextStroke: "1.5px rgba(255,255,255,0.32)" } : {}),
-                    ...(variant === "accent" ? { color: "var(--cn-accent)" } : {}),
+                    ...(variant === "outline"
+                      ? {
+                          color: "transparent",
+                          WebkitTextStroke: "1.5px rgba(255,255,255,0.32)",
+                        }
+                      : {}),
+                    ...(variant === "accent"
+                      ? { color: "var(--cn-accent)" }
+                      : {}),
                   }}
                 >
                   {text}
@@ -698,12 +787,17 @@ export default function LandingHero() {
           </h1>
 
           <p className="max-w-[540px] text-cn-muted text-sm mt-[30px] animate-cn-fade opacity-0 [animation-delay:0.5s]">
-            Formula 1, MotoGP, sim racing and the engineering obsession behind it all — gathered into one home for the fans who never miss lights-out.
+            Formula 1, MotoGP, sim racing and the engineering obsession behind
+            it all — gathered into one home for the fans who never miss
+            lights-out.
           </p>
 
           <div className="flex gap-4 mt-9 flex-wrap animate-cn-fade opacity-0 [animation-delay:0.62s]">
             <Button variant="cn-primary" size="cn" asChild>
-              <a href="#join" className="text-sm px-[26px] py-[15px] rounded-[12px]">
+              <a
+                href="#join"
+                className="text-sm px-[26px] py-[15px] rounded-[12px]"
+              >
                 <span className="w-1.5 h-1.5 rounded-full bg-current shadow-[0_0_8px_currentColor]" />
                 Join the Community
               </a>
@@ -753,82 +847,153 @@ import { cnCardClass, cnAccentCardClass } from "~/components/ui/card";
 
 const FEATURES = [
   {
-    idx: "01", icon: <path d="M4 20V12M10 20V5M16 20V9M22 20V14" />,
+    idx: "01",
+    icon: <path d="M4 20V12M10 20V5M16 20V9M22 20V14" />,
     title: "Race Analysis",
     desc: "Lap-by-lap breakdowns, strategy calls and tyre-deg debates that go deeper than any broadcast booth.",
   },
   {
-    idx: "02", icon: <><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" /><circle cx="12" cy="12" r="3" /></>,
+    idx: "02",
+    icon: (
+      <>
+        <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" />
+        <circle cx="12" cy="12" r="3" />
+      </>
+    ),
     title: "Engineering Breakdowns",
     desc: "Floor edges, DRS trains and gearbox ratios — explained by people who genuinely love the technical regs.",
   },
   {
-    idx: "03", icon: <><circle cx="12" cy="12" r="2.5" /><path d="M6.5 6.5a8 8 0 000 11M17.5 6.5a8 8 0 010 11" /></>,
+    idx: "03",
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="2.5" />
+        <path d="M6.5 6.5a8 8 0 000 11M17.5 6.5a8 8 0 010 11" />
+      </>
+    ),
     title: "Live Race Reactions",
     desc: "Lights out to chequered flag, the chat is electric. Every overtake, every safety car, in real time.",
   },
   {
-    idx: "04", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="2.4" /><path d="M4 13h6M14 13h6M12 14.5V21" /></>,
+    idx: "04",
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="2.4" />
+        <path d="M4 13h6M14 13h6M12 14.5V21" />
+      </>
+    ),
     title: "Sim Racing Culture",
     desc: "Leagues, setups and clean racing — from rookies on a wheel to alien-pace endurance crews.",
   },
   {
-    idx: "05", icon: <><path d="M4 5h16v10H9l-4 4z" /><path d="M8.5 10h.01M12 10h.01M15.5 10h.01" /></>,
+    idx: "05",
+    icon: (
+      <>
+        <path d="M4 5h16v10H9l-4 4z" />
+        <path d="M8.5 10h.01M12 10h.01M15.5 10h.01" />
+      </>
+    ),
     title: "Memes & Banter",
     desc: "The funniest corner of motorsport Twitter — relocated, refined and posted before the stewards rule.",
   },
   {
-    idx: "06", icon: <><circle cx="9" cy="8" r="3" /><path d="M3.5 20a5.5 5.5 0 0111 0" /><path d="M16 5.5a3 3 0 010 5.8M20.5 20a5.5 5.5 0 00-3.5-5.1" /></>,
+    idx: "06",
+    icon: (
+      <>
+        <circle cx="9" cy="8" r="3" />
+        <path d="M3.5 20a5.5 5.5 0 0111 0" />
+        <path d="M16 5.5a3 3 0 010 5.8M20.5 20a5.5 5.5 0 00-3.5-5.1" />
+      </>
+    ),
     title: "Fan Meetups",
     desc: "GP watch-alongs, track days and IRL link-ups — the community spills out of the screen and onto the grid.",
   },
 ];
 
 export default function LandingWhat() {
-  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
   return (
     <section id="about" className="py-[130px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
-
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         {/* Section head */}
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)" }}
+          className="max-w-2xl transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+          style={{
+            opacity: headIn ? 1 : 0,
+            transform: headIn ? "none" : "translateY(26px)",
+          }}
         >
           <SectionEyebrow label="// What is Circuit Nation" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            A paddock that<br />never closes.
+            A paddock that
+            <br />
+            never closes.
           </h2>
           <p className="text-cn-muted mt-[22px] text-sm max-w-[600px]">
-            Not a feed. Not a fan club. A living garage where strategy nerds, sim racers, meme lords and lifelong tifosi argue, analyse and celebrate every lap together.
+            Not a feed. Not a fan club. A living garage where strategy nerds,
+            sim racers, meme lords and lifelong tifosi argue, analyse and
+            celebrate every lap together.
           </p>
         </div>
 
         {/* Bento grid */}
         <div className="grid grid-cols-3 max-nav:grid-cols-2 max-[620px]:grid-cols-1 gap-[18px] mt-16">
-
           {/* Mission card — spans 2 cols */}
           <Reveal className="col-span-2 max-[620px]:col-span-1">
-            <div className={cn(cnCardClass, "flex flex-col justify-between gap-[30px] min-h-[280px]")}>
+            <div
+              className={cn(
+                cnCardClass,
+                "flex flex-col justify-between gap-[30px] min-h-[280px]",
+              )}
+            >
               <div className="font-display font-bold text-[clamp(24px,2.6vw,34px)] leading-[1.2] tracking-[-0.02em]">
-                We built Circuit Nation because the best part of race weekend isn't the race — it's the{" "}
-                <b className="text-cn-accent font-bold">people you watch it with.</b>
+                We built Circuit Nation because the best part of race weekend
+                isn't the race — it's the{" "}
+                <b className="text-cn-accent font-bold">
+                  people you watch it with.
+                </b>
               </div>
-              <div className="flex gap-[26px] flex-wrap font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">
-                {["EST. 2023", "FAN-OWNED", "SERIES-AGNOSTIC", "ALWAYS ONLINE"].map(t => <span key={t}>{t}</span>)}
+              <div className="flex gap-6 flex-wrap font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">
+                {[
+                  "EST. 2023",
+                  "FAN-OWNED",
+                  "SERIES-AGNOSTIC",
+                  "ALWAYS ONLINE",
+                ].map((t) => (
+                  <span key={t}>{t}</span>
+                ))}
               </div>
             </div>
           </Reveal>
 
           {/* Persona card */}
           <Reveal delay={0.08}>
-            <div className={cn(cnAccentCardClass, "flex flex-col justify-center gap-4")}>
-              <div className="font-display font-bold text-lg">Who's inside?</div>
+            <div
+              className={cn(
+                cnAccentCardClass,
+                "flex flex-col justify-center gap-4",
+              )}
+            >
+              <div className="font-display font-bold text-lg">
+                Who's inside?
+              </div>
               <ul className="list-none flex flex-col gap-[9px]">
-                {["Day-one F1 & MotoGP diehards", "Sim racers chasing the apex", "Engineers who read the regs for fun", "Newcomers who just caught the bug"].map(item => (
-                  <li key={item} className="text-cn-muted text-sm flex gap-[9px] items-start">
+                {[
+                  "Day-one F1 & MotoGP diehards",
+                  "Sim racers chasing the apex",
+                  "Engineers who read the regs for fun",
+                  "Newcomers who just caught the bug",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="text-cn-muted text-sm flex gap-[9px] items-start"
+                  >
                     <span className="text-cn-accent font-bold">›</span>
                     {item}
                   </li>
@@ -839,15 +1004,30 @@ export default function LandingWhat() {
 
           {/* Feature cards */}
           {FEATURES.map((f, i) => (
-            <Reveal key={f.idx} delay={i % 3 === 1 ? 0.08 : i % 3 === 2 ? 0.16 : 0}>
-              <div className={cn(cnCardClass, "relative overflow-hidden hover:border-[rgba(255,45,45,0.4)] hover:shadow-[0_22px_60px_-22px_var(--cn-accent-glow)]")}>
-                <span className="absolute top-6 right-[26px] font-mono text-xs text-cn-muted-2">{f.idx}</span>
+            <Reveal
+              key={f.idx}
+              delay={i % 3 === 1 ? 0.08 : i % 3 === 2 ? 0.16 : 0}
+            >
+              <div
+                className={cn(
+                  cnCardClass,
+                  "relative overflow-hidden hover:border-[rgba(255,45,45,0.4)] hover:shadow-[0_22px_60px_-22px_var(--cn-accent-glow)]",
+                )}
+              >
+                <span className="absolute top-6 right-[26px] font-mono text-xs text-cn-muted-2">
+                  {f.idx}
+                </span>
                 <div className="w-[46px] h-[46px] rounded-[12px] border border-cn-line-strong bg-[rgba(255,45,45,0.06)] grid place-items-center">
-                  <svg viewBox="0 0 24 24" className="w-[22px] h-[22px] stroke-cn-accent fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="w-[22px] h-[22px] stroke-cn-accent fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]"
+                  >
                     {f.icon}
                   </svg>
                 </div>
-                <h3 className="font-display font-bold text-sm mt-5 tracking-[-0.01em]">{f.title}</h3>
+                <h3 className="font-display font-bold text-sm mt-5 tracking-[-0.01em]">
+                  {f.title}
+                </h3>
                 <p className="text-cn-muted text-sm mt-[10px]">{f.desc}</p>
               </div>
             </Reveal>
@@ -882,15 +1062,29 @@ import { cn } from "~/lib/utils";
 import { SectionEyebrow } from "./section-eyebrow";
 
 function MetricCard({
-  target, compact = false, suffix = "", label, featured = false, tag, delay = 0,
+  target,
+  compact = false,
+  suffix = "",
+  label,
+  featured = false,
+  tag,
+  delay = 0,
 }: {
-  target: number; compact?: boolean; suffix?: string; label: string;
-  featured?: boolean; tag?: string; delay?: number;
+  target: number;
+  compact?: boolean;
+  suffix?: string;
+  label: string;
+  featured?: boolean;
+  tag?: string;
+  delay?: number;
 }) {
   const numRef = useRef<HTMLDivElement>(null);
   const ran = useRef(false);
   const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
-  const cf = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 0 });
+  const cf = new Intl.NumberFormat("en", {
+    notation: "compact",
+    maximumFractionDigits: 0,
+  });
 
   useEffect(() => {
     if (!inView || ran.current || !numRef.current) return;
@@ -898,12 +1092,13 @@ function MetricCard({
     const el = numRef.current;
     const dur = 1500;
     const t0 = performance.now();
-    const disp = (v: number) => compact ? cf.format(v) : String(v);
+    const disp = (v: number) => (compact ? cf.format(v) : String(v));
     const step = (now: number) => {
       const p = Math.min(1, (now - t0) / dur);
       const eased = 1 - Math.pow(1 - p, 3);
       const v = Math.round(eased * target);
-      el.textContent = disp(v) + (p === 1 ? suffix : suffix.replace(/[^+]/g, ""));
+      el.textContent =
+        disp(v) + (p === 1 ? suffix : suffix.replace(/[^+]/g, ""));
       if (p < 1) requestAnimationFrame(step);
       else el.textContent = disp(target) + suffix;
     };
@@ -914,10 +1109,10 @@ function MetricCard({
     <div
       ref={ref}
       className={cn(
-        "border border-cn-line rounded-[20px] p-[30px] flex flex-col justify-between transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]",
+        "border border-cn-line rounded-[20px] p-[30px] flex flex-col justify-between transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]",
         featured
           ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] row-span-2"
-          : "bg-gradient-to-b from-white/[0.028] to-white/[0.004]",
+          : "bg-linear-to-b from-white/[0.028] to-white/[0.004]",
       )}
       style={{
         opacity: inView ? 1 : 0,
@@ -925,13 +1120,19 @@ function MetricCard({
         transitionDelay: `${delay}s`,
       }}
     >
-      {tag && <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-muted-2">{tag}</span>}
+      {tag && (
+        <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-muted-2">
+          {tag}
+        </span>
+      )}
       <div>
         <div
           ref={numRef}
           className={cn(
             "font-display font-extrabold tracking-[-0.03em] leading-[0.9]",
-            featured ? "text-[clamp(72px,9vw,132px)]" : "text-[clamp(44px,5vw,76px)]",
+            featured
+              ? "text-[clamp(72px,9vw,132px)]"
+              : "text-[clamp(44px,5vw,76px)]",
           )}
         >
           0
@@ -945,28 +1146,65 @@ function MetricCard({
 }
 
 export default function LandingProof() {
-  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
   return (
     <section className="py-[30px_0_130px] pb-[130px] pt-[30px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)" }}
+          className="max-w-2xl transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+          style={{
+            opacity: headIn ? 1 : 0,
+            transform: headIn ? "none" : "translateY(26px)",
+          }}
         >
           <SectionEyebrow label="// By the numbers" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            The grid is<br />getting loud.
+            The grid is
+            <br />
+            getting loud.
           </h2>
         </div>
 
         <div className="grid gap-[18px] mt-16 [grid-template-columns:1.6fr_1fr_1fr] [grid-auto-rows:minmax(180px,auto)] max-[1080px]:[grid-template-columns:repeat(2,1fr)] max-[620px]:[grid-template-columns:1fr]">
-          <MetricCard target={1000000} compact suffix="+" label="Reach across Reddit, YouTube, Instagram & X" featured tag="Social impressions / mo" />
-          <MetricCard target={50000} compact suffix="+" label="Community reach" delay={0.08} />
-          <MetricCard target={10000} compact suffix="+" label="Monthly active fans" delay={0.16} />
-          <MetricCard target={500} suffix="+" label="Race discussion threads" delay={0.08} />
-          <MetricCard target={100} suffix="+" label="AMA participants" delay={0.16} />
+          <MetricCard
+            target={1000000}
+            compact
+            suffix="+"
+            label="Reach across Reddit, YouTube, Instagram & X"
+            featured
+            tag="Social impressions / mo"
+          />
+          <MetricCard
+            target={50000}
+            compact
+            suffix="+"
+            label="Community reach"
+            delay={0.08}
+          />
+          <MetricCard
+            target={10000}
+            compact
+            suffix="+"
+            label="Monthly active fans"
+            delay={0.16}
+          />
+          <MetricCard
+            target={500}
+            suffix="+"
+            label="Race discussion threads"
+            delay={0.08}
+          />
+          <MetricCard
+            target={100}
+            suffix="+"
+            label="AMA participants"
+            delay={0.16}
+          />
         </div>
       </div>
     </section>
@@ -997,29 +1235,75 @@ import { Reveal } from "./reveal";
 import { SectionEyebrow } from "./section-eyebrow";
 import { cnCardClass } from "~/components/ui/card";
 
-const BRANDS = ["APEX TV", "BOX BOX RADIO", "GRIDLINE", "PIT LANE", "SLIPSTREAM", "REV LABS", "DOWNFORCE", "TIFOSI CO.", "OVERSTEER", "PARC FERME"];
+const BRANDS = [
+  "APEX TV",
+  "BOX BOX RADIO",
+  "GRIDLINE",
+  "PIT LANE",
+  "SLIPSTREAM",
+  "REV LABS",
+  "DOWNFORCE",
+  "TIFOSI CO.",
+  "OVERSTEER",
+  "PARC FERME",
+];
 
 const CASES = [
-  { kicker: "Creator series", title: "The Apex Files", desc: "A six-part watch-along series co-hosted with a 1.2M-sub racing channel.", stats: [["3.4M", "views"], ["+8K", "new members"]] },
-  { kicker: "Podcast", title: "Box Box Radio", desc: "Weekly strategy pod recorded with the community calling the shots live.", stats: [["42", "episodes"], ["#3", "motorsport pods"]] },
-  { kicker: "Sim league", title: "Circuit Nation GP", desc: "A full endurance championship across 12 grids and three platforms.", stats: [["240", "drivers"], ["12", "rounds"]] },
+  {
+    kicker: "Creator series",
+    title: "The Apex Files",
+    desc: "A six-part watch-along series co-hosted with a 1.2M-sub racing channel.",
+    stats: [
+      ["3.4M", "views"],
+      ["+8K", "new members"],
+    ],
+  },
+  {
+    kicker: "Podcast",
+    title: "Box Box Radio",
+    desc: "Weekly strategy pod recorded with the community calling the shots live.",
+    stats: [
+      ["42", "episodes"],
+      ["#3", "motorsport pods"],
+    ],
+  },
+  {
+    kicker: "Sim league",
+    title: "Circuit Nation GP",
+    desc: "A full endurance championship across 12 grids and three platforms.",
+    stats: [
+      ["240", "drivers"],
+      ["12", "rounds"],
+    ],
+  },
 ];
 
 export default function LandingCollab() {
-  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
-  const { ref: wallRef, inView: wallIn } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+  const { ref: wallRef, inView: wallIn } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   return (
     <section className="pt-[30px] pb-[120px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)" }}
+          className="max-w-2xl transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+          style={{
+            opacity: headIn ? 1 : 0,
+            transform: headIn ? "none" : "translateY(26px)",
+          }}
         >
           <SectionEyebrow label="// Previous collaborations" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            Good company<br />in the garage.
+            Good company
+            <br />
+            in the garage.
           </h2>
         </div>
       </div>
@@ -1027,20 +1311,27 @@ export default function LandingCollab() {
       {/* Logo wall marquee */}
       <div
         ref={wallRef}
-        className="mt-14 border-t border-b border-cn-line overflow-hidden relative py-2 transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-        style={{ opacity: wallIn ? 1 : 0, transform: wallIn ? "none" : "translateY(26px)" }}
+        className="mt-14 border-t border-b border-cn-line overflow-hidden relative py-2 transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+        style={{
+          opacity: wallIn ? 1 : 0,
+          transform: wallIn ? "none" : "translateY(26px)",
+        }}
       >
-        <div className="absolute top-0 bottom-0 left-0 w-[140px] z-[4] pointer-events-none bg-gradient-to-r from-cn-bg to-transparent" />
-        <div className="absolute top-0 bottom-0 right-0 w-[140px] z-[4] pointer-events-none bg-gradient-to-l from-cn-bg to-transparent" />
+        <div className="absolute top-0 bottom-0 left-0 w-36 z-4 pointer-events-none bg-linear-to-r from-cn-bg to-transparent" />
+        <div className="absolute top-0 bottom-0 right-0 w-36 z-4 pointer-events-none bg-linear-to-l from-cn-bg to-transparent" />
         <div
           className="flex items-center gap-14 w-max animate-cn-marquee-32"
-          onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
-          onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.animationPlayState = "paused")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.animationPlayState = "running")
+          }
         >
           {[...BRANDS, ...BRANDS].map((b, i) => (
             <div
               key={i}
-              className="font-display font-bold text-lg tracking-[-0.01em] text-cn-muted-2 py-5 whitespace-nowrap opacity-70 transition-[color,opacity] duration-[250ms] hover:text-cn-text hover:opacity-100"
+              className="font-display font-bold text-lg tracking-[-0.01em] text-cn-muted-2 py-5 whitespace-nowrap opacity-70 transition-[color,opacity] duration-250 hover:text-cn-text hover:opacity-100"
             >
               {b}
             </div>
@@ -1049,7 +1340,7 @@ export default function LandingCollab() {
       </div>
 
       {/* Case studies */}
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div className="grid grid-cols-3 max-nav:grid-cols-1 gap-[18px] mt-14">
           {CASES.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.08}>
@@ -1059,15 +1350,23 @@ export default function LandingCollab() {
                     {c.kicker.toLowerCase()} keyart
                   </span>
                 </div>
-                <div className="p-[26px]">
-                  <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{c.kicker}</span>
-                  <h3 className="font-display font-bold text-lg mt-3 tracking-[-0.01em]">{c.title}</h3>
+                <div className="p-6">
+                  <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">
+                    {c.kicker}
+                  </span>
+                  <h3 className="font-display font-bold text-lg mt-3 tracking-[-0.01em]">
+                    {c.title}
+                  </h3>
                   <p className="text-cn-muted text-sm mt-[10px]">{c.desc}</p>
                   <div className="flex gap-[22px] mt-5">
                     {c.stats.map(([val, lbl]) => (
                       <div key={lbl}>
-                        <b className="font-display font-extrabold text-lg block">{val}</b>
-                        <span className="font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">{lbl}</span>
+                        <b className="font-display font-extrabold text-lg block">
+                          {val}
+                        </b>
+                        <span className="font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">
+                          {lbl}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -1105,14 +1404,22 @@ import { Reveal } from "./reveal";
 import { SectionEyebrow } from "./section-eyebrow";
 import { cnCardClass } from "~/components/ui/card";
 
-function Avatar({ initials, red = false }: { initials: string; red?: boolean }) {
+function Avatar({
+  initials,
+  red = false,
+}: {
+  initials: string;
+  red?: boolean;
+}) {
   return (
-    <div className={cn(
-      "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-sm font-bold",
-      red
-        ? "bg-[linear-gradient(150deg,rgba(255,90,31,0.5),#161619)] text-white"
-        : "bg-[linear-gradient(150deg,#2a2a30,#161619)] text-cn-muted",
-    )}>
+    <div
+      className={cn(
+        "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-sm font-bold",
+        red
+          ? "bg-[linear-gradient(150deg,rgba(255,90,31,0.5),#161619)] text-white"
+          : "bg-[linear-gradient(150deg,#2a2a30,#161619)] text-cn-muted",
+      )}
+    >
       {initials}
     </div>
   );
@@ -1120,7 +1427,10 @@ function Avatar({ initials, red = false }: { initials: string; red?: boolean }) 
 
 function UpvoteIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="w-[13px] h-[13px] stroke-cn-orange fill-none [stroke-width:1.8]">
+    <svg
+      viewBox="0 0 24 24"
+      className="w-[13px] h-[13px] stroke-cn-orange fill-none [stroke-width:1.8]"
+    >
       <path d="M12 4l7 8h-4v8H9v-8H5z" />
     </svg>
   );
@@ -1128,44 +1438,63 @@ function UpvoteIcon() {
 
 function Badge({ type }: { type: "live" | "up" | "trend" }) {
   return (
-    <span className={cn(
-      "font-mono text-xs font-medium tracking-[0.14em] uppercase px-[11px] py-[6px] rounded-[20px] inline-flex items-center gap-[7px] w-fit",
-      type === "live" && "bg-[rgba(255,45,45,0.14)] text-[#ff7676] border border-[rgba(255,45,45,0.3)]",
-      type === "up" && "bg-[rgba(255,90,31,0.12)] text-cn-orange border border-[rgba(255,90,31,0.28)]",
-      type === "trend" && "bg-white/[0.05] text-cn-muted border border-cn-line-strong",
-    )}>
+    <span
+      className={cn(
+        "font-mono text-xs font-medium tracking-[0.14em] uppercase px-[11px] py-[6px] rounded-[20px] inline-flex items-center gap-[7px] w-fit",
+        type === "live" &&
+          "bg-[rgba(255,45,45,0.14)] text-[#ff7676] border border-[rgba(255,45,45,0.3)]",
+        type === "up" &&
+          "bg-[rgba(255,90,31,0.12)] text-cn-orange border border-[rgba(255,90,31,0.28)]",
+        type === "trend" &&
+          "bg-white/[0.05] text-cn-muted border border-cn-line-strong",
+      )}
+    >
       {type === "live" && (
         <span className="inline-block w-2 h-2 rounded-full bg-cn-accent animate-cn-pulse" />
       )}
-      {type === "live" ? "Live now" : type === "up" ? "Upcoming · Fri 18:00 GMT" : "Trending this week"}
+      {type === "live"
+        ? "Live now"
+        : type === "up"
+          ? "Upcoming · Fri 18:00 GMT"
+          : "Trending this week"}
     </span>
   );
 }
 
-const readBtnClass = "font-mono text-xs tracking-[0.08em] uppercase text-cn-text no-underline inline-flex items-center gap-2 px-[14px] py-[9px] border border-cn-line-strong rounded-[9px] transition-all duration-200 hover:border-cn-orange hover:text-cn-orange";
+const readBtnClass =
+  "font-mono text-xs tracking-[0.08em] uppercase text-cn-text no-underline inline-flex items-center gap-2 px-[14px] py-[9px] border border-cn-line-strong rounded-sm transition-all duration-200 hover:border-cn-orange hover:text-cn-orange";
 
 export default function LandingAMAs() {
-  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
   return (
     <section id="amas" className="pt-[30px] pb-[130px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)" }}
+          className="max-w-2xl transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+          style={{
+            opacity: headIn ? 1 : 0,
+            transform: headIn ? "none" : "translateY(26px)",
+          }}
         >
           <SectionEyebrow label="// Reddit AMAs" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            Ask the<br />paddock anything.
+            Ask the
+            <br />
+            paddock anything.
           </h2>
           <p className="text-cn-muted mt-[22px] text-sm max-w-[600px]">
-            We bring racing's most interesting voices straight into the community — creators, engineers, sim aces and commentators, live and unfiltered.
+            We bring racing's most interesting voices straight into the
+            community — creators, engineers, sim aces and commentators, live and
+            unfiltered.
           </p>
         </div>
 
         <div className="grid [grid-template-columns:1.4fr_1fr] max-nav:grid-cols-1 gap-[18px] mt-16">
-
           {/* Featured AMA */}
           <Reveal>
             <div className={cn(cnCardClass, "!p-0 overflow-hidden")}>
@@ -1177,22 +1506,31 @@ export default function LandingAMAs() {
               <div className="p-7">
                 <Badge type="live" />
                 <h3 className="font-display font-bold text-[clamp(26px,3vw,38px)] tracking-[-0.02em] leading-[1.1] mt-4">
-                  "I spent 9 years on an F1 pit wall. Ask me about strategy calls under pressure."
+                  "I spent 9 years on an F1 pit wall. Ask me about strategy
+                  calls under pressure."
                 </h3>
                 <p className="text-cn-muted text-sm mt-[14px]">
-                  A former race strategist breaks down the undercut, the gamble that won a title, and the radio messages you never heard.
+                  A former race strategist breaks down the undercut, the gamble
+                  that won a title, and the radio messages you never heard.
                 </p>
                 <div className="flex items-center gap-3 mt-[18px]">
                   <Avatar initials="JR" red />
                   <div className="flex flex-col">
-                    <b className="font-body font-semibold text-sm">Jamie Renault</b>
-                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">u/pitwall_jr · ex-Race Strategist</span>
+                    <b className="font-body font-semibold text-sm">
+                      Jamie Renault
+                    </b>
+                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">
+                      u/pitwall_jr · ex-Race Strategist
+                    </span>
                   </div>
                 </div>
                 <div className="mt-[22px] flex items-center justify-between gap-[14px]">
-                  <a href="#" className={readBtnClass}>Read AMA →</a>
+                  <a href="#" className={readBtnClass}>
+                    Read AMA →
+                  </a>
                   <span className="font-mono text-xs text-cn-muted-2 inline-flex items-center gap-[6px]">
-                    <UpvoteIcon />4.2k upvotes
+                    <UpvoteIcon />
+                    4.2k upvotes
                   </span>
                 </div>
               </div>
@@ -1210,14 +1548,21 @@ export default function LandingAMAs() {
                 <div className="flex items-center gap-3">
                   <Avatar initials="KS" />
                   <div className="flex flex-col">
-                    <b className="font-body font-semibold text-sm">Kai Sorensen</b>
-                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">u/apex_kai · Sim to Real</span>
+                    <b className="font-body font-semibold text-sm">
+                      Kai Sorensen
+                    </b>
+                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">
+                      u/apex_kai · Sim to Real
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-[14px]">
-                  <a href="#" className={readBtnClass}>Set reminder →</a>
+                  <a href="#" className={readBtnClass}>
+                    Set reminder →
+                  </a>
                   <span className="font-mono text-xs text-cn-muted-2 inline-flex items-center gap-[6px]">
-                    <UpvoteIcon />880 waiting
+                    <UpvoteIcon />
+                    880 waiting
                   </span>
                 </div>
               </div>
@@ -1231,14 +1576,21 @@ export default function LandingAMAs() {
                 <div className="flex items-center gap-3">
                   <Avatar initials="MA" />
                   <div className="flex flex-col">
-                    <b className="font-body font-semibold text-sm">Dr. Mara Aoki</b>
-                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">u/ground_effect · Aerodynamicist</span>
+                    <b className="font-body font-semibold text-sm">
+                      Dr. Mara Aoki
+                    </b>
+                    <span className="font-mono text-xs text-cn-muted-2 tracking-[0.06em]">
+                      u/ground_effect · Aerodynamicist
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-[14px]">
-                  <a href="#" className={readBtnClass}>Read AMA →</a>
+                  <a href="#" className={readBtnClass}>
+                    Read AMA →
+                  </a>
                   <span className="font-mono text-xs text-cn-muted-2 inline-flex items-center gap-[6px]">
-                    <UpvoteIcon />2.7k upvotes
+                    <UpvoteIcon />
+                    2.7k upvotes
                   </span>
                 </div>
               </div>
@@ -1275,33 +1627,59 @@ import { SectionEyebrow } from "./section-eyebrow";
 import { cnCardClass } from "~/components/ui/card";
 
 const SMALL_POSTS = [
-  { cat: "Hot Take", title: "It's time to admit the sprint format actually works.", meta: "4 min · 206 comments" },
-  { cat: "Technical", title: "Why everyone's copying that weird front wing.", meta: "7 min · 141 comments" },
-  { cat: "Paddock Drama", title: "The radio war that's quietly splitting a title fight.", meta: "5 min · 402 comments" },
-  { cat: "Strategy", title: "Mapping the perfect two-stop nobody dared to try.", meta: "9 min · 87 comments" },
+  {
+    cat: "Hot Take",
+    title: "It's time to admit the sprint format actually works.",
+    meta: "4 min · 206 comments",
+  },
+  {
+    cat: "Technical",
+    title: "Why everyone's copying that weird front wing.",
+    meta: "7 min · 141 comments",
+  },
+  {
+    cat: "Paddock Drama",
+    title: "The radio war that's quietly splitting a title fight.",
+    meta: "5 min · 402 comments",
+  },
+  {
+    cat: "Strategy",
+    title: "Mapping the perfect two-stop nobody dared to try.",
+    meta: "9 min · 87 comments",
+  },
 ];
 
 export default function LandingPosts() {
-  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
   return (
     <section id="content" className="pt-[30px] pb-[120px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)" }}
+          className="max-w-2xl transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+          style={{
+            opacity: headIn ? 1 : 0,
+            transform: headIn ? "none" : "translateY(26px)",
+          }}
         >
           <SectionEyebrow label="// Latest posts" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            Hot off<br />the pit wall.
+            Hot off
+            <br />
+            the pit wall.
           </h2>
         </div>
 
         <div className="grid [grid-template-columns:1.4fr_1fr] max-nav:grid-cols-1 gap-[18px] mt-16">
           {/* Featured */}
           <Reveal>
-            <article className={cn(cnCardClass, "!p-0 flex flex-col overflow-hidden")}>
+            <article
+              className={cn(cnCardClass, "!p-0 flex flex-col overflow-hidden")}
+            >
               <div className="h-[360px] border-b border-cn-line flex-1 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
                 <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                   Featured article hero
@@ -1313,13 +1691,19 @@ export default function LandingPosts() {
                   Race Analysis
                 </span>
                 <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.06] mt-3 text-[clamp(26px,3vw,40px)]">
-                  The undercut that wasn't: how three teams misread the same pit window
+                  The undercut that wasn't: how three teams misread the same pit
+                  window
                 </h3>
                 <p className="text-cn-muted mt-4 max-w-[540px] text-sm">
-                  We charted every stint from the weekend and found the strategy call everyone defended was the slowest path to the podium.
+                  We charted every stint from the weekend and found the strategy
+                  call everyone defended was the slowest path to the podium.
                 </p>
                 <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-3 flex gap-[14px]">
-                  <span>12 min read</span><span>·</span><span>May 26, 2026</span><span>·</span><span>318 comments</span>
+                  <span>12 min read</span>
+                  <span>·</span>
+                  <span>May 26, 2026</span>
+                  <span>·</span>
+                  <span>318 comments</span>
                 </div>
               </div>
             </article>
@@ -1329,12 +1713,23 @@ export default function LandingPosts() {
           <div className="grid gap-[18px]">
             {SMALL_POSTS.map((p, i) => (
               <Reveal key={p.title} delay={i < 2 ? 0.08 : 0.16}>
-                <article className={cn(cnCardClass, "!p-[22px_24px] flex gap-5 items-center cursor-pointer")}>
+                <article
+                  className={cn(
+                    cnCardClass,
+                    "!p-[22px_24px] flex gap-5 items-center cursor-pointer",
+                  )}
+                >
                   <div className="w-24 h-24 rounded-[12px] shrink-0 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] border border-cn-line" />
                   <div>
-                    <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{p.cat}</span>
-                    <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.2] mt-2 text-sm">{p.title}</h3>
-                    <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-2">{p.meta}</div>
+                    <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">
+                      {p.cat}
+                    </span>
+                    <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.2] mt-2 text-sm">
+                      {p.title}
+                    </h3>
+                    <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-2">
+                      {p.meta}
+                    </div>
                   </div>
                 </article>
               </Reveal>
@@ -1372,7 +1767,13 @@ import { Reveal } from "./reveal";
 import { SectionEyebrow } from "./section-eyebrow";
 import { cnCardClass } from "~/components/ui/card";
 
-function PlayIcon({ size = 64, small = false }: { size?: number; small?: boolean }) {
+function PlayIcon({
+  size = 64,
+  small = false,
+}: {
+  size?: number;
+  small?: boolean;
+}) {
   return (
     <div
       className="rounded-full bg-[rgba(255,45,45,0.92)] grid place-items-center shadow-[0_10px_40px_-8px_var(--cn-accent-glow)] transition-transform duration-300"
@@ -1381,7 +1782,11 @@ function PlayIcon({ size = 64, small = false }: { size?: number; small?: boolean
       <svg
         viewBox="0 0 24 24"
         className="fill-white"
-        style={{ width: small ? 14 : 22, height: small ? 14 : 22, marginLeft: small ? 2 : 3 }}
+        style={{
+          width: small ? 14 : 22,
+          height: small ? 14 : 22,
+          marginLeft: small ? 2 : 3,
+        }}
       >
         <path d="M6 4l14 8-14 8z" />
       </svg>
@@ -1390,51 +1795,85 @@ function PlayIcon({ size = 64, small = false }: { size?: number; small?: boolean
 }
 
 const THUMBS = [
-  { cat: "Engineering", title: "Ground effect, explained in 9 minutes", views: "88K views", dur: "9:10" },
-  { cat: "Highlights", title: "Top 10 overtakes of the season so far", views: "301K views", dur: "5:33" },
-  { cat: "Podcast clip", title: "Is MotoGP the best racing on earth right now?", views: "56K views", dur: "24:07" },
+  {
+    cat: "Engineering",
+    title: "Ground effect, explained in 9 minutes",
+    views: "88K views",
+    dur: "9:10",
+  },
+  {
+    cat: "Highlights",
+    title: "Top 10 overtakes of the season so far",
+    views: "301K views",
+    dur: "5:33",
+  },
+  {
+    cat: "Podcast clip",
+    title: "Is MotoGP the best racing on earth right now?",
+    views: "56K views",
+    dur: "24:07",
+  },
 ];
 
 export default function LandingVideos() {
-  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
   return (
     <section className="pt-[30px] pb-[120px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)" }}
+          className="max-w-2xl transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+          style={{
+            opacity: headIn ? 1 : 0,
+            transform: headIn ? "none" : "translateY(26px)",
+          }}
         >
           <SectionEyebrow label="// Watch" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            Press play,<br />lights out.
+            Press play,
+            <br />
+            lights out.
           </h2>
         </div>
 
         <div className="grid [grid-template-columns:1.5fr_1fr] max-nav:grid-cols-1 gap-[18px] mt-16">
           {/* Big featured */}
           <Reveal>
-            <div className={cn(cnCardClass, "!p-0 overflow-hidden group cursor-pointer")}>
+            <div
+              className={cn(
+                cnCardClass,
+                "!p-0 overflow-hidden group cursor-pointer",
+              )}
+            >
               <div className="relative overflow-hidden">
                 <div className="h-[420px] w-full bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105 relative">
                   <span className="absolute left-[14px] bottom-3 font-mono text-xs font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                     Featured video
                   </span>
                 </div>
-                <div className="absolute inset-0 grid place-items-center z-[3]">
+                <div className="absolute inset-0 grid place-items-center z-3">
                   <div className="transition-transform duration-300 group-hover:scale-110">
                     <PlayIcon />
                   </div>
                 </div>
-                <span className="absolute right-3 bottom-3 z-[3] font-mono text-xs bg-black/70 px-2 py-1 rounded-[6px] text-cn-text">18:42</span>
+                <span className="absolute right-3 bottom-3 z-3 font-mono text-xs bg-black/70 px-2 py-1 rounded-[6px] text-cn-text">
+                  18:42
+                </span>
               </div>
               <div className="px-6 py-[22px]">
-                <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">Watch-along</span>
+                <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">
+                  Watch-along
+                </span>
                 <h3 className="font-display font-bold tracking-[-0.01em] mt-[10px] leading-[1.2] text-[clamp(22px,2.4vw,30px)]">
                   Monaco GP, every radio call decoded — live community reaction
                 </h3>
-                <div className="font-mono text-xs text-cn-muted-2 mt-[10px]">142K views · 2 days ago</div>
+                <div className="font-mono text-xs text-cn-muted-2 mt-[10px]">
+                  142K views · 2 days ago
+                </div>
               </div>
             </div>
           </Reveal>
@@ -1443,18 +1882,31 @@ export default function LandingVideos() {
           <div className="grid gap-[18px] content-start">
             {THUMBS.map((v) => (
               <Reveal key={v.title} delay={0.08}>
-                <div className={cn(cnCardClass, "!p-0 grid [grid-template-columns:150px_1fr] items-stretch cursor-pointer group max-[620px]:[grid-template-columns:120px_1fr]")}>
+                <div
+                  className={cn(
+                    cnCardClass,
+                    "!p-0 grid [grid-template-columns:150px_1fr] items-stretch cursor-pointer group max-[620px]:[grid-template-columns:120px_1fr]",
+                  )}
+                >
                   <div className="relative overflow-hidden">
                     <div className="h-full min-h-[104px] w-full bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105" />
-                    <div className="absolute inset-0 grid place-items-center z-[3]">
+                    <div className="absolute inset-0 grid place-items-center z-3">
                       <PlayIcon size={40} small />
                     </div>
-                    <span className="absolute right-2 bottom-2 z-[3] font-mono text-xs bg-black/70 px-[6px] py-[3px] rounded-[5px] text-cn-text">{v.dur}</span>
+                    <span className="absolute right-2 bottom-2 z-3 font-mono text-xs bg-black/70 px-[6px] py-[3px] rounded-[5px] text-cn-text">
+                      {v.dur}
+                    </span>
                   </div>
                   <div className="px-[18px] py-4 flex flex-col justify-center">
-                    <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{v.cat}</span>
-                    <h3 className="font-display font-bold tracking-[-0.01em] mt-[6px] leading-[1.2] text-sm">{v.title}</h3>
-                    <div className="font-mono text-xs text-cn-muted-2 mt-2">{v.views}</div>
+                    <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">
+                      {v.cat}
+                    </span>
+                    <h3 className="font-display font-bold tracking-[-0.01em] mt-[6px] leading-[1.2] text-sm">
+                      {v.title}
+                    </h3>
+                    <div className="font-mono text-xs text-cn-muted-2 mt-2">
+                      {v.views}
+                    </div>
                   </div>
                 </div>
               </Reveal>
@@ -1491,28 +1943,76 @@ import { cn } from "~/lib/utils";
 import { SectionEyebrow } from "./section-eyebrow";
 
 const QUOTES = [
-  { body: "I've watched F1 for 20 years and never had people to scream at the TV with. Now I've got a thousand of them. This place ruined watching races alone forever.", name: "Diego L.", role: "Member since 2023", delay: 0, highlight: true },
-  { body: "The engineering breakdowns are genuinely better than half the paid analysis out there. I learned more here in a month than in years of just watching.", name: "Priya R.", role: "Sim racer", delay: 0.08 },
-  { body: "Hosted an AMA expecting twenty questions. Got four hundred. This is the most clued-up motorsport audience I've ever talked to.", name: "Tom C.", role: "Racing creator · 600K subs", delay: 0.16, red: true },
-  { body: "Came for the memes, stayed for the strategy threads. Somehow it's both the funniest and the smartest place I follow racing.", name: "Amara K.", role: "Member since 2024", delay: 0 },
-  { body: "Our sim league grid filled in 48 hours. The clean racing and the post-race debriefs are next level. Properly organised, properly fun.", name: "Nico F.", role: "League admin", delay: 0.08 },
-  { body: "Got into MotoGP three months ago with zero clue. Asked a dumb question, got ten kind, detailed answers. That's the whole vibe.", name: "Sara B.", role: "New fan", delay: 0.16 },
+  {
+    body: "I've watched F1 for 20 years and never had people to scream at the TV with. Now I've got a thousand of them. This place ruined watching races alone forever.",
+    name: "Diego L.",
+    role: "Member since 2023",
+    delay: 0,
+    highlight: true,
+  },
+  {
+    body: "The engineering breakdowns are genuinely better than half the paid analysis out there. I learned more here in a month than in years of just watching.",
+    name: "Priya R.",
+    role: "Sim racer",
+    delay: 0.08,
+  },
+  {
+    body: "Hosted an AMA expecting twenty questions. Got four hundred. This is the most clued-up motorsport audience I've ever talked to.",
+    name: "Tom C.",
+    role: "Racing creator · 600K subs",
+    delay: 0.16,
+    red: true,
+  },
+  {
+    body: "Came for the memes, stayed for the strategy threads. Somehow it's both the funniest and the smartest place I follow racing.",
+    name: "Amara K.",
+    role: "Member since 2024",
+    delay: 0,
+  },
+  {
+    body: "Our sim league grid filled in 48 hours. The clean racing and the post-race debriefs are next level. Properly organised, properly fun.",
+    name: "Nico F.",
+    role: "League admin",
+    delay: 0.08,
+  },
+  {
+    body: "Got into MotoGP three months ago with zero clue. Asked a dumb question, got ten kind, detailed answers. That's the whole vibe.",
+    name: "Sara B.",
+    role: "New fan",
+    delay: 0.16,
+  },
 ];
 
-function QuoteCard({ body, name, role, highlight = false, red = false, delay = 0 }: {
-  body: string; name: string; role: string; highlight?: boolean; red?: boolean; delay?: number;
+function QuoteCard({
+  body,
+  name,
+  role,
+  highlight = false,
+  red = false,
+  delay = 0,
+}: {
+  body: string;
+  name: string;
+  role: string;
+  highlight?: boolean;
+  red?: boolean;
+  delay?: number;
 }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true });
-  const initials = name.split(" ").map(w => w[0]).join("").slice(0, 2);
+  const initials = name
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2);
 
   return (
     <div
       ref={ref}
       className={cn(
-        "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]",
+        "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]",
         highlight
           ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.12),rgba(255,255,255,0.004))]"
-          : "bg-gradient-to-b from-white/[0.028] to-white/[0.004]",
+          : "bg-linear-to-b from-white/[0.028] to-white/[0.004]",
       )}
       style={{
         opacity: inView ? 1 : 0,
@@ -1520,15 +2020,19 @@ function QuoteCard({ body, name, role, highlight = false, red = false, delay = 0
         transitionDelay: `${delay}s`,
       }}
     >
-      <div className="font-display font-extrabold text-2xl leading-[0.6] text-cn-accent h-6">"</div>
+      <div className="font-display font-extrabold text-2xl leading-[0.6] text-cn-accent h-6">
+        "
+      </div>
       <p className="text-sm text-cn-text leading-[1.55]">{body}</p>
       <div className="flex items-center gap-3 mt-auto">
-        <div className={cn(
-          "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-sm font-bold",
-          red
-            ? "bg-[linear-gradient(150deg,rgba(255,90,31,0.5),#161619)] text-white"
-            : "bg-[linear-gradient(150deg,#2a2a30,#161619)] text-cn-muted",
-        )}>
+        <div
+          className={cn(
+            "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-sm font-bold",
+            red
+              ? "bg-[linear-gradient(150deg,rgba(255,90,31,0.5),#161619)] text-white"
+              : "bg-[linear-gradient(150deg,#2a2a30,#161619)] text-cn-muted",
+          )}
+        >
           {initials}
         </div>
         <div>
@@ -1541,24 +2045,34 @@ function QuoteCard({ body, name, role, highlight = false, red = false, delay = 0
 }
 
 export default function LandingTestimonials() {
-  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
   return (
     <section className="pt-[30px] pb-[130px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)" }}
+          className="max-w-2xl transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+          style={{
+            opacity: headIn ? 1 : 0,
+            transform: headIn ? "none" : "translateY(26px)",
+          }}
         >
           <SectionEyebrow label="// From the community" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            Why fans<br />stay on the grid.
+            Why fans
+            <br />
+            stay on the grid.
           </h2>
         </div>
 
         <div className="columns-3 max-nav:columns-2 max-[620px]:columns-1 gap-[18px] mt-16">
-          {QUOTES.map(q => <QuoteCard key={q.name} {...q} />)}
+          {QUOTES.map((q) => (
+            <QuoteCard key={q.name} {...q} />
+          ))}
         </div>
       </div>
     </section>
@@ -1598,10 +2112,18 @@ function PlatDot({ plat }: { plat: PlatType }) {
     ig: "linear-gradient(135deg,#f58529,#dd2a7b)",
     x: "#e7e7ea",
   };
-  const labels: Record<PlatType, string> = { yt: "YouTube", reddit: "Reddit", ig: "Instagram", x: "X" };
+  const labels: Record<PlatType, string> = {
+    yt: "YouTube",
+    reddit: "Reddit",
+    ig: "Instagram",
+    x: "X",
+  };
   return (
-    <span className="absolute top-[14px] left-[14px] z-[3] font-mono text-xs font-medium tracking-[0.1em] uppercase px-[10px] py-[5px] rounded-[8px] bg-black/[0.55] backdrop-blur-[6px] inline-flex items-center gap-[7px]">
-      <span className="w-2 h-2 rounded-[2px] shrink-0" style={{ background: colors[plat] }} />
+    <span className="absolute top-[14px] left-[14px] z-3 font-mono text-xs font-medium tracking-[0.1em] uppercase px-[10px] py-[5px] rounded-[8px] bg-black/[0.55] backdrop-blur-[6px] inline-flex items-center gap-[7px]">
+      <span
+        className="w-2 h-2 rounded-[2px] shrink-0"
+        style={{ background: colors[plat] }}
+      />
       {labels[plat]}
     </span>
   );
@@ -1609,7 +2131,7 @@ function PlatDot({ plat }: { plat: PlatType }) {
 
 function PlayMini() {
   return (
-    <div className="absolute inset-0 grid place-items-center z-[4]">
+    <div className="absolute inset-0 grid place-items-center z-4">
       <div className="w-14 h-14 rounded-full bg-[rgba(255,45,45,0.92)] grid place-items-center shadow-[0_10px_36px_-8px_var(--cn-accent-glow)] transition-transform duration-300 group-hover:scale-110">
         <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-0.5">
           <path d="M6 4l14 8-14 8z" />
@@ -1644,14 +2166,18 @@ function SocialTile({ plat, title, sub, hasPlay, span, delay = 0 }: TileProps) {
         <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)]" />
         {hasPlay && <PlayMini />}
         <PlatDot plat={plat} />
-        <div className="absolute left-0 right-0 bottom-0 z-[3] p-4 bg-[linear-gradient(0deg,rgba(8,8,9,0.92),transparent)]">
+        <div className="absolute left-0 right-0 bottom-0 z-3 p-4 bg-[linear-gradient(0deg,rgba(8,8,9,0.92),transparent)]">
           <b
             className="font-display font-bold block leading-[1.2]"
-            style={{ fontSize: span === "feature" ? "clamp(20px,2vw,28px)" : 15 }}
+            style={{
+              fontSize: span === "feature" ? "clamp(20px,2vw,28px)" : 15,
+            }}
           >
             {title}
           </b>
-          <span className="font-mono text-xs text-cn-muted tracking-[0.06em]">{sub}</span>
+          <span className="font-mono text-xs text-cn-muted tracking-[0.06em]">
+            {sub}
+          </span>
         </div>
       </div>
     </Reveal>
@@ -1659,36 +2185,87 @@ function SocialTile({ plat, title, sub, hasPlay, span, delay = 0 }: TileProps) {
 }
 
 export default function LandingSocialWall() {
-  const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
   return (
     <section className="pt-[30px] pb-[120px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)" }}
+          className="max-w-2xl transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+          style={{
+            opacity: headIn ? 1 : 0,
+            transform: headIn ? "none" : "translateY(26px)",
+          }}
         >
           <SectionEyebrow label="// Social wall" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            Everywhere<br />at once.
+            Everywhere
+            <br />
+            at once.
           </h2>
           <p className="text-cn-muted mt-[22px] text-sm max-w-[600px]">
-            One community, every platform. Here's what the grid is posting right now.
+            One community, every platform. Here's what the grid is posting right
+            now.
           </p>
         </div>
 
-        <div
-          className="grid gap-4 mt-16 [grid-template-columns:repeat(4,1fr)] [grid-auto-rows:168px] max-[1080px]:[grid-template-columns:repeat(3,1fr)] max-[620px]:[grid-template-columns:repeat(2,1fr)] max-[620px]:[grid-auto-rows:140px]"
-        >
-          <SocialTile plat="yt" title="Full Monaco watch-along — community edition" sub="142K views · 2 days ago" hasPlay span="feature" />
-          <SocialTile plat="reddit" title="Strategy megathread" sub="r/CircuitNation · 4.2k" delay={0.08} />
-          <SocialTile plat="ig" title="Paddock golden hour" sub="9,803 likes" delay={0.08} />
-          <SocialTile plat="ig" title="Every front wing on the grid, side by side" sub="Carousel · 14.1k likes" span="wide" delay={0.16} />
-          <SocialTile plat="yt" title='That overtake, 12 angles' sub="880K plays" hasPlay span="tall" />
-          <SocialTile plat="x" title='"Box now. BOX NOW."' sub="32k reposts" delay={0.08} />
-          <SocialTile plat="reddit" title="Live AMA: pit-wall strategist" sub="Happening now" delay={0.16} />
-          <SocialTile plat="ig" title="Watch-party night — 40 cities, one race" sub="Member submitted" span="wide" delay={0.08} />
+        <div className="grid gap-4 mt-16 [grid-template-columns:repeat(4,1fr)] [grid-auto-rows:168px] max-[1080px]:[grid-template-columns:repeat(3,1fr)] max-[620px]:[grid-template-columns:repeat(2,1fr)] max-[620px]:[grid-auto-rows:140px]">
+          <SocialTile
+            plat="yt"
+            title="Full Monaco watch-along — community edition"
+            sub="142K views · 2 days ago"
+            hasPlay
+            span="feature"
+          />
+          <SocialTile
+            plat="reddit"
+            title="Strategy megathread"
+            sub="r/CircuitNation · 4.2k"
+            delay={0.08}
+          />
+          <SocialTile
+            plat="ig"
+            title="Paddock golden hour"
+            sub="9,803 likes"
+            delay={0.08}
+          />
+          <SocialTile
+            plat="ig"
+            title="Every front wing on the grid, side by side"
+            sub="Carousel · 14.1k likes"
+            span="wide"
+            delay={0.16}
+          />
+          <SocialTile
+            plat="yt"
+            title="That overtake, 12 angles"
+            sub="880K plays"
+            hasPlay
+            span="tall"
+          />
+          <SocialTile
+            plat="x"
+            title='"Box now. BOX NOW."'
+            sub="32k reposts"
+            delay={0.08}
+          />
+          <SocialTile
+            plat="reddit"
+            title="Live AMA: pit-wall strategist"
+            sub="Happening now"
+            delay={0.16}
+          />
+          <SocialTile
+            plat="ig"
+            title="Watch-party night — 40 cities, one race"
+            sub="Member submitted"
+            span="wide"
+            delay={0.08}
+          />
         </div>
       </div>
     </section>
@@ -1725,24 +2302,38 @@ const MARKERS = [
   { location: [52.0786, -1.0169] as [number, number], size: 0.06 },
   { location: [45.6156, 9.2811] as [number, number], size: 0.06 },
   { location: [50.4372, 5.9714] as [number, number], size: 0.05 },
-  { location: [43.9980, 11.3719] as [number, number], size: 0.06 },
-  { location: [34.8431, 136.5410] as [number, number], size: 0.07 },
+  { location: [43.998, 11.3719] as [number, number], size: 0.06 },
+  { location: [34.8431, 136.541] as [number, number], size: 0.07 },
   { location: [30.1328, -97.6411] as [number, number], size: 0.06 },
   { location: [36.1699, -115.1398] as [number, number], size: 0.05 },
   { location: [-23.7036, -46.6997] as [number, number], size: 0.06 },
-  { location: [-37.8497, 144.9680] as [number, number], size: 0.06 },
-  { location: [1.2914, 103.8640] as [number, number], size: 0.06 },
-  { location: [25.4900, 51.4542] as [number, number], size: 0.05 },
+  { location: [-37.8497, 144.968] as [number, number], size: 0.06 },
+  { location: [1.2914, 103.864] as [number, number], size: 0.06 },
+  { location: [25.49, 51.4542] as [number, number], size: 0.05 },
 ];
 
-function Stat({ target, suffix, label }: { target: number; suffix: string; label: string }) {
+function Stat({
+  target,
+  suffix,
+  label,
+}: {
+  target: number;
+  suffix: string;
+  label: string;
+}) {
   const numRef = useRef<HTMLDivElement>(null);
   const ran = useRef(false);
-  const { ref: inViewRef, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref: inViewRef, inView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
-  const setRefs = useCallback((el: HTMLDivElement | null) => {
-    inViewRef(el);
-  }, [inViewRef]);
+  const setRefs = useCallback(
+    (el: HTMLDivElement | null) => {
+      inViewRef(el);
+    },
+    [inViewRef],
+  );
 
   useEffect(() => {
     if (!inView || ran.current || !numRef.current) return;
@@ -1754,7 +2345,8 @@ function Stat({ target, suffix, label }: { target: number; suffix: string; label
       const p = Math.min(1, (now - t0) / dur);
       const eased = 1 - Math.pow(1 - p, 3);
       const v = Math.round(eased * target);
-      el.textContent = String(v) + (p === 1 ? suffix : suffix.replace(/[^+]/g, ""));
+      el.textContent =
+        String(v) + (p === 1 ? suffix : suffix.replace(/[^+]/g, ""));
       if (p < 1) requestAnimationFrame(step);
       else el.textContent = String(target) + suffix;
     };
@@ -1762,9 +2354,17 @@ function Stat({ target, suffix, label }: { target: number; suffix: string; label
   }, [inView, target, suffix]);
 
   return (
-    <div ref={setRefs} className="border border-cn-line rounded-[16px] px-5 py-[22px] bg-gradient-to-b from-white/[0.025] to-transparent relative overflow-hidden">
+    <div
+      ref={setRefs}
+      className="border border-cn-line rounded-[16px] px-5 py-[22px] bg-linear-to-b from-white/[0.025] to-transparent relative overflow-hidden"
+    >
       <span className="absolute left-0 top-0 h-[2px] w-9 bg-cn-accent shadow-[0_0_10px_var(--cn-accent-glow)]" />
-      <div ref={numRef} className="font-display font-extrabold text-[clamp(36px,4vw,52px)] leading-none">0</div>
+      <div
+        ref={numRef}
+        className="font-display font-extrabold text-[clamp(36px,4vw,52px)] leading-none"
+      >
+        0
+      </div>
       <div className="font-mono text-xs font-medium tracking-[0.1em] uppercase text-cn-muted mt-[10px] leading-[1.5]">
         {label}
       </div>
@@ -1776,12 +2376,17 @@ export default function LandingGlobe() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const phiRef = useRef(4.2);
   const widthRef = useRef(0);
-  const { ref: sectionRef, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref: sectionRef, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const sizeCanvas = () => { widthRef.current = canvas.offsetWidth; };
+    const sizeCanvas = () => {
+      widthRef.current = canvas.offsetWidth;
+    };
     window.addEventListener("resize", sizeCanvas);
     sizeCanvas();
     const globe = createGlobe(canvas, {
@@ -1807,7 +2412,9 @@ export default function LandingGlobe() {
     });
     canvas.style.opacity = "0";
     canvas.style.transition = "opacity 1s ease";
-    setTimeout(() => { canvas.style.opacity = "1"; }, 300);
+    setTimeout(() => {
+      canvas.style.opacity = "1";
+    }, 300);
     return () => {
       globe.destroy();
       window.removeEventListener("resize", sizeCanvas);
@@ -1815,26 +2422,40 @@ export default function LandingGlobe() {
   }, []);
 
   return (
-    <section id="globe" ref={sectionRef} className="py-[120px_0_130px] pt-[120px] pb-[130px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+    <section
+      id="globe"
+      ref={sectionRef}
+      className="py-[120px_0_130px] pt-[120px] pb-[130px]"
+    >
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div className="grid [grid-template-columns:1.05fr_1fr] max-nav:grid-cols-1 gap-[60px] items-center">
-
           {/* Copy */}
           <div
-            className="transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]"
-            style={{ opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(26px)" }}
+            className="transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]"
+            style={{
+              opacity: inView ? 1 : 0,
+              transform: inView ? "none" : "translateY(26px)",
+            }}
           >
             <SectionEyebrow label="// Global community map" />
             <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.94] text-[clamp(46px,7vw,100px)] mt-[22px]">
-              Motorsport<br />never <span className="text-cn-accent">sleeps.</span>
+              Motorsport
+              <br />
+              never <span className="text-cn-accent">sleeps.</span>
             </h2>
             <p className="text-cn-muted max-w-[460px] mt-6 text-[17.5px]">
-              From a Sunday-morning Suzuka qualifying to a midnight Vegas main event, somewhere on the grid the engines are always running — and so are the conversations.
+              From a Sunday-morning Suzuka qualifying to a midnight Vegas main
+              event, somewhere on the grid the engines are always running — and
+              so are the conversations.
             </p>
             <div className="grid grid-cols-3 max-nav:grid-cols-1 gap-4 mt-11">
               <Stat target={24} suffix="+" label={"Countries\nrepresented"} />
               <Stat target={6} suffix="+" label={"Racing series\nfollowed"} />
-              <Stat target={120} suffix="+" label={"Global watch\nparties / yr"} />
+              <Stat
+                target={120}
+                suffix="+"
+                label={"Global watch\nparties / yr"}
+              />
             </div>
           </div>
 
@@ -1842,7 +2463,12 @@ export default function LandingGlobe() {
           <div className="relative aspect-square w-full max-w-[560px] mx-auto grid place-items-center">
             <div
               className="absolute rounded-full pointer-events-none"
-              style={{ inset: "6%", background: "radial-gradient(circle at 50% 45%,rgba(255,45,45,0.16),transparent 62%)", filter: "blur(8px)" }}
+              style={{
+                inset: "6%",
+                background:
+                  "radial-gradient(circle at 50% 45%,rgba(255,45,45,0.16),transparent 62%)",
+                filter: "blur(8px)",
+              }}
             />
             <div className="absolute inset-0 rounded-full border border-cn-line pointer-events-none" />
             <div
@@ -1859,7 +2485,14 @@ export default function LandingGlobe() {
             </span>
             <canvas
               ref={canvasRef}
-              style={{ width: "100%", height: "100%", maxWidth: "100%", aspectRatio: "1", contain: "layout paint size", cursor: "grab" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                maxWidth: "100%",
+                aspectRatio: "1",
+                contain: "layout paint size",
+                cursor: "grab",
+              }}
             />
           </div>
         </div>
@@ -1896,9 +2529,28 @@ import { Input } from "~/components/ui/input";
 import { SectionEyebrow } from "./section-eyebrow";
 
 const PLATFORMS = [
-  { name: "Discord", count: "32K+", desc: "The live garage", cta: "Join Discord", href: "#", red: true },
-  { name: "Reddit", count: "28K+", desc: "Threads & AMAs", cta: "Follow r/CircuitNation", href: "#" },
-  { name: "Newsletter", count: "15K+", desc: "The Friday Briefing", cta: "Subscribe free", href: "#nl" },
+  {
+    name: "Discord",
+    count: "32K+",
+    desc: "The live garage",
+    cta: "Join Discord",
+    href: "#",
+    red: true,
+  },
+  {
+    name: "Reddit",
+    count: "28K+",
+    desc: "Threads & AMAs",
+    cta: "Follow r/CircuitNation",
+    href: "#",
+  },
+  {
+    name: "Newsletter",
+    count: "15K+",
+    desc: "The Friday Briefing",
+    cta: "Subscribe free",
+    href: "#nl",
+  },
 ];
 
 export default function LandingJoin() {
@@ -1908,12 +2560,12 @@ export default function LandingJoin() {
 
   return (
     <section id="join" className="pt-[30px] pb-[110px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-2">
         <div
           ref={ref}
           className={cn(
             "border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))]",
-            "transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(.16,1,.3,1)]",
+            "transition-[opacity,transform] duration-800 ease-[cubic-bezier(.16,1,.3,1)]",
           )}
           style={{
             padding: "clamp(40px,6vw,80px)",
@@ -1927,23 +2579,30 @@ export default function LandingJoin() {
           <SectionEyebrow label="// Join the community" className="relative" />
 
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.94] text-[clamp(40px,6vw,92px)] max-w-[760px] relative mt-5">
-            Pull onto<br />the grid.
+            Pull onto
+            <br />
+            the grid.
           </h2>
           <p className="text-cn-muted mt-[22px] max-w-[520px] text-sm relative">
-            Pick your platform and jump in. The next race is always closer than you think — don't watch it alone.
+            Pick your platform and jump in. The next race is always closer than
+            you think — don't watch it alone.
           </p>
 
           {/* Platform cards */}
           <div className="grid grid-cols-3 max-nav:grid-cols-1 gap-4 mt-12 relative">
-            {PLATFORMS.map(p => (
+            {PLATFORMS.map((p) => (
               <div
                 key={p.name}
-                className="border border-cn-line rounded-[20px] p-[26px] flex flex-col gap-[14px] bg-[rgba(10,10,11,0.5)] transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-cn-line-strong"
+                className="border border-cn-line rounded-[20px] p-6 flex flex-col gap-[14px] bg-[rgba(10,10,11,0.5)] transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-cn-line-strong"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-muted-2">{p.name}</span>
+                  <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-muted-2">
+                    {p.name}
+                  </span>
                 </div>
-                <div className="font-display font-extrabold text-xl tracking-[-0.02em]">{p.count}</div>
+                <div className="font-display font-extrabold text-xl tracking-[-0.02em]">
+                  {p.count}
+                </div>
                 <h3 className="font-display font-bold text-lg">{p.desc}</h3>
                 <Button
                   variant={p.red ? "cn-primary" : "cn-ghost"}
@@ -1952,7 +2611,9 @@ export default function LandingJoin() {
                   className="mt-2"
                 >
                   <a href={p.href}>
-                    {p.red && <span className="w-1.5 h-1.5 rounded-full bg-current shadow-[0_0_8px_currentColor]" />}
+                    {p.red && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-current shadow-[0_0_8px_currentColor]" />
+                    )}
                     {p.cta}
                   </a>
                 </Button>
@@ -1964,7 +2625,7 @@ export default function LandingJoin() {
           <form
             id="nl"
             className="flex gap-3 mt-7 max-w-[520px] relative flex-wrap"
-            onSubmit={e => {
+            onSubmit={(e) => {
               e.preventDefault();
               if (email) setSubmitted(true);
             }}
@@ -1974,7 +2635,7 @@ export default function LandingJoin() {
               placeholder="you@trackside.com"
               aria-label="Email address"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               disabled={submitted}
               className="flex-1 min-w-[220px]"
             />
@@ -2023,26 +2684,43 @@ export default function LandingFooter() {
       <div className="max-w-[var(--cn-maxw)] mx-auto px-8 pt-[70px] pb-[50px] grid [grid-template-columns:1.5fr_1fr_1fr_1fr] max-nav:[grid-template-columns:1fr_1fr] max-[620px]:grid-cols-1 gap-10">
         {/* Brand */}
         <div>
-          <a href="#top" className="flex items-center gap-3 no-underline text-cn-text mb-[18px]">
-            <span className="w-[34px] h-[34px] rounded-[9px] bg-gradient-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
+          <a
+            href="#top"
+            className="flex items-center gap-3 no-underline text-cn-text mb-[18px]"
+          >
+            <span className="w-[34px] h-[34px] rounded-sm bg-linear-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
               <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_38%,var(--cn-accent)_40%,var(--cn-accent)_46%,transparent_48%,transparent_54%,var(--cn-accent)_56%,var(--cn-accent)_62%,transparent_64%)] opacity-[0.95]" />
             </span>
-            <span className="font-display font-extrabold text-sm tracking-[-0.01em] uppercase leading-none">Circuit Nation</span>
+            <span className="font-display font-extrabold text-sm tracking-[-0.01em] uppercase leading-none">
+              Circuit Nation
+            </span>
           </a>
           <p className="text-cn-muted max-w-[300px] text-sm">
-            Your ultimate hub to everything motorsports. Built by fans, for fans — across every series, every weekend.
+            Your ultimate hub to everything motorsports. Built by fans, for fans
+            — across every series, every weekend.
           </p>
         </div>
 
         {/* Link columns */}
         {[
-          { heading: "Community", links: ["Discord", "Reddit", "Sim league", "Watch parties"] },
-          { heading: "Content", links: ["Latest posts", "Videos", "AMAs", "Newsletter"] },
-          { heading: "Follow", links: ["YouTube", "Instagram", "X / Twitter", "TikTok"] },
-        ].map(col => (
+          {
+            heading: "Community",
+            links: ["Discord", "Reddit", "Sim league", "Watch parties"],
+          },
+          {
+            heading: "Content",
+            links: ["Latest posts", "Videos", "AMAs", "Newsletter"],
+          },
+          {
+            heading: "Follow",
+            links: ["YouTube", "Instagram", "X / Twitter", "TikTok"],
+          },
+        ].map((col) => (
           <div key={col.heading}>
-            <h4 className="font-mono text-xs tracking-[0.14em] uppercase text-cn-muted-2 mb-[18px]">{col.heading}</h4>
-            {col.links.map(l => (
+            <h4 className="font-mono text-xs tracking-[0.14em] uppercase text-cn-muted-2 mb-[18px]">
+              {col.heading}
+            </h4>
+            {col.links.map((l) => (
               <a
                 key={l}
                 href="#"
@@ -2077,18 +2755,18 @@ git commit -m "refactor: convert landing-footer to Tailwind"
 
 ### Spec coverage check
 
-| Requirement | Covered by |
-|---|---|
-| Use Tailwind CSS classes | All Tasks 1–19 |
-| Use shadcn components | Button (Tasks 7,8,18), Card helpers (Tasks 9–16), Input (Task 18) |
-| Follow DESIGN.md colors | `--color-cn-*` tokens in Task 1; applied throughout |
-| Follow DESIGN.md typography | `font-display`/`font-body`/`font-mono` tokens in Task 1 |
-| Follow DESIGN.md hover states | `hover:-translate-y-1`, `hover:border-cn-line-strong`, glow shadows throughout |
-| Follow DESIGN.md buttons | `cn-primary` and `cn-ghost` Button variants in Task 2 |
-| Follow DESIGN.md cards | `cnCardClass` / `cnAccentCardClass` helpers in Task 3 |
-| Follow DESIGN.md inputs | CN Input component in Task 5 |
-| Remove `<style>` tag media queries | Replaced with `max-nav:`, `max-[620px]:`, `max-[1080px]:` prefixes throughout |
-| Remove JS onMouse hover handlers | Replaced with `hover:` variants (Tasks 7–19); `group-hover:` in Task 14 |
+| Requirement                        | Covered by                                                                     |
+| ---------------------------------- | ------------------------------------------------------------------------------ |
+| Use Tailwind CSS classes           | All Tasks 1–19                                                                 |
+| Use shadcn components              | Button (Tasks 7,8,18), Card helpers (Tasks 9–16), Input (Task 18)              |
+| Follow DESIGN.md colors            | `--color-cn-*` tokens in Task 1; applied throughout                            |
+| Follow DESIGN.md typography        | `font-display`/`font-body`/`font-mono` tokens in Task 1                        |
+| Follow DESIGN.md hover states      | `hover:-translate-y-1`, `hover:border-cn-line-strong`, glow shadows throughout |
+| Follow DESIGN.md buttons           | `cn-primary` and `cn-ghost` Button variants in Task 2                          |
+| Follow DESIGN.md cards             | `cnCardClass` / `cnAccentCardClass` helpers in Task 3                          |
+| Follow DESIGN.md inputs            | CN Input component in Task 5                                                   |
+| Remove `<style>` tag media queries | Replaced with `max-nav:`, `max-[620px]:`, `max-[1080px]:` prefixes throughout  |
+| Remove JS onMouse hover handlers   | Replaced with `hover:` variants (Tasks 7–19); `group-hover:` in Task 14        |
 
 ### No-placeholder check
 

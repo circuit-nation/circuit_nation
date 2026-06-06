@@ -17,12 +17,12 @@ export default function LandingPosts() {
 
   return (
     <section id="content" className="pt-[30px] pb-[120px]">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={headRef}
           className={cn(
-            "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
-            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+            "max-w-2xl transition-[opacity,transform] duration-800 ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           )}
         >
           <SectionEyebrow label="// Latest posts" />

@@ -33,12 +33,12 @@ export default function LandingVideos() {
 
   return (
     <section className="pt-[30px] pb-[120px]">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={headRef}
           className={cn(
-            "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
-            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+            "max-w-2xl transition-[opacity,transform] duration-800 ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           )}
         >
           <SectionEyebrow label="// Watch" />
@@ -56,12 +56,12 @@ export default function LandingVideos() {
                     Featured video
                   </span>
                 </div>
-                <div className="absolute inset-0 grid place-items-center z-[3]">
+                <div className="absolute inset-0 grid place-items-center z-3">
                   <div className="transition-transform duration-300 group-hover:scale-110">
                     <PlayIcon />
                   </div>
                 </div>
-                <span className="absolute right-3 bottom-3 z-[3] font-mono text-xs bg-black/70 px-2 py-1 rounded-[6px] text-cn-text">18:42</span>
+                <span className="absolute right-3 bottom-3 z-3 font-mono text-xs bg-black/70 px-2 py-1 rounded-[6px] text-cn-text">18:42</span>
               </div>
               <div className="px-6 py-[22px]">
                 <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">Watch-along</span>
@@ -79,10 +79,10 @@ export default function LandingVideos() {
                 <div className={cn(cnCardClass, "!p-0 grid [grid-template-columns:150px_1fr] items-stretch cursor-pointer group max-[620px]:[grid-template-columns:120px_1fr]")}>
                   <div className="relative overflow-hidden">
                     <div className="h-full min-h-[104px] w-full bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105" />
-                    <div className="absolute inset-0 grid place-items-center z-[3]">
+                    <div className="absolute inset-0 grid place-items-center z-3">
                       <PlayIcon size={40} small />
                     </div>
-                    <span className="absolute right-2 bottom-2 z-[3] font-mono text-xs bg-black/70 px-[6px] py-[3px] rounded-[5px] text-cn-text">{v.dur}</span>
+                    <span className="absolute right-2 bottom-2 z-3 font-mono text-xs bg-black/70 px-[6px] py-[3px] rounded-[5px] text-cn-text">{v.dur}</span>
                   </div>
                   <div className="px-[18px] py-4 flex flex-col justify-center">
                     <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">{v.cat}</span>

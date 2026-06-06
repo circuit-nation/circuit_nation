@@ -42,7 +42,7 @@ The following tokens are available as Tailwind utility classes via `@theme inlin
 |---|---|---|
 | `max-w-[var(--cn-maxw)]` | `max-w-(--cn-maxw)` | Tailwind v4 CSS-var shorthand |
 | `style={{ transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}` | `ease-spring` in className | Token already in `@theme` |
-| `style={{ opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(26px)" }}` | `cn(inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]")` | Conditional className |
+| `style={{ opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(26px)" }}` | `cn(inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")` | Conditional className |
 | `bg-[rgba(10,10,11,0.72)]` | `bg-cn-bg/72` | Token + opacity modifier |
 | `bg-[rgba(255,45,45,0.14)]` | `bg-cn-accent/14` | Token + opacity modifier |
 | `border-[rgba(255,45,45,0.3)]` | `border-cn-accent/30` | Token + opacity modifier |
@@ -122,8 +122,8 @@ export function Reveal({ children, delay = 0, className, threshold = 0.15 }: Rev
     <div
       ref={ref}
       className={cn(
-        "transition-[opacity,transform] duration-[800ms] ease-spring",
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+        "transition-[opacity,transform] duration-800 ease-spring",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
         className,
       )}
       style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
@@ -205,7 +205,7 @@ These are scattered across 8 components. Each has the same pattern:
 // BEFORE
 <div
   ref={headRef}
-  className="max-w-[...] transition-[opacity,transform] duration-[800ms]"
+  className="max-w-[...] transition-[opacity,transform] duration-800"
   style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
 >
 ```
@@ -214,7 +214,7 @@ These are scattered across 8 components. Each has the same pattern:
 // AFTER
 <div
   ref={headRef}
-  className={cn("max-w-[...] transition-[opacity,transform] duration-[800ms] ease-spring", headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]")}
+  className={cn("max-w-[...] transition-[opacity,transform] duration-800 ease-spring", headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}
 >
 ```
 
@@ -236,8 +236,8 @@ These are scattered across 8 components. Each has the same pattern:
 <div
   ref={headRef}
   className={cn(
-    "max-w-180 transition-[opacity,transform] duration-[800ms] ease-spring",
-    headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+    "max-w-180 transition-[opacity,transform] duration-800 ease-spring",
+    headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
   )}
 >
 ```
@@ -252,7 +252,7 @@ Note: also ensure `cn` is imported (it already is in this file).
 // BEFORE:
 <div
   ref={headRef}
-  className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"
+  className="max-w-2xl transition-[opacity,transform] duration-800"
   style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
 >
 
@@ -260,8 +260,8 @@ Note: also ensure `cn` is imported (it already is in this file).
 <div
   ref={headRef}
   className={cn(
-    "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
-    headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+    "max-w-2xl transition-[opacity,transform] duration-800 ease-spring",
+    headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
   )}
 >
 ```
@@ -274,7 +274,7 @@ Note: also ensure `cn` is imported (it already is in this file).
 // BEFORE:
 <div
   ref={headRef}
-  className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"
+  className="max-w-2xl transition-[opacity,transform] duration-800"
   style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
 >
 
@@ -282,8 +282,8 @@ Note: also ensure `cn` is imported (it already is in this file).
 <div
   ref={headRef}
   className={cn(
-    "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
-    headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+    "max-w-2xl transition-[opacity,transform] duration-800 ease-spring",
+    headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
   )}
 >
 ```
@@ -294,7 +294,7 @@ Note: add `cn` import — `import { cn } from "~/lib/utils";` (already present i
 
 - [ ] **Step 4: Apply the same pattern to all five remaining section heads**
 
-In each file, find the `<div ref={headRef} ... style={{ opacity: headIn ? 1 : 0, ... }}>` block and apply the same conversion: remove the `style` prop entirely and merge `ease-spring` + `cn(headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]")` into className.
+In each file, find the `<div ref={headRef} ... style={{ opacity: headIn ? 1 : 0, ... }}>` block and apply the same conversion: remove the `style` prop entirely and merge `ease-spring` + `cn(headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")` into className.
 
 ### `landing-proof.tsx` MetricCard component (lines 38-51)
 
@@ -307,8 +307,8 @@ This card also has a `style` with `opacity`, `transform`, `transitionTimingFunct
 <div
   ref={ref}
   className={cn(
-    "border border-cn-line rounded-[20px] p-[30px] flex flex-col justify-between transition-[opacity,transform] duration-[800ms]",
-    featured ? "bg-[linear-gradient(...)] row-span-2" : "bg-gradient-to-b ...",
+    "border border-cn-line rounded-[20px] p-[30px] flex flex-col justify-between transition-[opacity,transform] duration-800",
+    featured ? "bg-[linear-gradient(...)] row-span-2" : "bg-linear-to-b ...",
   )}
   style={{
     opacity: inView ? 1 : 0,
@@ -322,9 +322,9 @@ This card also has a `style` with `opacity`, `transform`, `transitionTimingFunct
 <div
   ref={ref}
   className={cn(
-    "border border-cn-line rounded-[20px] p-[30px] flex flex-col justify-between transition-[opacity,transform] duration-[800ms] ease-spring",
-    featured ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] row-span-2" : "bg-gradient-to-b from-white/[0.028] to-white/[0.004]",
-    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+    "border border-cn-line rounded-[20px] p-[30px] flex flex-col justify-between transition-[opacity,transform] duration-800 ease-spring",
+    featured ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] row-span-2" : "bg-linear-to-b from-white/[0.028] to-white/[0.004]",
+    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
   )}
   style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
 >
@@ -338,7 +338,7 @@ This card also has a `style` with `opacity`, `transform`, `transitionTimingFunct
 // BEFORE:
 <div
   ref={ref}
-  className={cn("break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-[800ms]", ...)}
+  className={cn("break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-800", ...)}
   style={{
     opacity: inView ? 1 : 0,
     transform: inView ? "none" : "translateY(26px)",
@@ -351,9 +351,9 @@ This card also has a `style` with `opacity`, `transform`, `transitionTimingFunct
 <div
   ref={ref}
   className={cn(
-    "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-[800ms] ease-spring",
-    highlight ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.12),rgba(255,255,255,0.004))]" : "bg-gradient-to-b from-white/[0.028] to-white/[0.004]",
-    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+    "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-800 ease-spring",
+    highlight ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.12),rgba(255,255,255,0.004))]" : "bg-linear-to-b from-white/[0.028] to-white/[0.004]",
+    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
   )}
   style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
 >
@@ -369,7 +369,7 @@ This one has `padding: "clamp(40px,6vw,80px)"` that must stay in `style`.
 // BEFORE:
 <div
   ref={ref}
-  className="border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(...)] transition-[opacity,transform] duration-[800ms]"
+  className="border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(...)] transition-[opacity,transform] duration-800"
   style={{
     padding: "clamp(40px,6vw,80px)",
     opacity: inView ? 1 : 0,
@@ -382,8 +382,8 @@ This one has `padding: "clamp(40px,6vw,80px)"` that must stay in `style`.
 <div
   ref={ref}
   className={cn(
-    "border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] transition-[opacity,transform] duration-[800ms] ease-spring",
-    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+    "border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] transition-[opacity,transform] duration-800 ease-spring",
+    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
   )}
   style={{ padding: "clamp(40px,6vw,80px)" }}
 >

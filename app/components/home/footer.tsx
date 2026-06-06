@@ -4,7 +4,7 @@ export default function LandingFooter() {
       <div className="max-w-(--cn-maxw) mx-auto px-8 pt-[70px] pb-[50px] grid [grid-template-columns:1.5fr_1fr_1fr_1fr] max-nav:[grid-template-columns:1fr_1fr] max-[620px]:grid-cols-1 gap-10">
         <div>
           <a href="#top" className="flex items-center gap-3 no-underline text-cn-text mb-[18px]">
-            <span className="w-[34px] h-[34px] rounded-[9px] bg-gradient-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
+            <span className="w-[34px] h-[34px] rounded-sm bg-linear-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
               <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_38%,(--cn-accent)_40%,(--cn-accent)_46%,transparent_48%,transparent_54%,(--cn-accent)_56%,(--cn-accent)_62%,transparent_64%)] opacity-[0.95]" />
             </span>
             <span className="font-display font-extrabold text-sm tracking-[-0.01em] uppercase leading-none">Circuit Nation</span>

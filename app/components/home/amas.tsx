@@ -42,7 +42,7 @@ function Badge({ type }: { type: "live" | "up" | "trend" }) {
   );
 }
 
-const readBtnClass = "font-mono text-xs tracking-[0.08em] uppercase text-cn-text no-underline inline-flex items-center gap-2 px-[14px] py-[9px] border border-cn-line-strong rounded-[9px] transition-all duration-200 hover:border-cn-orange hover:text-cn-orange";
+const readBtnClass = "font-mono text-xs tracking-[0.08em] uppercase text-cn-text no-underline inline-flex items-center gap-2 px-[14px] py-[9px] border border-cn-line-strong rounded-sm transition-all duration-200 hover:border-cn-orange hover:text-cn-orange";
 
 export default function LandingAMAs() {
   const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });

@@ -22,11 +22,11 @@ function QuoteCard({ body, name, role, highlight = false, red = false, delay = 0
     <div
       ref={ref}
       className={cn(
-        "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-[800ms] ease-spring",
+        "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-800 ease-spring",
         highlight
           ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.12),rgba(255,255,255,0.004))]"
-          : "bg-gradient-to-b from-white/[0.028] to-white/[0.004]",
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+          : "bg-linear-to-b from-white/[0.028] to-white/[0.004]",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
       )}
       style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
     >
@@ -55,12 +55,12 @@ export default function LandingTestimonials() {
 
   return (
     <section className="pt-[30px] pb-[130px]">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={headRef}
           className={cn(
-            "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
-            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+            "max-w-2xl transition-[opacity,transform] duration-800 ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           )}
         >
           <SectionEyebrow label="// From the community" />

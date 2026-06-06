@@ -19,12 +19,12 @@ export default function LandingJoin() {
 
   return (
     <section id="join" className="pt-[30px] pb-[110px]">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={ref}
           className={cn(
-            "border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] transition-[opacity,transform] duration-[800ms] ease-spring",
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+            "border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] transition-[opacity,transform] duration-800 ease-spring",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
           )}
           style={{ padding: "clamp(40px,6vw,80px)" }}
         >
@@ -43,7 +43,7 @@ export default function LandingJoin() {
             {PLATFORMS.map(p => (
               <div
                 key={p.name}
-                className="border border-cn-line rounded-[20px] p-[26px] flex flex-col gap-[14px] bg-cn-bg/50 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-cn-line-strong"
+                className="border border-cn-line rounded-[20px] p-6 flex flex-col gap-[14px] bg-cn-bg/50 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-cn-line-strong"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-muted-2">{p.name}</span>
