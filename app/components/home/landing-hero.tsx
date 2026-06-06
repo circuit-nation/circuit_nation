@@ -75,7 +75,7 @@ export function RaceTicker() {
       >
         {[...RACES, ...RACES].map(([series, name, date], i) => (
           <div key={i} className="flex items-center gap-4 px-[30px] py-4 font-mono text-[12.5px] tracking-[0.1em] uppercase text-cn-muted whitespace-nowrap">
-            <span className="w-[7px] h-[7px] rounded-full bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
+            <span className="w-[7px] h-[7px] rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)] shrink-0" />
             <span className="text-cn-muted-2 text-[11px]">{series}</span>
             <b className="text-cn-text font-medium">{name}</b>
             <span>{date}</span>

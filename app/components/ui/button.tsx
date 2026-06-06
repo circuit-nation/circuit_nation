@@ -21,7 +21,7 @@ const buttonVariants = cva(
         "view-switcher": "",
         link: "text-primary underline-offset-4 hover:underline",
         "cn-primary":
-          "border-0 font-mono text-[12.5px] tracking-[0.1em] uppercase font-medium rounded-[10px] text-white cursor-pointer no-underline bg-gradient-to-b from-[#ff3b3b] to-cn-accent-deep shadow-[0_8px_30px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.25)] transition-[transform_.18s_ease,box-shadow_.25s_ease] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-8px_var(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.3)]",
+          "border-0 font-mono text-[12.5px] tracking-[0.1em] uppercase font-medium rounded-[10px] text-white cursor-pointer no-underline bg-gradient-to-b from-[#ff3b3b] to-cn-accent-deep shadow-[0_8px_30px_-8px_(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.25)] transition-[transform_.18s_ease,box-shadow_.25s_ease] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-8px_(--cn-accent-glow),inset_0_1px_0_rgba(255,255,255,0.3)]",
         "cn-ghost":
           "border border-cn-line-strong font-mono text-[12.5px] tracking-[0.1em] uppercase font-medium rounded-[10px] bg-white/[0.03] text-cn-text cursor-pointer no-underline transition-[transform_.18s_ease,background_.25s_ease,border-color_.25s_ease] hover:-translate-y-0.5 hover:bg-white/[0.06] hover:border-cn-text",
       },

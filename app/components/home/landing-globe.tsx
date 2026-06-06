@@ -48,7 +48,7 @@ function Stat({ target, suffix, label }: { target: number; suffix: string; label
 
   return (
     <div ref={setRefs} className="border border-cn-line rounded-[16px] px-5 py-[22px] bg-gradient-to-b from-white/[0.025] to-transparent relative overflow-hidden">
-      <span className="absolute left-0 top-0 h-[2px] w-9 bg-cn-accent shadow-[0_0_10px_var(--cn-accent-glow)]" />
+      <span className="absolute left-0 top-0 h-[2px] w-9 bg-cn-accent shadow-[0_0_10px_(--cn-accent-glow)]" />
       <div ref={numRef} className="font-display font-extrabold text-[clamp(36px,4vw,52px)] leading-none">0</div>
       <div className="font-mono text-[11px] font-medium tracking-[0.1em] uppercase text-cn-muted mt-[10px] leading-[1.5]">
         {label}
@@ -141,11 +141,11 @@ export default function LandingGlobe() {
               style={{ inset: "-7%" }}
             />
             <span className="absolute top-[12%] left-[-6%] font-mono text-[10.5px] font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-[rgba(10,10,11,0.7)] backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
-              <span className="w-[6px] h-[6px] rounded-full bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)]" />
+              <span className="w-[6px] h-[6px] rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)]" />
               F1 · Monaco
             </span>
             <span className="absolute bottom-[16%] right-[-4%] font-mono text-[10.5px] font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-[rgba(10,10,11,0.7)] backdrop-blur-[6px] px-[10px] py-[6px] rounded-[8px] flex items-center gap-2">
-              <span className="w-[6px] h-[6px] rounded-full bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)]" />
+              <span className="w-[6px] h-[6px] rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)]" />
               MotoGP · Mugello
             </span>
             <canvas
