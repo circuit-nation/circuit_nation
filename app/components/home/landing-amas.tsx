@@ -30,8 +30,8 @@ function Badge({ type }: { type: "live" | "up" | "trend" }) {
   return (
     <span className={cn(
       "font-mono text-[10.5px] font-medium tracking-[0.14em] uppercase p-2 rounded-4xl inline-flex items-center gap-2 w-fit",
-      type === "live" && "bg-[rgba(255,45,45,0.14)] text-[#ff7676] border border-[rgba(255,45,45,0.3)]",
-      type === "up" && "bg-[rgba(255,90,31,0.12)] text-cn-orange border border-[rgba(255,90,31,0.28)]",
+      type === "live" && "bg-cn-accent/14 text-[#ff7676] border border-cn-accent/30",
+      type === "up" && "bg-cn-orange/12 text-cn-orange border border-cn-orange/28",
       type === "trend" && "bg-white/5 text-cn-muted border border-cn-line-strong",
     )}>
       {type === "live" && (

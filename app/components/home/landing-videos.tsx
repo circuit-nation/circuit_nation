@@ -8,7 +8,7 @@ import { cnCardClass } from "~/components/ui/card";
 function PlayIcon({ size = 64, small = false }: { size?: number; small?: boolean }) {
   return (
     <div
-      className="rounded-full bg-[rgba(255,45,45,0.92)] grid place-items-center shadow-[0_10px_40px_-8px_var(--cn-accent-glow)] transition-transform duration-300"
+      className="rounded-full bg-cn-accent/92 grid place-items-center shadow-[0_10px_40px_-8px_var(--cn-accent-glow)] transition-transform duration-300"
       style={{ width: size, height: size }}
     >
       <svg

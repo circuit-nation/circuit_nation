@@ -25,7 +25,7 @@ function PlatDot({ plat }: { plat: PlatType }) {
 function PlayMini() {
   return (
     <div className="absolute inset-0 grid place-items-center z-[4]">
-      <div className="w-14 h-14 rounded-full bg-[rgba(255,45,45,0.92)] grid place-items-center shadow-[0_10px_36px_-8px_var(--cn-accent-glow)] transition-transform duration-300 group-hover:scale-110">
+      <div className="w-14 h-14 rounded-full bg-cn-accent/92 grid place-items-center shadow-[0_10px_36px_-8px_var(--cn-accent-glow)] transition-transform duration-300 group-hover:scale-110">
         <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white ml-0.5">
           <path d="M6 4l14 8-14 8z" />
         </svg>
