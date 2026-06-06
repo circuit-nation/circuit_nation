@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { SectionEyebrow } from "./section-eyebrow";
@@ -21,13 +22,11 @@ export default function LandingJoin() {
       <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div
           ref={ref}
-          className="border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] transition-[opacity,transform] duration-[800ms]"
-          style={{
-            padding: "clamp(40px,6vw,80px)",
-            opacity: inView ? 1 : 0,
-            transform: inView ? "none" : "translateY(26px)",
-            transitionTimingFunction: "cubic-bezier(.16,1,.3,1)",
-          }}
+          className={cn(
+            "border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] transition-[opacity,transform] duration-[800ms] ease-spring",
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+          )}
+          style={{ padding: "clamp(40px,6vw,80px)" }}
         >
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(700px_400px_at_85%_10%,rgba(255,45,45,0.22),transparent_60%)]" />
 

@@ -37,17 +37,13 @@ function MetricCard({
     <div
       ref={ref}
       className={cn(
-        "border border-cn-line rounded-[20px] p-[30px] flex flex-col justify-between transition-[opacity,transform] duration-[800ms]",
+        "border border-cn-line rounded-[20px] p-[30px] flex flex-col justify-between transition-[opacity,transform] duration-[800ms] ease-spring",
         featured
           ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] row-span-2"
           : "bg-gradient-to-b from-white/[0.028] to-white/[0.004]",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
       )}
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "none" : "translateY(26px)",
-        transitionTimingFunction: "cubic-bezier(.16,1,.3,1)",
-        transitionDelay: `${delay}s`,
-      }}
+      style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
     >
       {tag && <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-muted-2">{tag}</span>}
       <div>
@@ -76,8 +72,10 @@ export default function LandingProof() {
       <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
+          className={cn(
+            "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+          )}
         >
           <SectionEyebrow label="// By the numbers" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">

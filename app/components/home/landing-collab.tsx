@@ -22,8 +22,10 @@ export default function LandingCollab() {
       <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
+          className={cn(
+            "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+          )}
         >
           <SectionEyebrow label="// Previous collaborations" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
@@ -34,8 +36,10 @@ export default function LandingCollab() {
 
       <div
         ref={wallRef}
-        className="mt-14 border-t border-b border-cn-line overflow-hidden relative py-2 transition-[opacity,transform] duration-[800ms]"
-        style={{ opacity: wallIn ? 1 : 0, transform: wallIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
+        className={cn(
+          "mt-14 border-t border-b border-cn-line overflow-hidden relative py-2 transition-[opacity,transform] duration-[800ms] ease-spring",
+          wallIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+        )}
       >
         <div className="absolute top-0 bottom-0 left-0 w-[140px] z-[4] pointer-events-none bg-gradient-to-r from-cn-bg to-transparent" />
         <div className="absolute top-0 bottom-0 right-0 w-[140px] z-[4] pointer-events-none bg-gradient-to-l from-cn-bg to-transparent" />

@@ -36,8 +36,10 @@ export default function LandingVideos() {
       <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
+          className={cn(
+            "max-w-[720px] transition-[opacity,transform] duration-[800ms] ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+          )}
         >
           <SectionEyebrow label="// Watch" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">

@@ -20,7 +20,7 @@ function Avatar({ initials, red = false }: { initials: string; red?: boolean }) 
 
 function UpvoteIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="w-[13px] h-[13px] stroke-cn-orange fill-none [stroke-width:1.8]">
+    <svg viewBox="0 0 24 24" className="w-4 h-4 stroke-cn-orange fill-none stroke-[1.8]">
       <path d="M12 4l7 8h-4v8H9v-8H5z" />
     </svg>
   );
@@ -29,10 +29,10 @@ function UpvoteIcon() {
 function Badge({ type }: { type: "live" | "up" | "trend" }) {
   return (
     <span className={cn(
-      "font-mono text-[10.5px] font-medium tracking-[0.14em] uppercase px-[11px] py-[6px] rounded-[20px] inline-flex items-center gap-[7px] w-fit",
+      "font-mono text-[10.5px] font-medium tracking-[0.14em] uppercase p-2 rounded-4xl inline-flex items-center gap-2 w-fit",
       type === "live" && "bg-[rgba(255,45,45,0.14)] text-[#ff7676] border border-[rgba(255,45,45,0.3)]",
       type === "up" && "bg-[rgba(255,90,31,0.12)] text-cn-orange border border-[rgba(255,90,31,0.28)]",
-      type === "trend" && "bg-white/[0.05] text-cn-muted border border-cn-line-strong",
+      type === "trend" && "bg-white/5 text-cn-muted border border-cn-line-strong",
     )}>
       {type === "live" && (
         <span className="inline-block w-2 h-2 rounded-full bg-cn-accent animate-cn-pulse" />
@@ -48,28 +48,30 @@ export default function LandingAMAs() {
   const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
 
   return (
-    <section id="amas" className="pt-[30px] pb-[130px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+    <section id="amas" className="pt-8 pb-32">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={headRef}
-          className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"
-          style={{ opacity: headIn ? 1 : 0, transform: headIn ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
+          className={cn(
+            "max-w-180 transition-[opacity,transform] duration-[800ms] ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+          )}
         >
           <SectionEyebrow label="// Reddit AMAs" />
           <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
             Ask the<br />paddock anything.
           </h2>
-          <p className="text-cn-muted mt-[22px] text-[18px] max-w-[600px]">
+          <p className="text-cn-muted mt-6 text-[18px] max-w-150">
             We bring racing's most interesting voices straight into the community — creators, engineers, sim aces and commentators, live and unfiltered.
           </p>
         </div>
 
-        <div className="grid [grid-template-columns:1.4fr_1fr] max-nav:grid-cols-1 gap-[18px] mt-16">
+        <div className="grid grid-cols-[1.4fr_1fr] max-nav:grid-cols-1 gap-4 mt-16">
 
           <Reveal>
-            <div className={cn(cnCardClass, "!p-0 overflow-hidden")}>
-              <div className="h-[280px] w-full border-b border-cn-line bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
-                <span className="absolute left-[14px] bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
+            <div className={cn(cnCardClass, "p-0 overflow-hidden")}>
+              <div className="h-70 w-full border-b border-cn-line bg-[repeating-linear-gradient(135deg,#141417,#141417_11px,#17171b_11px,#17171b_22px)] relative">
+                <span className="absolute left-4 bottom-3 font-mono text-[10px] font-medium tracking-[0.16em] uppercase text-cn-muted-2">
                   AMA host portrait
                 </span>
               </div>
@@ -78,10 +80,10 @@ export default function LandingAMAs() {
                 <h3 className="font-display font-bold text-[clamp(26px,3vw,38px)] tracking-[-0.02em] leading-[1.1] mt-4">
                   "I spent 9 years on an F1 pit wall. Ask me about strategy calls under pressure."
                 </h3>
-                <p className="text-cn-muted text-[14.5px] mt-[14px]">
+                <p className="text-cn-muted text-[14.5px] mt-4">
                   A former race strategist breaks down the undercut, the gamble that won a title, and the radio messages you never heard.
                 </p>
-                <div className="flex items-center gap-3 mt-[18px]">
+                <div className="flex items-center gap-3 mt-4">
                   <Avatar initials="JR" red />
                   <div className="flex flex-col">
                     <b className="font-body font-semibold text-[14.5px]">Jamie Renault</b>

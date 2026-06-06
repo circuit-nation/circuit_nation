@@ -2,6 +2,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import createGlobe from "cobe";
 import { useInView } from "react-intersection-observer";
+import { cn } from "~/lib/utils";
 import { SectionEyebrow } from "./section-eyebrow";
 
 const MARKERS = [
@@ -110,8 +111,10 @@ export default function LandingGlobe() {
         <div className="grid [grid-template-columns:1.05fr_1fr] max-nav:grid-cols-1 gap-[60px] items-center">
 
           <div
-            className="transition-[opacity,transform] duration-[800ms]"
-            style={{ opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(26px)", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)" }}
+            className={cn(
+              "transition-[opacity,transform] duration-[800ms] ease-spring",
+              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+            )}
           >
             <SectionEyebrow label="// Global community map" />
             <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.94] text-[clamp(46px,7vw,100px)] mt-[22px]">
