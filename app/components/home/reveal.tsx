@@ -14,13 +14,12 @@ export function Reveal({ children, delay = 0, className, threshold = 0.15 }: Rev
   return (
     <div
       ref={ref}
-      className={cn("transition-[opacity,transform] duration-[800ms]", className)}
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "none" : "translateY(26px)",
-        transitionTimingFunction: "cubic-bezier(.16,1,.3,1)",
-        transitionDelay: delay > 0 ? `${delay}s` : undefined,
-      }}
+      className={cn(
+        "transition-[opacity,transform] duration-[800ms] ease-spring",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[26px]",
+        className,
+      )}
+      style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
     >
       {children}
     </div>
