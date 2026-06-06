@@ -7,16 +7,16 @@ import { SectionEyebrow } from "./section-eyebrow";
 type PlatType = "yt" | "reddit" | "ig" | "x";
 
 function PlatDot({ plat }: { plat: PlatType }) {
-  const colors: Record<PlatType, string> = {
-    yt: "var(--cn-accent)",
-    reddit: "var(--cn-orange)",
-    ig: "linear-gradient(135deg,#f58529,#dd2a7b)",
-    x: "#e7e7ea",
+  const platformDotClass: Record<PlatType, string> = {
+    yt: "bg-cn-accent",
+    reddit: "bg-cn-orange",
+    ig: "bg-[linear-gradient(135deg,#f58529,#dd2a7b)]",
+    x: "bg-[#e7e7ea]",
   };
   const labels: Record<PlatType, string> = { yt: "YouTube", reddit: "Reddit", ig: "Instagram", x: "X" };
   return (
     <span className="absolute top-[14px] left-[14px] z-[3] font-mono text-[10.5px] font-medium tracking-[0.1em] uppercase px-[10px] py-[5px] rounded-[8px] bg-black/[0.55] backdrop-blur-[6px] inline-flex items-center gap-[7px]">
-      <span className="w-2 h-2 rounded-[2px] shrink-0" style={{ background: colors[plat] }} />
+      <span className={cn("w-2 h-2 rounded-[2px] shrink-0", platformDotClass[plat])} />
       {labels[plat]}
     </span>
   );
