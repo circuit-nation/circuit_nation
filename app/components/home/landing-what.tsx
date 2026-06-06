@@ -91,9 +91,9 @@ export default function LandingWhat() {
 
           {FEATURES.map((f, i) => (
             <Reveal key={f.idx} delay={i % 3 === 1 ? 0.08 : i % 3 === 2 ? 0.16 : 0}>
-              <div className={cn(cnCardClass, "relative overflow-hidden hover:border-[rgba(255,45,45,0.4)] hover:shadow-[0_22px_60px_-22px_(--cn-accent-glow)]")}>
+              <div className={cn(cnCardClass, "relative overflow-hidden hover:border-cn-accent/40 hover:shadow-[0_22px_60px_-22px_(--cn-accent-glow)]")}>
                 <span className="absolute top-6 right-[26px] font-mono text-[12px] text-cn-muted-2">{f.idx}</span>
-                <div className="w-[46px] h-[46px] rounded-[12px] border border-cn-line-strong bg-[rgba(255,45,45,0.06)] grid place-items-center">
+                <div className="w-[46px] h-[46px] rounded-[12px] border border-cn-line-strong bg-cn-accent/6 grid place-items-center">
                   <svg viewBox="0 0 24 24" className="w-[22px] h-[22px] stroke-cn-accent fill-none stroke-[1.6] [stroke-linecap:round] [stroke-linejoin:round]">
                     {f.icon}
                   </svg>

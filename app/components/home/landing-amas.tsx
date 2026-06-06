@@ -20,7 +20,7 @@ function Avatar({ initials, red = false }: { initials: string; red?: boolean }) 
 
 function UpvoteIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="w-4 h-4 stroke-cn-orange fill-none stroke-[1.8]">
+    <svg viewBox="0 0 24 24" className="w-[13px] h-[13px] stroke-cn-orange fill-none stroke-[1.8]">
       <path d="M12 4l7 8h-4v8H9v-8H5z" />
     </svg>
   );
@@ -29,7 +29,7 @@ function UpvoteIcon() {
 function Badge({ type }: { type: "live" | "up" | "trend" }) {
   return (
     <span className={cn(
-      "font-mono text-[10.5px] font-medium tracking-[0.14em] uppercase p-2 rounded-4xl inline-flex items-center gap-2 w-fit",
+      "font-mono text-[10.5px] font-medium tracking-[0.14em] uppercase px-[11px] py-[6px] rounded-[20px] inline-flex items-center gap-[7px] w-fit",
       type === "live" && "bg-cn-accent/14 text-[#ff7676] border border-cn-accent/30",
       type === "up" && "bg-cn-orange/12 text-cn-orange border border-cn-orange/28",
       type === "trend" && "bg-white/5 text-cn-muted border border-cn-line-strong",
@@ -48,8 +48,8 @@ export default function LandingAMAs() {
   const { ref: headRef, inView: headIn } = useInView({ threshold: 0.2, triggerOnce: true });
 
   return (
-    <section id="amas" className="pt-8 pb-32">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
+    <section id="amas" className="pt-[30px] pb-[130px]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div
           ref={headRef}
           className={cn(
