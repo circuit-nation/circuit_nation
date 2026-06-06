@@ -28,7 +28,7 @@ export default function LandingNav() {
         {/* Brand */}
         <a href="#top" className="flex items-center gap-3 no-underline text-cn-text">
           <span className="w-8 h-8 rounded-[9px] bg-linear-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
-            <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_38%,var(--cn-accent)_40%,var(--cn-accent)_46%,transparent_48%,transparent_54%,var(--cn-accent)_56%,var(--cn-accent)_62%,transparent_64%)] opacity-[0.95]" />
+            <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent_38%,(--cn-accent)_40%,(--cn-accent)_46%,transparent_48%,transparent_54%,(--cn-accent)_56%,(--cn-accent)_62%,transparent_64%)] opacity-[0.95]" />
           </span>
           <span className="font-display font-extrabold text-[19px] tracking-[-0.01em] uppercase leading-none">
             Circuit Nation
