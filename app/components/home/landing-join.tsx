@@ -43,7 +43,7 @@ export default function LandingJoin() {
             {PLATFORMS.map(p => (
               <div
                 key={p.name}
-                className="border border-cn-line rounded-[20px] p-[26px] flex flex-col gap-[14px] bg-[rgba(10,10,11,0.5)] transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-cn-line-strong"
+                className="border border-cn-line rounded-[20px] p-[26px] flex flex-col gap-[14px] bg-cn-bg/50 transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-cn-line-strong"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-cn-muted-2">{p.name}</span>
