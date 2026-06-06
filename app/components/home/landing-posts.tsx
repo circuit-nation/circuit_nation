@@ -17,7 +17,7 @@ export default function LandingPosts() {
 
   return (
     <section id="content" className="pt-[30px] pb-[120px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div
           ref={headRef}
           className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"

@@ -18,7 +18,7 @@ export default function LandingJoin() {
 
   return (
     <section id="join" className="pt-[30px] pb-[110px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div
           ref={ref}
           className="border border-cn-line rounded-[28px] relative overflow-hidden bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] transition-[opacity,transform] duration-[800ms]"

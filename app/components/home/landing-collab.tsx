@@ -19,7 +19,7 @@ export default function LandingCollab() {
 
   return (
     <section className="pt-[30px] pb-[120px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div
           ref={headRef}
           className="max-w-[720px] transition-[opacity,transform] duration-[800ms]"
@@ -55,7 +55,7 @@ export default function LandingCollab() {
         </div>
       </div>
 
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div className="grid grid-cols-3 max-nav:grid-cols-1 gap-[18px] mt-14">
           {CASES.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.08}>

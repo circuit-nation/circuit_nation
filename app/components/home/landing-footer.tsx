@@ -1,7 +1,7 @@
 export default function LandingFooter() {
   return (
     <footer className="border-t border-cn-line bg-cn-bg-2">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 pt-[70px] pb-[50px] grid [grid-template-columns:1.5fr_1fr_1fr_1fr] max-nav:[grid-template-columns:1fr_1fr] max-[620px]:grid-cols-1 gap-10">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 pt-[70px] pb-[50px] grid [grid-template-columns:1.5fr_1fr_1fr_1fr] max-nav:[grid-template-columns:1fr_1fr] max-[620px]:grid-cols-1 gap-10">
         <div>
           <a href="#top" className="flex items-center gap-3 no-underline text-cn-text mb-[18px]">
             <span className="w-[34px] h-[34px] rounded-[9px] bg-gradient-to-br from-[#1a1a1e] to-[#0c0c0e] border border-cn-line-strong grid place-items-center overflow-hidden shrink-0 relative">
@@ -34,7 +34,7 @@ export default function LandingFooter() {
         ))}
       </div>
 
-      <div className="border-t border-cn-line max-w-[var(--cn-maxw)] mx-auto px-8 py-6 flex justify-between items-center gap-5 flex-wrap font-mono text-[11.5px] tracking-[0.08em] uppercase text-cn-muted-2">
+      <div className="border-t border-cn-line max-w-(--cn-maxw) mx-auto px-8 py-6 flex justify-between items-center gap-5 flex-wrap font-mono text-[11.5px] tracking-[0.08em] uppercase text-cn-muted-2">
         <span>© 2026 Circuit Nation — Built by fans, for fans.</span>
         <span>Not affiliated with any racing series or governing body.</span>
       </div>

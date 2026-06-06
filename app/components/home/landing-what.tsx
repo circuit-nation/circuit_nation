@@ -43,7 +43,7 @@ export default function LandingWhat() {
 
   return (
     <section id="about" className="py-[130px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
 
         <div
           ref={headRef}

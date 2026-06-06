@@ -106,7 +106,7 @@ export default function LandingGlobe() {
 
   return (
     <section id="globe" ref={sectionRef} className="pt-[120px] pb-[130px]">
-      <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
         <div className="grid [grid-template-columns:1.05fr_1fr] max-nav:grid-cols-1 gap-[60px] items-center">
 
           <div

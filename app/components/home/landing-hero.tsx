@@ -126,7 +126,7 @@ export default function LandingHero() {
           }}
         />
 
-        <div className="max-w-[var(--cn-maxw)] mx-auto px-8 relative z-[2]">
+        <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-[2]">
           <SectionEyebrow
             label="// Your ultimate hub to everything motorsports"
             className="animate-cn-fade opacity-0 [animation-delay:0.1s]"
