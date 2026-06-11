@@ -69,10 +69,8 @@ export default function LandingCollab() {
           )}
         >
           <SectionEyebrow label="// Previous collaborations" />
-          <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
-            Good company
-            <br />
-            in the garage.
+          <h2 className="font-display font-extrabold uppercase leading-[0.96] text-[clamp(40px,5.5vw,64px)] mt-5">
+            Social Media Collaborations
           </h2>
         </div>
       </div>

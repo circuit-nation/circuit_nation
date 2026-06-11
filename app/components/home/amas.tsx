@@ -58,7 +58,7 @@ export default function LandingAMAs() {
           )}
         >
           <SectionEyebrow label="// Reddit AMAs" />
-          <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
+          <h2 className="font-display font-extrabold uppercase leading-[0.96] text-[clamp(40px,5.5vw,64px)] mt-5">
             Ask the<br />paddock anything.
           </h2>
           <p className="text-cn-muted mt-6 text-sm max-w-150">

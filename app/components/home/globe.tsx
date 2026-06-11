@@ -1,85 +1,80 @@
 "use client";
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 import { useInView } from "react-intersection-observer";
 import { cn } from "~/lib/utils";
 import { SectionEyebrow } from "./section-eyebrow";
+import GlobeEventCard, {
+  getNextTwoEvents,
+  isEventLive,
+  type GlobeUpcomingEvent,
+} from "./globe-event-card";
 
 const MARKERS = [
-  { location: [43.7347, 7.4206] as [number, number], size: 0.08 },
-  { location: [52.0786, -1.0169] as [number, number], size: 0.06 },
-  { location: [45.6156, 9.2811] as [number, number], size: 0.06 },
-  { location: [50.4372, 5.9714] as [number, number], size: 0.05 },
-  { location: [43.998, 11.3719] as [number, number], size: 0.06 },
-  { location: [34.8431, 136.541] as [number, number], size: 0.07 },
-  { location: [30.1328, -97.6411] as [number, number], size: 0.06 },
-  { location: [36.1699, -115.1398] as [number, number], size: 0.05 },
-  { location: [-23.7036, -46.6997] as [number, number], size: 0.06 },
-  { location: [-37.8497, 144.968] as [number, number], size: 0.06 },
-  { location: [1.2914, 103.864] as [number, number], size: 0.06 },
-  { location: [25.49, 51.4542] as [number, number], size: 0.05 },
+  { location: [43.7347, 7.4206] as [number, number], size: 0.06 },
+  { location: [52.0786, -1.0169] as [number, number], size: 0.04 },
+  { location: [45.6156, 9.2811] as [number, number], size: 0.04 },
+  { location: [50.4372, 5.9714] as [number, number], size: 0.04 },
+  { location: [43.998, 11.3719] as [number, number], size: 0.04 },
+  { location: [34.8431, 136.541] as [number, number], size: 0.04 },
+  { location: [30.1328, -97.6411] as [number, number], size: 0.04 },
+  { location: [36.1699, -115.1398] as [number, number], size: 0.04 },
+  { location: [-23.7036, -46.6997] as [number, number], size: 0.04 },
+  { location: [-37.8497, 144.968] as [number, number], size: 0.04 },
+  { location: [1.2914, 103.864] as [number, number], size: 0.04 },
+  { location: [25.49, 51.4542] as [number, number], size: 0.04 },
 ];
 
-// TODO: This will be changed to current/next event cards in different sports
-function Stat({
-  target,
-  suffix,
-  label,
-}: {
-  target: number;
-  suffix: string;
-  label: string;
-}) {
-  const numRef = useRef<HTMLDivElement>(null);
-  const ran = useRef(false);
-  const { ref: inViewRef, inView } = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  });
-
-  const setRefs = useCallback(
-    (el: HTMLDivElement | null) => {
-      inViewRef(el);
-    },
-    [inViewRef],
-  );
-
-  useEffect(() => {
-    if (!inView || ran.current || !numRef.current) return;
-    ran.current = true;
-    const el = numRef.current;
-    const dur = 1500;
-    const t0 = performance.now();
-    const step = (now: number) => {
-      const p = Math.min(1, (now - t0) / dur);
-      const eased = 1 - Math.pow(1 - p, 3);
-      const v = Math.round(eased * target);
-      el.textContent =
-        String(v) + (p === 1 ? suffix : suffix.replace(/[^+]/g, ""));
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = String(target) + suffix;
-    };
-    requestAnimationFrame(step);
-  }, [inView, target, suffix]);
-
-  return (
-    <div
-      ref={setRefs}
-      className="border border-cn-line rounded-3xl px-5 py-6 bg-linear-to-b from-white/3 to-transparent relative overflow-hidden"
-    >
-      <span className="absolute left-0 top-0 h-1 w-9 bg-cn-accent shadow-[0_0_10px_(--cn-accent-glow)]" />
-      <div
-        ref={numRef}
-        className="font-display font-extrabold text-[clamp(36px,4vw,52px)] leading-none"
-      >
-        0
-      </div>
-      <div className="font-mono text-xs font-medium tracking-[0.1em] uppercase text-cn-muted mt-2 leading-normal">
-        {label}
-      </div>
-    </div>
-  );
-}
+const UPCOMING_EVENTS: GlobeUpcomingEvent[] = [
+  {
+    id: "f1-canada-2026",
+    title: "Canadian GP",
+    sportName: "Formula 1",
+    sportColor: "var(--cn-red)",
+    location: "Montreal, Canada",
+    circuit: "Circuit Gilles Villeneuve",
+    startAt: new Date(2026, 5, 12),
+    endAt: new Date(2026, 5, 14, 23, 59),
+    watchUrl: "https://f1tv.formula1.com",
+    watchLabel: "Watch on F1 TV",
+  },
+  {
+    id: "motogp-assen-2026",
+    title: "Dutch TT",
+    sportName: "MotoGP",
+    sportColor: "var(--cn-blue)",
+    location: "Assen, Netherlands",
+    circuit: "TT Circuit Assen",
+    startAt: new Date(2026, 5, 20),
+    endAt: new Date(2026, 5, 22, 23, 59),
+    watchUrl: "https://www.motogp.com",
+    watchLabel: "Where to watch",
+  },
+  {
+    id: "f1-austria-2026",
+    title: "Austrian GP",
+    sportName: "Formula 1",
+    sportColor: "var(--cn-red)",
+    location: "Spielberg, Austria",
+    circuit: "Red Bull Ring",
+    startAt: new Date(2026, 5, 27),
+    endAt: new Date(2026, 5, 29, 23, 59),
+    watchUrl: "https://f1tv.formula1.com",
+    watchLabel: "Watch on F1 TV",
+  },
+  {
+    id: "f1-britain-2026",
+    title: "British GP",
+    sportName: "Formula 1",
+    sportColor: "var(--cn-red)",
+    location: "Silverstone, UK",
+    circuit: "Silverstone Circuit",
+    startAt: new Date(2026, 6, 4),
+    endAt: new Date(2026, 6, 6, 23, 59),
+    watchUrl: "https://f1tv.formula1.com",
+    watchLabel: "Watch on F1 TV",
+  },
+];
 
 export default function LandingGlobe() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -89,6 +84,8 @@ export default function LandingGlobe() {
     threshold: 0.1,
     triggerOnce: true,
   });
+
+  const nextTwo = getNextTwoEvents(UPCOMING_EVENTS);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -115,7 +112,7 @@ export default function LandingGlobe() {
     });
     let rafId: number;
     const animate = () => {
-      phiRef.current += 0.0032;
+      phiRef.current += 0.0022;
       globe.update({
         phi: phiRef.current,
         width: widthRef.current * 2,
@@ -147,23 +144,25 @@ export default function LandingGlobe() {
             )}
           >
             <SectionEyebrow label="// Global community map" />
-            <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.94] text-[clamp(46px,7vw,100px)] mt-6">
+            <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.94] text-[clamp(46px,7vw,72px)] mt-6">
               Motorsport
               <br />
               never <span className="text-cn-accent">sleeps.</span>
             </h2>
-            <div className="grid grid-cols-3 max-nav:grid-cols-1 gap-4 mt-11">
-              <Stat target={24} suffix="+" label={"Countries\nrepresented"} />
-              <Stat target={6} suffix="+" label={"Racing series\nfollowed"} />
-              <Stat
-                target={120}
-                suffix="+"
-                label={"Global watch\nparties / yr"}
-              />
+            <div className="grid grid-cols-2 max-nav:grid-cols-1 gap-4 mt-11">
+              {nextTwo.map((event, i) => (
+                <GlobeEventCard
+                  key={event.id}
+                  event={event}
+                  variant={i === 0 ? "featured" : "secondary"}
+                  showCountdown={i === 0 && !isEventLive(event)}
+                  delay={i * 0.08}
+                />
+              ))}
             </div>
           </div>
 
-          <div className="relative aspect-square w-full max-w-[560px] mx-auto grid place-items-center">
+          <div className="relative aspect-square w-full max-w-xl mx-auto grid place-items-center">
             <div
               className="absolute rounded-full pointer-events-none"
               style={{
@@ -178,14 +177,6 @@ export default function LandingGlobe() {
               className="absolute rounded-full border border-dashed border-white/6 pointer-events-none animate-cn-spin-slow"
               style={{ inset: "-7%" }}
             />
-            <span className="absolute top-[12%] left-[-6%] font-mono text-xs font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-cn-bg/70 backdrop-blur-[6px] p-3 rounded-xl flex items-center gap-2">
-              <span className="size-2 rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)]" />
-              F1 · Monaco
-            </span>
-            <span className="absolute bottom-[16%] right-[-4%] font-mono text-xs font-medium tracking-[0.12em] uppercase text-cn-muted border border-cn-line bg-cn-bg/70 backdrop-blur-[6px] p-3 rounded-xl flex items-center gap-2">
-              <span className="size-2 rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)]" />
-              MotoGP · Mugello
-            </span>
             <canvas
               ref={canvasRef}
               style={{

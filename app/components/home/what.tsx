@@ -53,7 +53,7 @@ export default function LandingWhat() {
           )}
         >
           <SectionEyebrow label="// What is Circuit Nation" />
-          <h2 className="font-display font-extrabold uppercase tracking-[-0.03em] leading-[0.96] text-[clamp(40px,5.5vw,78px)] mt-5">
+          <h2 className="font-display font-extrabold uppercase leading-[0.96] text-[clamp(40px,5.5vw,64px)] mt-5">
             A paddock that<br />never closes.
           </h2>
           <p className="text-cn-muted mt-6 text-sm max-w-lg">
@@ -64,9 +64,9 @@ export default function LandingWhat() {
         <div className="grid grid-cols-3 max-nav:grid-cols-2 max-[620px]:grid-cols-1 gap-4 mt-16">
 
           <Reveal className="col-span-2 max-[620px]:col-span-1">
-            <div className={cn(cnCardClass, "flex flex-col justify-between gap-8 min-h-56")}>
+            <div className={cn(cnCardClass, "flex flex-col justify-between gap-8 min-h-48")}>
               <div className="font-display font-bold text-[clamp(24px,2.6vw,34px)] leading-[1.2] tracking-[-0.02em]">
-                We built Circuit Nation because the best part of race weekend isn't the race — it's the{" "}
+                We built Circuit Nation because the best part of race weekend isn't the race, it's the{" "}
                 <b className="text-cn-accent font-bold">people you watch it with.</b>
               </div>
               <div className="flex gap-6 flex-wrap font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">
