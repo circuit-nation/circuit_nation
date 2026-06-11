@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "~/lib/utils";
 import { Reveal } from "./reveal";
@@ -256,108 +255,10 @@ function SocialTile({
 }
 
 export default function LandingSocialWall() {
-  const gridRef = useRef<HTMLDivElement>(null);
   const { ref: headRef, inView: headIn } = useInView({
     threshold: 0.2,
     triggerOnce: true,
   });
-
-  // #region agent log
-  useEffect(() => {
-    fetch("http://127.0.0.1:7686/ingest/e0bb234d-60d0-4467-9d92-8108d0958dca", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "984e8e",
-      },
-      body: JSON.stringify({
-        sessionId: "984e8e",
-        runId: "pre-fix",
-        hypothesisId: "E",
-        location: "social-wall.tsx:mount",
-        message: "LandingSocialWall mounted",
-        data: { tileCount: TILES.length },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:7686/ingest/e0bb234d-60d0-4467-9d92-8108d0958dca", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "984e8e",
-      },
-      body: JSON.stringify({
-        sessionId: "984e8e",
-        runId: "pre-fix",
-        hypothesisId: "A",
-        location: "social-wall.tsx:headIn",
-        message: "Header inView changed",
-        data: { headIn },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-  }, [headIn]);
-
-  useEffect(() => {
-    const measure = () => {
-      const grid = gridRef.current;
-      if (!grid) return;
-      const gridStyles = getComputedStyle(grid);
-      const gridRect = grid.getBoundingClientRect();
-      const tiles = Array.from(grid.children).map((child, index) => {
-        const styles = getComputedStyle(child);
-        const rect = child.getBoundingClientRect();
-        return {
-          index,
-          opacity: styles.opacity,
-          height: rect.height,
-          width: rect.width,
-          gridArea: styles.gridArea,
-          display: styles.display,
-        };
-      });
-      fetch(
-        "http://127.0.0.1:7686/ingest/e0bb234d-60d0-4467-9d92-8108d0958dca",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Debug-Session-Id": "984e8e",
-          },
-          body: JSON.stringify({
-            sessionId: "984e8e",
-            runId: "pre-fix",
-            hypothesisId: "B,C,D",
-            location: "social-wall.tsx:gridMeasure",
-            message: "Grid layout measured",
-            data: {
-              headIn,
-              gridHeight: gridRect.height,
-              gridWidth: gridRect.width,
-              gridTemplateAreas: gridStyles.gridTemplateAreas,
-              gridTemplateColumns: gridStyles.gridTemplateColumns,
-              gridTemplateRows: gridStyles.gridTemplateRows,
-              tiles,
-            },
-            timestamp: Date.now(),
-          }),
-        },
-      ).catch(() => {});
-    };
-    measure();
-    const t1 = window.setTimeout(measure, 500);
-    const t2 = window.setTimeout(measure, 2000);
-    window.addEventListener("scroll", measure, { passive: true });
-    return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
-      window.removeEventListener("scroll", measure);
-    };
-  }, [headIn]);
-  // #endregion
 
   return (
     <section className="py-12">
@@ -382,7 +283,6 @@ export default function LandingSocialWall() {
         </div>
 
         <div
-          ref={gridRef}
           className={cn(
             "grid gap-3 md:gap-4 mt-16",
             "grid-cols-1 auto-rows-[minmax(168px,auto)]",
