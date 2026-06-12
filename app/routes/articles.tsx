@@ -2,8 +2,8 @@ import type { Route } from "./+types/articles";
 import { useMemo, useState } from "react";
 import { NavbarLogo } from "~/components/ui/resizable-navbar";
 import ArticleShowcase from "~/components/articles/article-showcase";
-import fetchArticles from "~/lib/articles";
-import type { Articles } from "~/types/articles";
+import { getSubstackArticles } from "~/lib/substack.server";
+import type { SubstackArticle } from "~/types/articles";
 
 export function meta({ }: Route.MetaArgs) {
 	return [
@@ -13,27 +13,29 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export async function loader({ }: Route.LoaderArgs) {
-	const articles = await fetchArticles();
-	return { articles } as { articles: Articles[] };
+	const articles = await getSubstackArticles(10);
+	return { articles } as { articles: SubstackArticle[] };
+}
+
+function articleSummary(article: SubstackArticle) {
+	return article.description || article.excerpt;
 }
 
 const Articles = ({ loaderData }: Route.ComponentProps) => {
 	const [query, setQuery] = useState("");
 
-	const filteredArticles = useMemo<Articles[]>(() => {
+	const filteredArticles = useMemo<SubstackArticle[]>(() => {
 		const normalizedQuery = query.trim().toLowerCase();
 		if (!normalizedQuery) {
 			return loaderData.articles;
 		}
 
-		return loaderData.articles.filter((article) => {
+		return loaderData.articles.filter((article: SubstackArticle) => {
 			const title = article.title?.toLowerCase() ?? "";
-			const summary = article.first_paragraph?.toLowerCase() ?? "";
-			const tags = article.tags?.join(" ").toLowerCase() ?? "";
+			const summary = articleSummary(article)?.toLowerCase() ?? "";
 
 			return title.includes(normalizedQuery)
-				|| summary.includes(normalizedQuery)
-				|| tags.includes(normalizedQuery);
+				|| summary.includes(normalizedQuery);
 		});
 	}, [loaderData.articles, query]);
 
@@ -47,7 +49,7 @@ const Articles = ({ loaderData }: Route.ComponentProps) => {
 						type="search"
 						value={query}
 						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Search by title, summary, or tags"
+						placeholder="Search by title or summary"
 						className="w-full rounded-full border border-muted/60 bg-background px-5 py-3 text-sm shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
 						aria-label="Search articles"
 					/>

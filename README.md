@@ -34,6 +34,10 @@ pnpm dev
 
 Your application will be available at `http://localhost:5173`.
 
+### Environment variables
+
+Set `SUBSTACK_API_KEY` in your local environment and deployment platform (e.g. Netlify) to power the home and `/articles` Substack sections.
+
 ## Building for Production
 
 Create a production build:

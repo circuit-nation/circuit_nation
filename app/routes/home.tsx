@@ -1,4 +1,6 @@
 import type { Route } from "./+types/home";
+import { getSubstackArticles } from "~/lib/substack.server";
+import type { SubstackArticle } from "~/types/articles";
 import LandingNav from "~/components/home/nav";
 import LandingHero from "~/components/home/hero";
 import LandingGlobe from "~/components/home/globe";
@@ -26,7 +28,12 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Home() {
+export async function loader({}: Route.LoaderArgs) {
+  const articles = await getSubstackArticles(5);
+  return { articles } as { articles: SubstackArticle[] };
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
   return (
     <div
       style={{
@@ -74,7 +81,7 @@ export default function Home() {
       {/*<LandingProof />*/}
       {/*<LandingAMAs />*/}
       {/*<LandingCollab />*/}
-      <LandingPosts />
+      <LandingPosts articles={loaderData.articles} />
       <LandingVideos />
       <LandingTestimonials />
       <LandingSocialWall />

@@ -2,18 +2,31 @@ import ArticleCard from "./article-card"
 import ComponentHeading from "../common/component-heading"
 import { Newspaper } from "lucide-react"
 import { motion } from "motion/react"
-import type { Articles } from "~/types/articles";
+import type { SubstackArticle } from "~/types/articles";
 import { Link } from "react-router";
 
 interface ArticleShowcaseProps {
-    articles: Articles[];
+    articles: SubstackArticle[];
     limit?: number | null;
     showCta?: boolean;
 }
 
+function articleSummary(article: SubstackArticle) {
+    return article.description || article.excerpt;
+}
+
+function coverImage(article: SubstackArticle) {
+    return (
+        article.cover_image.large ||
+        article.cover_image.original ||
+        article.cover_image.medium ||
+        article.cover_image.small
+    );
+}
+
 export default function ArticleShowcase({ articles, limit = 4, showCta = true }: ArticleShowcaseProps) {
     const sanitizedArticles = articles
-        .filter(article => article.title && article.first_paragraph && article.first_image && article.published_time);
+        .filter(article => article.title && articleSummary(article) && coverImage(article) && article.date);
     const visibleArticles = typeof limit === "number"
         ? sanitizedArticles.slice(0, limit)
         : sanitizedArticles;
@@ -41,7 +54,7 @@ export default function ArticleShowcase({ articles, limit = 4, showCta = true }:
                     viewport={{ once: true, margin: "-80px" }}
                 >
                     {visibleArticles.map((article) => (
-                        <ArticleCard key={article.title} article={article} />
+                        <ArticleCard key={article.slug} article={article} />
                     ))}
                 </motion.section>
 
