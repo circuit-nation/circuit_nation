@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
 import MetricCard from "./metric-card";
-import { delay } from "motion/react";
 
 const STATS = [
   {
@@ -20,6 +19,7 @@ const STATS = [
     label: "Weekly Visitors",
     delay: 0.78,
     tag: "Reddit",
+    link: "https://www.reddit.com/r/circuit_nation",
   },
   {
     target: 2220,
@@ -28,6 +28,7 @@ const STATS = [
     label: "Followers",
     delay: 0.86,
     tag: "Instagram",
+    link: "https://www.instagram.com/circuit_nation_",
   },
   {
     target: 1200,
@@ -36,6 +37,7 @@ const STATS = [
     label: "Subscribers",
     delay: 0.88,
     tag: "Youtube",
+    link: "https://www.youtube.com/@circuitnation",
   },
   {
     target: 50,
@@ -44,6 +46,7 @@ const STATS = [
     label: "Subscribers",
     delay: 0.86,
     tag: "Substack",
+    link: "https://circuitnation.substack.com/",
   },
 ];
 

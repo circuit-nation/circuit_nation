@@ -1,23 +1,53 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { cn } from "~/lib/utils";
 import { Link } from "react-router";
 import { Logo } from "../common/logo";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "motion/react";
+
+const SCROLL_DELTA = 8;
+const HIDE_AFTER = 50;
 
 export default function LandingNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const reduceMotion = useReducedMotion();
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 30);
-    handler();
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = lastScrollY.current;
+    const delta = latest - previous;
+
+    setScrolled(latest > 30);
+
+    if (latest <= HIDE_AFTER) {
+      setHidden(false);
+    } else if (delta > SCROLL_DELTA) {
+      setHidden(true);
+    } else if (delta < -SCROLL_DELTA) {
+      setHidden(false);
+    }
+
+    lastScrollY.current = latest;
+  });
+
+  const isHidden = !reduceMotion && hidden;
 
   return (
-    <header
+    <motion.header
+      initial={false}
+      animate={{ y: isHidden ? "-100%" : 0 }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      aria-hidden={isHidden}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 border-b transition-[background,border-color,backdrop-filter] duration-350 ease-out",
+        isHidden && "pointer-events-none",
         scrolled
           ? "border-cn-line bg-cn-bg/72 backdrop-blur-[18px] saturate-[1.4]"
           : "border-transparent bg-transparent",
@@ -49,6 +79,6 @@ export default function LandingNav() {
           </Link>
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 }

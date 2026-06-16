@@ -4,7 +4,7 @@ const SUBSTACK_API_BASE = "https://api.substackapi.dev";
 const PUBLICATION_URL = "circuitnation.substack.com";
 
 function getSubstackApiKey(): string | undefined {
-  return process.env.SUBSTACK_API_KEY;
+  return process.env.VITE_SUBSTACK_API_KEY;
 }
 
 export async function getSubstackArticles(
@@ -12,7 +12,7 @@ export async function getSubstackArticles(
 ): Promise<SubstackArticle[]> {
   const apiKey = getSubstackApiKey();
   if (!apiKey) {
-    console.error("Missing environment variable: SUBSTACK_API_KEY");
+    console.error("Missing environment variable: VITE_SUBSTACK_API_KEY");
     return [];
   }
 
