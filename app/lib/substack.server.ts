@@ -1,3 +1,4 @@
+/** @deprecated Use `getArticles` from `~/lib/articles.server` instead (Task 10). */
 import type { SubstackArticle, SubstackPostsResponse } from "~/types/articles";
 
 const SUBSTACK_API_BASE = "https://api.substackapi.dev";

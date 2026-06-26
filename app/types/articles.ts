@@ -1,3 +1,15 @@
+export type Article = {
+  _id: string;
+  guid: string;
+  url: string;
+  title: string;
+  excerpt: string;
+  thumbnail: string;
+  publishedAt: string;
+  status: "draft" | "published";
+  syncedAt: string;
+};
+
 export type Articles = {
   blog_id: string;
   title: string;
