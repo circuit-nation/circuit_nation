@@ -4,44 +4,19 @@ import { cn, formatRelativeTime } from "~/lib/utils";
 import { Reveal } from "./reveal";
 import { SectionEyebrow } from "./section-eyebrow";
 import { cnCardClass } from "~/components/ui/card";
-import type { SubstackArticle } from "~/types/articles";
+import type { Article } from "~/types/articles";
 
 type LandingPostsProps = {
-  articles: SubstackArticle[];
+  articles: Article[];
 };
 
-function articleSummary(article: SubstackArticle) {
-  return article.description || article.excerpt;
-}
-
-function featuredImage(article: SubstackArticle) {
-  const cover = article.cover_image;
-  if (!cover) return "";
-
-  return (
-    cover.large ||
-    cover.original ||
-    cover.og ||
-    cover.medium ||
-    cover.small ||
-    ""
-  );
-}
-
-function compactImage(article: SubstackArticle) {
-  const cover = article.cover_image;
-  if (!cover) return "";
-
-  return cover.small || cover.medium || cover.large || cover.original || "";
-}
-
-function sanitizeArticles(articles: SubstackArticle[]) {
+function sanitizeArticles(articles: Article[]) {
   return articles.filter(
     (article) =>
       article.title &&
-      articleSummary(article) &&
-      featuredImage(article) &&
-      article.date,
+      article.excerpt &&
+      article.thumbnail &&
+      article.publishedAt,
   );
 }
 
@@ -53,10 +28,8 @@ function formatPublishedDate(dateInput: string) {
   });
 }
 
-function FeaturedPost({ article }: { article: SubstackArticle }) {
+function FeaturedPost({ article }: { article: Article }) {
   const href = article.url;
-  const summary = articleSummary(article);
-  const imageUrl = featuredImage(article);
 
   return (
     <Reveal>
@@ -70,33 +43,30 @@ function FeaturedPost({ article }: { article: SubstackArticle }) {
           className="flex h-full flex-col"
         >
           <div className="relative h-[360px] shrink-0 overflow-hidden border-b border-cn-line bg-[#141417]">
-            {imageUrl ? (
-              <img
-                src={imageUrl}
-                alt={article.title}
-                className="h-full w-full object-cover transition-transform duration-700 ease-spring group-hover:scale-[1.03]"
-                fetchPriority="high"
-                decoding="async"
-              />
-            ) : null}
+            <img
+              src={article.thumbnail}
+              alt={article.title}
+              className="h-full w-full object-cover transition-transform duration-700 ease-spring group-hover:scale-[1.03]"
+              fetchPriority="high"
+              decoding="async"
+            />
           </div>
           <div className="p-8">
             <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent inline-flex items-center gap-[9px]">
               <span className="w-[6px] h-[6px] rounded-full bg-cn-accent inline-block" />
-              {article.reading_time_minutes} min read
+              Substack
             </span>
             <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.06] mt-3 text-[clamp(26px,3vw,40px)]">
               {article.title}
             </h3>
             <p className="text-cn-muted mt-4 max-w-[540px] text-sm line-clamp-3">
-              {summary}
+              {article.excerpt}
             </p>
-            <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-3 flex flex-wrap gap-x-[14px] gap-y-1">
-              <time dateTime={new Date(article.date).toISOString()}>
-                {formatPublishedDate(article.date)}
+            <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-3 flex flex-wrap gap-2">
+              <time dateTime={new Date(article.publishedAt).toISOString()}>
+                {formatPublishedDate(article.publishedAt)}
               </time>
-              <span>{formatRelativeTime(article.date)}</span>
-              <span>{article.likes} likes</span>
+              ·<span>{formatRelativeTime(article.publishedAt)}</span>
             </div>
           </div>
         </a>
@@ -109,7 +79,7 @@ function CompactPost({
   article,
   delay,
 }: {
-  article: SubstackArticle;
+  article: Article;
   delay: number;
 }) {
   const href = article.url;
@@ -130,7 +100,7 @@ function CompactPost({
         >
           <div className="w-24 h-24 rounded-[12px] shrink-0 overflow-hidden border border-cn-line">
             <img
-              src={compactImage(article)}
+              src={article.thumbnail}
               alt=""
               className="h-full w-full object-cover transition-transform duration-500 ease-spring group-hover:scale-105"
               loading="lazy"
@@ -138,13 +108,16 @@ function CompactPost({
           </div>
           <div className="min-w-0">
             <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent">
-              {article.reading_time_minutes} min read
+              Substack
             </span>
             <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.2] mt-2 text-sm line-clamp-2">
               {article.title}
             </h3>
-            <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-2">
-              {formatRelativeTime(article.date)} · {article.likes} likes
+            <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-3 flex flex-wrap gap-2">
+              <time dateTime={new Date(article.publishedAt).toISOString()}>
+                {formatPublishedDate(article.publishedAt)}
+              </time>
+              ·<span>{formatRelativeTime(article.publishedAt)}</span>
             </div>
           </div>
         </a>
@@ -186,7 +159,7 @@ export default function LandingPosts({ articles }: LandingPostsProps) {
               <div className="grid gap-[18px]">
                 {compact.map((article, index) => (
                   <CompactPost
-                    key={article.slug}
+                    key={article._id}
                     article={article}
                     delay={index < 2 ? 0.08 : 0.16}
                   />
@@ -195,7 +168,9 @@ export default function LandingPosts({ articles }: LandingPostsProps) {
             ) : null}
           </div>
         ) : (
-          <p className="mt-16 text-sm text-cn-muted">No articles available right now.</p>
+          <p className="mt-16 text-sm text-cn-muted">
+            No articles available right now.
+          </p>
         )}
       </div>
     </section>

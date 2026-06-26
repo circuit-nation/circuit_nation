@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import createGlobe from "cobe";
 import { useInView } from "react-intersection-observer";
 import { cn } from "~/lib/utils";
+import type { EventLocation, GlobeEvent } from "~/types/events";
 import { SectionEyebrow } from "./section-eyebrow";
 import GlobeEventCard, {
   getNextTwoEvents,
@@ -10,73 +11,37 @@ import GlobeEventCard, {
   type GlobeUpcomingEvent,
 } from "./globe-event-card";
 
-const MARKERS = [
-  { location: [43.7347, 7.4206] as [number, number], size: 0.06 },
-  { location: [52.0786, -1.0169] as [number, number], size: 0.04 },
-  { location: [45.6156, 9.2811] as [number, number], size: 0.04 },
-  { location: [50.4372, 5.9714] as [number, number], size: 0.04 },
-  { location: [43.998, 11.3719] as [number, number], size: 0.04 },
-  { location: [34.8431, 136.541] as [number, number], size: 0.04 },
-  { location: [30.1328, -97.6411] as [number, number], size: 0.04 },
-  { location: [36.1699, -115.1398] as [number, number], size: 0.04 },
-  { location: [-23.7036, -46.6997] as [number, number], size: 0.04 },
-  { location: [-37.8497, 144.968] as [number, number], size: 0.04 },
-  { location: [1.2914, 103.864] as [number, number], size: 0.04 },
-  { location: [25.49, 51.4542] as [number, number], size: 0.04 },
-];
+type LandingGlobeProps = {
+  upcomingEvents: GlobeEvent[];
+  eventLocations: EventLocation[];
+};
 
-const UPCOMING_EVENTS: GlobeUpcomingEvent[] = [
-  {
-    id: "f1-canada-2026",
-    title: "Canadian GP",
-    sportName: "Formula 1",
-    sportColor: "var(--cn-red)",
-    location: "Montreal, Canada",
-    circuit: "Circuit Gilles Villeneuve",
-    startAt: new Date(2026, 5, 12),
-    endAt: new Date(2026, 5, 14, 23, 59),
-    watchUrl: "https://f1tv.formula1.com",
-    watchLabel: "Watch on F1 TV",
-  },
-  {
-    id: "motogp-assen-2026",
-    title: "Dutch TT",
-    sportName: "MotoGP",
-    sportColor: "var(--cn-blue)",
-    location: "Assen, Netherlands",
-    circuit: "TT Circuit Assen",
-    startAt: new Date(2026, 5, 20),
-    endAt: new Date(2026, 5, 22, 23, 59),
-    watchUrl: "https://www.motogp.com",
-    watchLabel: "Where to watch",
-  },
-  {
-    id: "f1-austria-2026",
-    title: "Austrian GP",
-    sportName: "Formula 1",
-    sportColor: "var(--cn-red)",
-    location: "Spielberg, Austria",
-    circuit: "Red Bull Ring",
-    startAt: new Date(2026, 5, 27),
-    endAt: new Date(2026, 5, 29, 23, 59),
-    watchUrl: "https://f1tv.formula1.com",
-    watchLabel: "Watch on F1 TV",
-  },
-  {
-    id: "f1-britain-2026",
-    title: "British GP",
-    sportName: "Formula 1",
-    sportColor: "var(--cn-red)",
-    location: "Silverstone, UK",
-    circuit: "Silverstone Circuit",
-    startAt: new Date(2026, 6, 4),
-    endAt: new Date(2026, 6, 6, 23, 59),
-    watchUrl: "https://f1tv.formula1.com",
-    watchLabel: "Watch on F1 TV",
-  },
-];
+function toGlobeUpcomingEvent(event: GlobeEvent): GlobeUpcomingEvent {
+  return {
+    id: event.id,
+    title: event.title,
+    sportName: event.sportName,
+    sportColor: event.sportColor,
+    location: event.location,
+    circuit: event.circuit,
+    startAt: new Date(event.startAt),
+    endAt: new Date(event.endAt),
+    watchUrl: event.watchUrl,
+    watchLabel: event.watchLabel,
+  };
+}
 
-export default function LandingGlobe() {
+function toMarkers(locations: EventLocation[]) {
+  return locations.map((loc) => ({
+    location: [loc.latitude, loc.longitude] as [number, number],
+    size: 0.04,
+  }));
+}
+
+export default function LandingGlobe({
+  upcomingEvents,
+  eventLocations,
+}: LandingGlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const phiRef = useRef(4.2);
   const widthRef = useRef(0);
@@ -85,7 +50,12 @@ export default function LandingGlobe() {
     triggerOnce: true,
   });
 
-  const nextTwo = getNextTwoEvents(UPCOMING_EVENTS);
+  const parsedEvents = useMemo(
+    () => upcomingEvents.map(toGlobeUpcomingEvent),
+    [upcomingEvents],
+  );
+  const markers = useMemo(() => toMarkers(eventLocations), [eventLocations]);
+  const nextTwo = getNextTwoEvents(parsedEvents);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -108,7 +78,7 @@ export default function LandingGlobe() {
       baseColor: [0.32, 0.32, 0.36],
       markerColor: [1, 0.18, 0.18],
       glowColor: [0.55, 0.12, 0.12],
-      markers: MARKERS,
+      markers,
     });
     let rafId: number;
     const animate = () => {
@@ -117,6 +87,7 @@ export default function LandingGlobe() {
         phi: phiRef.current,
         width: widthRef.current * 2,
         height: widthRef.current * 2,
+        markers,
       });
       rafId = requestAnimationFrame(animate);
     };
@@ -131,7 +102,7 @@ export default function LandingGlobe() {
       globe.destroy();
       window.removeEventListener("resize", sizeCanvas);
     };
-  }, []);
+  }, [markers]);
 
   return (
     <section id="globe" ref={sectionRef} className="py-24">

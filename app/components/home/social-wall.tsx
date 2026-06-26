@@ -1,157 +1,77 @@
 "use client";
+import { useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "~/lib/utils";
 import { Reveal } from "./reveal";
 import { SectionEyebrow } from "./section-eyebrow";
+import {
+  SOCIAL_WALL_SLOT_IDS,
+  type SocialWallSlot,
+  type SocialWallSlotId,
+} from "~/types/social-wall";
 
-type PlatType = "yt" | "reddit" | "ig";
+type LandingSocialWallProps = {
+  slots: SocialWallSlot[];
+};
 
-type TileVisual = "image" | "gradient" | "live";
-
-interface SocialTileData {
-  id: string;
-  plat: PlatType;
-  title: string;
-  sub: string;
-  hasPlay?: boolean;
-  visual: TileVisual;
-  imageSeed?: string;
-  area:
-    | "hero"
-    | "side-a"
-    | "side-b"
-    | "tile-a"
-    | "tile-b"
-    | "tile-c"
-    | "tile-d"
-    | "tall-a"
-    | "tall-b"
-    | "wide";
-  delay?: number;
-}
-
-const TILES: SocialTileData[] = [
-  {
-    id: "monaco",
-    plat: "yt",
-    title: "Full Monaco watch-along - community edition",
-    sub: "142K views · 2 days ago",
-    hasPlay: true,
-    visual: "image",
-    imageSeed: "monaco-pitlane-night",
-    area: "hero",
-  },
-  {
-    id: "strategy",
-    plat: "reddit",
-    title: "Strategy megathread",
-    sub: "r/CircuitNation · 4.2k",
-    visual: "gradient",
-    area: "side-a",
-    delay: 0.06,
-  },
-  {
-    id: "wings",
-    plat: "ig",
-    title: "Every front wing on the grid, side by side",
-    sub: "Carousel · 14.1k likes",
-    visual: "image",
-    imageSeed: "f1-front-wing-detail",
-    area: "side-b",
-    delay: 0.1,
-  },
-  {
-    id: "watch-party",
-    plat: "ig",
-    title: "Watch-party night - 40 cities, one race",
-    sub: "Member submitted",
-    visual: "gradient",
-    area: "tall-a",
-    delay: 0.08,
-  },
-  {
-    id: "ama",
-    plat: "reddit",
-    title: "Tile A",
-    sub: "Happening now",
-    visual: "live",
-    area: "tile-a",
-    delay: 0.08,
-  },
-  {
-    id: "golden-pa",
-    plat: "ig",
-    title: "Tile B",
-    sub: "9,803 likes",
-    visual: "image",
-    imageSeed: "paddock-sunset-gold",
-    area: "tile-b",
-    delay: 0.12,
-  },
-  {
-    id: "golden-hour",
-    plat: "ig",
-    title: "Tile C",
-    sub: "9,803 likes",
-    visual: "image",
-    imageSeed: "paddock-sunset-gold",
-    area: "tile-c",
-    delay: 0.12,
-  },
-  {
-    id: "ama",
-    plat: "reddit",
-    title: "Tile D",
-    sub: "Happening now",
-    visual: "live",
-    area: "tile-d",
-    delay: 0.08,
-  },
-  {
-    id: "overtake",
-    plat: "yt",
-    title: "That overtake, 12 angles",
-    sub: "880K plays",
-    hasPlay: true,
-    visual: "image",
-    imageSeed: "racing-overtake-angles",
-    area: "tall-b",
-    delay: 0.14,
-  },
-];
+type PlatType = SocialWallSlot["platform"];
 
 const platformLabel: Record<PlatType, string> = {
   yt: "YouTube",
   reddit: "Reddit",
   ig: "Instagram",
+  substack: "Substack",
 };
 
 const platformAccent: Record<PlatType, string> = {
   yt: "text-cn-accent",
   reddit: "text-cn-orange",
   ig: "text-[#f58529]",
+  substack: "text-cn-text",
 };
 
 const platformGradient: Record<PlatType, string> = {
   yt: "from-[rgba(255,45,45,0.22)] via-[rgba(20,20,23,0.92)] to-[#0d0d0f]",
   reddit: "from-[rgba(255,120,40,0.2)] via-[rgba(20,20,23,0.94)] to-[#0d0d0f]",
   ig: "from-[rgba(245,133,41,0.22)] via-[rgba(221,42,123,0.12)] to-[#0d0d0f]",
+  substack: "from-[rgba(255,255,255,0.08)] via-[rgba(20,20,23,0.94)] to-[#0d0d0f]",
 };
 
-const areaClass: Record<SocialTileData["area"], string> = {
-  hero: "md:col-span-3 md:row-span-2 min-h-[280px] md:min-h-0",
-  "side-a": "md:col-start-4 md:row-start-1",
-  "side-b": "md:col-start-4 md:row-start-2",
-  "tile-a": "md:col-start-2 md:row-start-3",
-  "tile-b": "md:col-start-3 md:row-start-3",
-  "tile-c": "md:col-start-2 md:row-start-4",
-  "tile-d": "md:col-start-3 md:row-start-4",
-  "tall-a":
-    "md:col-start-4 md:row-span-2 md:row-start-3 min-h-[220px] md:min-h-0",
-  "tall-b":
+const slotAreaClass: Record<SocialWallSlotId, string> = {
+  "row1-horizontal-yt":
+    "md:col-span-2 md:row-span-2 md:col-start-1 md:row-start-1 min-h-[220px] md:min-h-0",
+  "row1-post-top": "md:col-start-3 md:row-start-1",
+  "row1-post-bottom": "md:col-start-3 md:row-start-2",
+  "row1-vertical-ig":
+    "md:col-start-4 md:row-span-2 md:row-start-1 min-h-[220px] md:min-h-0",
+  "row2-vertical-yt":
     "md:col-start-1 md:row-span-2 md:row-start-3 min-h-[220px] md:min-h-0",
-  wide: "md:col-span-3 md:col-start-1 md:row-start-4",
+  "row2-post-top": "md:col-start-2 md:row-start-3",
+  "row2-post-bottom": "md:col-start-2 md:row-start-4",
+  "row2-horizontal-substack":
+    "md:col-span-2 md:col-start-3 md:row-span-2 md:row-start-3 min-h-[220px] md:min-h-0",
 };
+
+const slotDelay: Partial<Record<SocialWallSlotId, number>> = {
+  "row1-horizontal-yt": 0,
+  "row1-post-top": 0.06,
+  "row1-post-bottom": 0.08,
+  "row1-vertical-ig": 0.1,
+  "row2-vertical-yt": 0.08,
+  "row2-post-top": 0.1,
+  "row2-post-bottom": 0.12,
+  "row2-horizontal-substack": 0.14,
+};
+
+function isWideSlot(slotId: SocialWallSlotId) {
+  return (
+    slotId === "row1-horizontal-yt" || slotId === "row2-horizontal-substack"
+  );
+}
+
+function isTallSlot(slotId: SocialWallSlotId) {
+  return slotId === "row1-vertical-ig" || slotId === "row2-vertical-yt";
+}
 
 function PlayMini() {
   return (
@@ -169,96 +89,171 @@ function PlayMini() {
   );
 }
 
-function SocialTile({
-  plat,
-  title,
-  sub,
-  hasPlay,
-  visual,
-  imageSeed,
-  area,
+function PlaceholderTile({
+  slotId,
+  platform,
   delay = 0,
-}: SocialTileData) {
-  const isHero = area === "hero";
-  const imageUrl = imageSeed
-    ? `https://picsum.photos/seed/${imageSeed}/${isHero ? 1200 : 640}/${isHero ? 900 : 720}`
-    : null;
-
+}: {
+  slotId: SocialWallSlotId;
+  platform: PlatType;
+  delay?: number;
+}) {
   return (
     <Reveal
       delay={delay}
-      className={cn("h-full min-h-[168px]", areaClass[area])}
+      className={cn("h-full min-h-[168px]", slotAreaClass[slotId])}
     >
-      <article className="rounded-4xl overflow-hidden relative border border-cn-line h-full group transition-[transform,box-shadow,border-color] duration-300 ease-spring hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_24px_60px_-26px_rgba(255,45,45,0.35)]">
-        {visual === "image" && imageUrl ? (
-          <>
-            <img
-              src={imageUrl}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover scale-105 transition-transform duration-700 ease-spring group-hover:scale-110"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,9,0.15)_0%,rgba(8,8,9,0.55)_55%,rgba(8,8,9,0.94)_100%)]" />
-          </>
-        ) : visual === "live" ? (
-          <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,45,45,0.28),rgba(12,12,14,0.98))]" />
-        ) : (
-          <div
-            className={cn(
-              "absolute inset-0 bg-linear-to-br",
-              platformGradient[plat],
-            )}
-          />
+      <div
+        className={cn(
+          "rounded-4xl border border-dashed border-cn-line/80 h-full min-h-[168px] flex flex-col items-center justify-center gap-2 bg-white/[0.01]",
+          isTallSlot(slotId) && "md:min-h-0",
         )}
-
-        {visual !== "image" && (
-          <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent,transparent_11px,rgba(255,255,255,0.018)_11px,rgba(255,255,255,0.018)_22px)]" />
-        )}
-
-        {visual === "live" && (
-          <span className="absolute top-4 right-4 z-3 font-mono text-[10px] font-semibold tracking-[0.14em] uppercase px-2.5 py-1 rounded-full border border-cn-accent/40 bg-cn-accent/15 text-cn-accent">
-            Live
-          </span>
-        )}
-
-        {hasPlay && <PlayMini />}
-
+      >
         <span
           className={cn(
-            "absolute top-4 left-4 z-3 font-mono text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-xl bg-black/55 backdrop-blur-[6px] border border-white/8",
-            platformAccent[plat],
+            "font-mono text-[10px] font-semibold tracking-[0.12em] uppercase",
+            platformAccent[platform],
           )}
         >
-          {platformLabel[plat]}
+          {platformLabel[platform]}
         </span>
-
-        <div className="absolute left-0 right-0 bottom-0 z-3 p-4 md:p-5">
-          <h3
-            className={cn(
-              "font-display font-bold leading-[1.15] tracking-[-0.01em]",
-              isHero
-                ? "text-[clamp(18px,2.2vw,28px)]"
-                : area === "wide"
-                  ? "text-[clamp(16px,1.8vw,22px)]"
-                  : "text-[15px]",
-            )}
-          >
-            {title}
-          </h3>
-          <p className="font-mono text-xs text-cn-muted tracking-[0.06em] mt-1.5">
-            {sub}
-          </p>
-        </div>
-      </article>
+        <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-cn-muted-2">
+          Coming soon
+        </span>
+      </div>
     </Reveal>
   );
 }
 
-export default function LandingSocialWall() {
+function SocialSlotTile({
+  slot,
+  delay = 0,
+}: {
+  slot: SocialWallSlot;
+  delay?: number;
+}) {
+  const { slotId, platform, title, subtitle, url, thumbnailUrl, hasPlay } =
+    slot;
+  const wide = isWideSlot(slotId);
+  const hasImage = Boolean(thumbnailUrl);
+
+  const content = (
+    <article
+      className={cn(
+        "rounded-4xl overflow-hidden relative border border-cn-line h-full group transition-[transform,box-shadow,border-color] duration-300 ease-spring hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_24px_60px_-26px_rgba(255,45,45,0.35)]",
+        !hasImage && "min-h-[168px]",
+      )}
+    >
+      {hasImage ? (
+        <>
+          <img
+            src={thumbnailUrl}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover scale-105 transition-transform duration-700 ease-spring group-hover:scale-110"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,9,0.15)_0%,rgba(8,8,9,0.55)_55%,rgba(8,8,9,0.94)_100%)]" />
+        </>
+      ) : (
+        <>
+          <div
+            className={cn(
+              "absolute inset-0 bg-linear-to-br",
+              platformGradient[platform],
+            )}
+          />
+          <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent,transparent_11px,rgba(255,255,255,0.018)_11px,rgba(255,255,255,0.018)_22px)]" />
+        </>
+      )}
+
+      {hasPlay && <PlayMini />}
+
+      <span
+        className={cn(
+          "absolute top-4 left-4 z-3 font-mono text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-xl bg-black/55 backdrop-blur-[6px] border border-white/8",
+          platformAccent[platform],
+        )}
+      >
+        {platformLabel[platform]}
+      </span>
+
+      <div className="absolute left-0 right-0 bottom-0 z-3 p-4 md:p-5">
+        <h3
+          className={cn(
+            "font-display font-bold leading-[1.15] tracking-[-0.01em]",
+            wide
+              ? "text-[clamp(18px,2.2vw,28px)]"
+              : isTallSlot(slotId)
+                ? "text-[clamp(16px,1.8vw,22px)]"
+                : "text-[15px]",
+          )}
+        >
+          {title}
+        </h3>
+        {subtitle ? (
+          <p className="font-mono text-xs text-cn-muted tracking-[0.06em] mt-1.5">
+            {subtitle}
+          </p>
+        ) : null}
+      </div>
+    </article>
+  );
+
+  return (
+    <Reveal
+      delay={delay}
+      className={cn("h-full min-h-[168px]", slotAreaClass[slotId])}
+    >
+      {url ? (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block h-full"
+        >
+          {content}
+        </a>
+      ) : (
+        content
+      )}
+    </Reveal>
+  );
+}
+
+function orderSlots(slots: SocialWallSlot[]): SocialWallSlot[] {
+  const byId = new Map(slots.map((slot) => [slot.slotId, slot]));
+  return SOCIAL_WALL_SLOT_IDS.map(
+    (slotId) =>
+      byId.get(slotId) ?? {
+        _id: slotId,
+        slotId,
+        platform: defaultPlatformForSlot(slotId),
+        title: "",
+        subtitle: "",
+        url: "",
+        thumbnailUrl: "",
+        hasPlay: false,
+        isActive: false,
+        createdAt: "",
+        updatedAt: "",
+      },
+  );
+}
+
+function defaultPlatformForSlot(slotId: SocialWallSlotId): PlatType {
+  if (slotId.includes("yt")) return "yt";
+  if (slotId.includes("ig")) return "ig";
+  if (slotId.includes("substack")) return "substack";
+  return "reddit";
+}
+
+export default function LandingSocialWall({ slots }: LandingSocialWallProps) {
   const { ref: headRef, inView: headIn } = useInView({
     threshold: 0.2,
     triggerOnce: true,
   });
+
+  const orderedSlots = useMemo(() => orderSlots(slots), [slots]);
 
   return (
     <section className="py-12">
@@ -289,9 +284,24 @@ export default function LandingSocialWall() {
             "md:grid-cols-4 md:grid-rows-[repeat(4,minmax(148px,1fr))]",
           )}
         >
-          {TILES.map((tile) => (
-            <SocialTile key={tile.id} {...tile} />
-          ))}
+          {orderedSlots.map((slot) => {
+            const delay = slotDelay[slot.slotId] ?? 0;
+
+            if (!slot.isActive) {
+              return (
+                <PlaceholderTile
+                  key={slot.slotId}
+                  slotId={slot.slotId}
+                  platform={slot.platform}
+                  delay={delay}
+                />
+              );
+            }
+
+            return (
+              <SocialSlotTile key={slot.slotId} slot={slot} delay={delay} />
+            );
+          })}
         </div>
       </div>
     </section>

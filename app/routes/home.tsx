@@ -1,20 +1,18 @@
 import type { Route } from "./+types/home";
-import { getSubstackArticles } from "~/lib/substack.server";
-import type { SubstackArticle } from "~/types/articles";
+import { getArticles } from "~/lib/articles.server";
+import { getUpcomingEvents, getEventLocations } from "~/lib/events.server";
+import { getSocialWallSlots } from "~/lib/social-wall.server";
+import { getYoutubeVideos } from "~/lib/youtube.server";
 import LandingNav from "~/components/home/nav";
 import LandingHero from "~/components/home/hero";
 import LandingGlobe from "~/components/home/globe";
 import LandingWhat from "~/components/home/what";
-import LandingProof from "~/components/home/proof";
-import LandingAMAs from "~/components/home/amas";
-import LandingCollab from "~/components/home/collab";
 import LandingPosts from "~/components/home/posts";
 import LandingVideos from "~/components/home/videos";
 import LandingTestimonials from "~/components/home/testimonials";
 import LandingSocialWall from "~/components/home/social-wall";
 import LandingJoin from "~/components/home/join";
 import LandingFooter from "~/components/home/footer";
-import LandingLoader from "~/components/home/loader";
 import { RaceMarquee } from "~/components/home/race-marquee";
 
 export function meta({}: Route.MetaArgs) {
@@ -29,8 +27,15 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader({}: Route.LoaderArgs) {
-  const articles = await getSubstackArticles(5);
-  return { articles } as { articles: SubstackArticle[] };
+  const [articles, videos, upcomingEvents, eventLocations, socialWall] =
+    await Promise.all([
+      getArticles(5),
+      getYoutubeVideos(5),
+      getUpcomingEvents(3),
+      getEventLocations(),
+      getSocialWallSlots(),
+    ]);
+  return { articles, videos, upcomingEvents, eventLocations, socialWall };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
@@ -72,19 +77,18 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         }}
       />
 
-      {/*<LandingLoader />*/}
       <LandingNav />
       <RaceMarquee />
       <LandingHero />
-      <LandingGlobe />
+      <LandingGlobe
+        upcomingEvents={loaderData.upcomingEvents}
+        eventLocations={loaderData.eventLocations}
+      />
       <LandingWhat />
-      {/*<LandingProof />*/}
-      {/*<LandingAMAs />*/}
-      {/*<LandingCollab />*/}
       <LandingPosts articles={loaderData.articles} />
-      <LandingVideos />
+      <LandingVideos videos={loaderData.videos} />
       <LandingTestimonials />
-      <LandingSocialWall />
+      <LandingSocialWall slots={loaderData.socialWall} />
       <LandingJoin />
       <LandingFooter />
 
