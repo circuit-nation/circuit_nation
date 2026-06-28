@@ -31,13 +31,13 @@ const STATS = [
     link: "https://www.instagram.com/circuit_nation_",
   },
   {
-    target: 1200,
+    target: 1500,
     compact: true,
     suffix: "+",
     label: "Subscribers",
     delay: 0.88,
     tag: "Youtube",
-    link: "https://www.youtube.com/@circuitnation",
+    link: "https://www.youtube.com/@circuit_nation",
   },
   {
     target: 50,

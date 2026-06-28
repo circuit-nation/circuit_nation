@@ -126,7 +126,7 @@ export default function LandingGlobe({
                   key={event.id}
                   event={event}
                   variant={i === 0 ? "featured" : "secondary"}
-                  showCountdown={i === 0 && !isEventLive(event)}
+                  showCountdown={true}
                   delay={i * 0.08}
                 />
               ))}

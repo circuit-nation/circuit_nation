@@ -6,7 +6,7 @@ import { getYoutubeVideos } from "~/lib/youtube.server";
 import LandingNav from "~/components/home/nav";
 import LandingHero from "~/components/home/hero";
 import LandingGlobe from "~/components/home/globe";
-import LandingWhat from "~/components/home/what";
+import LandingWhat from "~/components/home/about";
 import LandingPosts from "~/components/home/posts";
 import LandingVideos from "~/components/home/videos";
 import LandingTestimonials from "~/components/home/testimonials";
@@ -31,7 +31,7 @@ export async function loader({}: Route.LoaderArgs) {
     await Promise.all([
       getArticles(5),
       getYoutubeVideos(5),
-      getUpcomingEvents(3),
+      getUpcomingEvents(10),
       getEventLocations(),
       getSocialWallSlots(),
     ]);
@@ -78,7 +78,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       />
 
       <LandingNav />
-      <RaceMarquee />
+      <RaceMarquee upcomingEvents={loaderData.upcomingEvents} />
       <LandingHero />
       <LandingGlobe
         upcomingEvents={loaderData.upcomingEvents}

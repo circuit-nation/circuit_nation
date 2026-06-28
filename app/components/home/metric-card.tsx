@@ -4,58 +4,58 @@ import { cn } from "~/lib/utils";
 import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
 
-// Smooth upward-trending area chart rendered as a raw SVG overlay.
-// Data is intentionally organic — not a perfect line — so it reads as
-// real growth rather than a decorative shape.
+// Organic growth curve — irregular spacing, uneven pullbacks, smooth interpolation.
 const GRAPH_POINTS = [
-  [0, 88],
-  [6, 85],
-  [13, 80],
-  [20, 76],
-  [28, 72],
-  [35, 65],
-  [42, 60],
-  [50, 52],
-  [57, 47],
-  [64, 40],
-  [71, 33],
-  [79, 25],
-  [86, 18],
-  [93, 10],
-  [100, 4],
+  [0, 90],
+  [6, 87],
+  [14, 86],
+  [23, 81],
+  [31, 78],
+  [39, 80],
+  [48, 72],
+  [57, 66],
+  [65, 63],
+  [73, 55],
+  [80, 52],
+  [87, 38],
+  [94, 27],
+  [100, 16],
 ];
 
-function buildPath(pts: number[][], w: number, h: number) {
-  // Map normalised [0-100, 0-100] coords onto actual pixel dims
-  const px = (x: number) => (x / 100) * w;
-  const py = (y: number) => (y / 100) * h;
+function toPixels(pts: number[][], w: number, h: number) {
+  return pts.map(([x, y]) => [(x / 100) * w, (y / 100) * h] as const);
+}
 
-  // Smooth cubic bezier through each point
-  let d = `M ${px(pts[0][0])},${py(pts[0][1])}`;
-  for (let i = 1; i < pts.length; i++) {
-    const [x0, y0] = pts[i - 1];
-    const [x1, y1] = pts[i];
-    const cpx = px((x0 + x1) / 2);
-    d += ` C ${cpx},${py(y0)} ${cpx},${py(y1)} ${px(x1)},${py(y1)}`;
+function buildSmoothPath(pts: number[][], w: number, h: number) {
+  const points = toPixels(pts, w, h);
+  if (points.length < 2) return "";
+
+  let d = `M ${points[0][0]},${points[0][1]}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[Math.max(0, i - 1)];
+    const p1 = points[i];
+    const p2 = points[i + 1];
+    const p3 = points[Math.min(points.length - 1, i + 2)];
+
+    const cp1x = p1[0] + (p2[0] - p0[0]) / 6;
+    const cp1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const cp2x = p2[0] - (p3[0] - p1[0]) / 6;
+    const cp2y = p2[1] - (p3[1] - p1[1]) / 6;
+
+    d += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2[0]},${p2[1]}`;
   }
-
-  // Close back along the bottom to form the filled area
-  const last = pts[pts.length - 1];
-  d += ` L ${px(last[0])},${h} L ${px(pts[0][0])},${h} Z`;
   return d;
 }
 
+function buildPath(pts: number[][], w: number, h: number) {
+  const line = buildSmoothPath(pts, w, h);
+  const start = toPixels(pts, w, h)[0];
+  const end = toPixels(pts, w, h)[pts.length - 1];
+  return `${line} L ${end[0]},${h} L ${start[0]},${h} Z`;
+}
+
 function buildLinePath(pts: number[][], w: number, h: number) {
-  const px = (x: number) => (x / 100) * w;
-  const py = (y: number) => (y / 100) * h;
-  let d = `M ${px(pts[0][0])},${py(pts[0][1])}`;
-  for (let i = 1; i < pts.length; i++) {
-    const [x0, y0] = pts[i - 1];
-    const [x1, y1] = pts[i];
-    const cpx = px((x0 + x1) / 2);
-    d += ` C ${cpx},${py(y0)} ${cpx},${py(y1)} ${px(x1)},${py(y1)}`;
-  }
-  return d;
+  return buildSmoothPath(pts, w, h);
 }
 
 function FeaturedGraphOverlay({ inView }: { inView: boolean }) {
@@ -96,13 +96,14 @@ function FeaturedGraphOverlay({ inView }: { inView: boolean }) {
       <defs>
         {/* Area fill: red at top, transparent at bottom */}
         <linearGradient id="graph-area-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(255,45,45,0.13)" />
+          <stop offset="0%" stopColor="rgba(255,45,45,0.11)" />
+          <stop offset="55%" stopColor="rgba(255,45,45,0.05)" />
           <stop offset="100%" stopColor="rgba(255,45,45,0)" />
         </linearGradient>
-        {/* Line stroke: slightly brighter than the fill */}
         <linearGradient id="graph-line-stroke" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="rgba(255,45,45,0.15)" />
-          <stop offset="100%" stopColor="rgba(255,45,45,0.55)" />
+          <stop offset="0%" stopColor="rgba(255,45,45,0.12)" />
+          <stop offset="45%" stopColor="rgba(255,45,45,0.28)" />
+          <stop offset="100%" stopColor="rgba(255,45,45,0.5)" />
         </linearGradient>
       </defs>
 

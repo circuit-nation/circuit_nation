@@ -41,7 +41,10 @@ export function isEventLive(event: GlobeUpcomingEvent, now = new Date()) {
   return now >= event.startAt && now <= event.endAt;
 }
 
-export function getNextTwoEvents(events: GlobeUpcomingEvent[], now = new Date()) {
+export function getNextTwoEvents(
+  events: GlobeUpcomingEvent[],
+  now = new Date(),
+) {
   return [...events]
     .filter((event) => event.endAt >= now)
     .sort((a, b) => a.startAt.getTime() - b.startAt.getTime())
@@ -180,18 +183,12 @@ export default function GlobeEventCard({
         {event.sportName}
       </span>
 
-      <h3 className="font-display font-extrabold text-[clamp(22px,2.5vw,28px)] leading-tight mt-2 uppercase tracking-[-0.02em]">
+      <h3 className="font-display font-extrabold text-xl md:text-3xl line-clamp-2 leading-tight mt-2 uppercase tracking-[-0.02em]">
         {event.title}
       </h3>
 
       <p className="text-sm text-cn-muted mt-2 leading-snug">
-        {event.location}
-        {event.circuit ? (
-          <>
-            <br />
-            <span className="text-cn-muted-2">{event.circuit}</span>
-          </>
-        ) : null}
+        <span className="line-clamp-1">{event.location}</span>
       </p>
 
       <div className="mt-4">

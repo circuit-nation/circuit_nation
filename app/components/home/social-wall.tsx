@@ -34,7 +34,8 @@ const platformGradient: Record<PlatType, string> = {
   yt: "from-[rgba(255,45,45,0.22)] via-[rgba(20,20,23,0.92)] to-[#0d0d0f]",
   reddit: "from-[rgba(255,120,40,0.2)] via-[rgba(20,20,23,0.94)] to-[#0d0d0f]",
   ig: "from-[rgba(245,133,41,0.22)] via-[rgba(221,42,123,0.12)] to-[#0d0d0f]",
-  substack: "from-[rgba(255,255,255,0.08)] via-[rgba(20,20,23,0.94)] to-[#0d0d0f]",
+  substack:
+    "from-[rgba(255,255,255,0.08)] via-[rgba(20,20,23,0.94)] to-[#0d0d0f]",
 };
 
 const slotAreaClass: Record<SocialWallSlotId, string> = {
@@ -101,11 +102,11 @@ function PlaceholderTile({
   return (
     <Reveal
       delay={delay}
-      className={cn("h-full min-h-[168px]", slotAreaClass[slotId])}
+      className={cn("h-full min-h-42", slotAreaClass[slotId])}
     >
       <div
         className={cn(
-          "rounded-4xl border border-dashed border-cn-line/80 h-full min-h-[168px] flex flex-col items-center justify-center gap-2 bg-white/[0.01]",
+          "rounded-4xl border border-dashed border-cn-line/80 h-full min-h-42 flex flex-col items-center justify-center gap-2",
           isTallSlot(slotId) && "md:min-h-0",
         )}
       >
@@ -141,7 +142,7 @@ function SocialSlotTile({
     <article
       className={cn(
         "rounded-4xl overflow-hidden relative border border-cn-line h-full group transition-[transform,box-shadow,border-color] duration-300 ease-spring hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_24px_60px_-26px_rgba(255,45,45,0.35)]",
-        !hasImage && "min-h-[168px]",
+        !hasImage && "min-h-42",
       )}
     >
       {hasImage ? (
@@ -202,7 +203,7 @@ function SocialSlotTile({
   return (
     <Reveal
       delay={delay}
-      className={cn("h-full min-h-[168px]", slotAreaClass[slotId])}
+      className={cn("h-full min-h-42", slotAreaClass[slotId])}
     >
       {url ? (
         <a

@@ -78,11 +78,11 @@ function QuoteCard({
       )}
       style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
     >
-      <div className="font-display font-extrabold text-2xl leading-[0.6] text-cn-accent h-6">
-        "
+      <div className="text-4xl font-extrabold leading-[0.6] text-cn-accent h-6">
+        &ldquo;&rdquo;
       </div>
       <p className="text-sm text-cn-text leading-[1.55]">{body}</p>
-      <div className="flex items-center gap-3 mt-auto">
+      <div className="flex items-center gap-3">
         <div
           className={cn(
             "w-10 h-10 rounded-full shrink-0 border border-cn-line-strong grid place-items-center font-mono text-sm font-bold",
@@ -95,7 +95,7 @@ function QuoteCard({
         </div>
         <div>
           <b className="font-body font-semibold text-sm block">{name}</b>
-          <span className="font-mono text-xs text-cn-muted-2">{role}</span>
+          {/*<span className="font-mono text-xs text-cn-muted-2">{role}</span>*/}
         </div>
       </div>
     </div>
