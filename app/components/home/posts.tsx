@@ -34,7 +34,7 @@ function FeaturedPost({ article }: { article: Article }) {
   return (
     <Reveal>
       <article
-        className={cn(cnCardClass, "!p-0 flex flex-col overflow-hidden group")}
+        className={cn(cnCardClass, "p-0! flex flex-col overflow-hidden group")}
       >
         <a
           href={href}
@@ -42,7 +42,7 @@ function FeaturedPost({ article }: { article: Article }) {
           rel="noopener noreferrer"
           className="flex h-full flex-col"
         >
-          <div className="relative h-[360px] shrink-0 overflow-hidden border-b border-cn-line bg-[#141417]">
+          <div className="relative h-90 shrink-0 overflow-hidden border-b border-cn-line bg-[#141417]">
             <img
               src={article.thumbnail}
               alt={article.title}
@@ -52,14 +52,14 @@ function FeaturedPost({ article }: { article: Article }) {
             />
           </div>
           <div className="p-8">
-            <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent inline-flex items-center gap-[9px]">
-              <span className="w-[6px] h-[6px] rounded-full bg-cn-accent inline-block" />
+            <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent inline-flex items-center gap-2">
+              <span className="size-2 rounded-full bg-cn-accent inline-block" />
               Substack
             </span>
             <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.06] mt-3 text-[clamp(26px,3vw,40px)]">
               {article.title}
             </h3>
-            <p className="text-cn-muted mt-4 max-w-[540px] text-sm line-clamp-3">
+            <p className="text-cn-muted mt-4 max-w-xl text-sm line-clamp-3">
               {article.excerpt}
             </p>
             <div className="font-mono text-xs text-cn-muted-2 tracking-[0.06em] mt-3 flex flex-wrap gap-2">
@@ -89,7 +89,7 @@ function CompactPost({
       <article
         className={cn(
           cnCardClass,
-          "!p-[22px_24px] flex gap-5 items-center group",
+          "p-[22px_24px]! flex gap-5 items-center group",
         )}
       >
         <a
@@ -98,7 +98,7 @@ function CompactPost({
           rel="noopener noreferrer"
           className="flex w-full items-center gap-5"
         >
-          <div className="w-24 h-24 rounded-[12px] shrink-0 overflow-hidden border border-cn-line">
+          <div className="w-24 h-24 rounded-2xl shrink-0 overflow-hidden border border-cn-line">
             <img
               src={article.thumbnail}
               alt=""
@@ -136,7 +136,7 @@ export default function LandingPosts({ articles }: LandingPostsProps) {
   const [featured, ...compact] = sanitized.slice(0, 5);
 
   return (
-    <section id="content" className="pt-[30px] pb-[120px]">
+    <section id="content" className="py-24">
       <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={headRef}
@@ -152,11 +152,11 @@ export default function LandingPosts({ articles }: LandingPostsProps) {
         </div>
 
         {featured ? (
-          <div className="grid [grid-template-columns:1.4fr_1fr] max-nav:grid-cols-1 gap-[18px] mt-16">
+          <div className="grid grid-cols-[1.4fr_1fr] max-nav:grid-cols-1 gap-4 mt-16">
             <FeaturedPost article={featured} />
 
             {compact.length ? (
-              <div className="grid gap-[18px]">
+              <div className="grid gap-4">
                 {compact.map((article, index) => (
                   <CompactPost
                     key={article._id}
