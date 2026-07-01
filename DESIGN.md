@@ -231,7 +231,5 @@ A repeated signature pattern: an inline flex row with a 26×1px red line (with a
 - **Don't** use corporate F1/MotoGP site patterns: team-color gradient fills, trophy imagery as decoration, or any "official" visual weight. This is fan-built, not sponsored.
 - **Don't** use `border-left` greater than 1px as a colored accent stripe on cards or list items. If a vertical accent is needed, use a full border + background tint instead.
 - **Don't** use `background-clip: text` gradient text. The headline colors are: white, accent-red, or outline (WebkitTextStroke). Never a gradient.
-- **Don't** apply glassmorphism (blurred semi-transparent cards) to content containers. The nav scroll state is the only legitimate blur in this system. Cards are tonal, not glass.
-- **Don't** use Ghost Text (`#6b6b73`) for anything a user needs to read. It fails contrast on the Void background. Labels and timestamps only.
-- **Don't** add a fourth typeface. The system uses DM Sans (display), Space Grotesk (body/labels), and Mea Culpa (accent/personality). A fourth font reads as indecision.
+- **Don't** add a fourth typeface. The system uses DM Sans (display), Space Grotesk (body/labels), and Explora (accent/personality). A fourth font reads as indecision.
 - **Don't** use the eyebrow pattern on every section as a reflex. It appears in the hero, What, Proof, and Join sections because those sections need a name before the headline lands. Sections that open with a strong enough headline do not need an eyebrow.
