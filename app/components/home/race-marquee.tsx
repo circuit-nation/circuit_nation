@@ -39,7 +39,7 @@ export function RaceMarquee({ upcomingEvents }: RaceMarqueeProps) {
             key={`${item.id}-${i}`}
             className="flex items-center gap-4 px-8 py-4 font-mono text-xs tracking-[0.1em] uppercase text-cn-muted whitespace-nowrap"
           >
-            <span className="size-2 rounded-full bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)] shrink-0" />
+            <span className="size-2 rounded-full bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
             <span className="text-cn-muted-2 text-xs">{item.series}</span>
             <b className="text-cn-text font-medium">{item.name}</b>
             <span>{item.date}</span>

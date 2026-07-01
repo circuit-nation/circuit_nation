@@ -125,7 +125,7 @@ function CountdownRow({
       {units.map((unit) => (
         <div
           key={unit.label}
-          className="flex flex-col items-center rounded-lg border border-cn-line bg-white/[0.02] px-2 py-2.5"
+          className="flex flex-col items-center rounded-lg border border-cn-line bg-white/2 px-2 py-2.5"
         >
           <span className="font-display font-extrabold text-[clamp(22px,2.5vw,28px)] leading-none text-cn-accent tabular-nums">
             {unit.value}
@@ -175,7 +175,7 @@ export default function GlobeEventCard({
       style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
     >
       <span
-        className="absolute left-0 top-0 h-1 w-full shadow-[0_0_10px_(--cn-accent-glow)]"
+        className="absolute left-0 top-0 h-1 w-full shadow-[0_0_10px_var(--cn-accent-glow)]"
         style={{ backgroundColor: event.sportColor }}
       />
 

@@ -13,7 +13,7 @@ export function SectionEyebrow({ label, className }: SectionEyebrowProps) {
         className,
       )}
     >
-      <span className="w-8 h-px bg-cn-accent shadow-[0_0_8px_(--cn-accent-glow)] shrink-0" />
+      <span className="w-8 h-px bg-cn-accent shadow-[0_0_8px_var(--cn-accent-glow)] shrink-0" />
       {label}
     </span>
   );
