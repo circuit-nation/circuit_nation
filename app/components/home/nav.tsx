@@ -45,6 +45,7 @@ export default function LandingNav() {
       animate={{ y: isHidden ? "-100%" : 0 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       aria-hidden={isHidden}
+      inert={isHidden}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 border-b transition-[background,border-color,backdrop-filter] duration-350 ease-out",
         isHidden && "pointer-events-none",
