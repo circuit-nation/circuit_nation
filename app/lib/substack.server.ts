@@ -1,4 +1,3 @@
-/** @deprecated Use `getArticles` from `~/lib/articles.server` instead (Task 10). */
 import type { SubstackArticle, SubstackPostsResponse } from "~/types/articles";
 
 const SUBSTACK_API_BASE = "https://api.substackapi.dev";
@@ -8,6 +7,7 @@ function getSubstackApiKey(): string | undefined {
   return process.env.VITE_SUBSTACK_API_KEY;
 }
 
+/** @deprecated Use `getArticles` from `~/lib/articles.server` instead (Task 10). */
 export async function getSubstackArticles(
   limit = 5,
 ): Promise<SubstackArticle[]> {
