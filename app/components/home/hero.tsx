@@ -56,6 +56,8 @@ export default function LandingHero() {
   useEffect(() => {
     const container = streaksRef.current;
     if (!container) return;
+
+    const streaks: HTMLDivElement[] = [];
     for (let i = 0; i < 7; i++) {
       const s = document.createElement("div");
       s.style.cssText = `
@@ -69,7 +71,12 @@ export default function LandingHero() {
         will-change:transform,opacity;
       `;
       container.appendChild(s);
+      streaks.push(s);
     }
+
+    return () => {
+      streaks.forEach((streak) => streak.remove());
+    };
   }, []);
 
   return (
