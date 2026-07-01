@@ -137,7 +137,7 @@ A near-black foundation with a single live-wire accent. Every other color is a s
 
 **Display Font:** DM Sans (system-ui fallback)
 **Body Font:** Space Grotesk (system-ui fallback)
-**Handwriting Accent:** Explora (cursive; used for personality moments only, never body copy)
+**Handwriting Accent:** Mea Culpa (cursive; used for personality moments only, never body copy)
 
 **Character:** DM Sans at 800 weight with tight negative letter-spacing reads like structural steel — heavy, industrial, uncompromising. Space Grotesk in body context bridges technical and human; in mono/label contexts it doubles as the telemetry readout. Together they split the personality cleanly: DM Sans is the race poster, Space Grotesk is the timing screen.
 
