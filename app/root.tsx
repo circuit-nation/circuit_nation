@@ -28,7 +28,7 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const clarityId = import.meta.env.VITE_CLARITY_ID
+  const clarityId = import.meta.env.VITE_CLARITY_ID;
 
   return (
     <html lang="en">
@@ -39,7 +39,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {clarityId && (
           <script
             dangerouslySetInnerHTML={{
-              __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","${clarityId}");`,
+              __html: `(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "${clarityId}");`,
             }}
           />
         )}
@@ -58,20 +62,20 @@ export default function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    const consent = localStorage.getItem('cookie_consent')
-    const ga4Id = import.meta.env.VITE_GA4_ID
-    if (consent === 'accepted' && ga4Id) {
-      initGA4(ga4Id)
+    if (typeof window === "undefined") return;
+    const consent = localStorage.getItem("cookie_consent");
+    const ga4Id = import.meta.env.VITE_GA4_ID;
+    if (consent === "accepted" && ga4Id) {
+      initGA4(ga4Id);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    if (localStorage.getItem('cookie_consent') === 'accepted') {
-      trackEvent('page_view', { page_path: location.pathname })
+    if (typeof window === "undefined") return;
+    if (localStorage.getItem("cookie_consent") === "accepted") {
+      trackEvent("page_view", { page_path: location.pathname });
     }
-  }, [location.pathname])
+  }, [location.pathname]);
 
   return (
     <>
