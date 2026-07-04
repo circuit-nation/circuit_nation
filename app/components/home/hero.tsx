@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import { trackEvent } from "~/lib/analytics";
 import MetricCard from "./metric-card";
 
 const STATS = [
@@ -52,6 +54,11 @@ const STATS = [
 
 export default function LandingHero() {
   const streaksRef = useRef<HTMLDivElement>(null);
+  const { ref: sectionRef, inView: sectionInView } = useInView({ threshold: 0.5, triggerOnce: true });
+
+  useEffect(() => {
+    if (sectionInView) trackEvent('section_view', { section: 'hero' });
+  }, [sectionInView]);
 
   useEffect(() => {
     const container = streaksRef.current;
@@ -82,6 +89,7 @@ export default function LandingHero() {
   return (
     <>
       <section
+        ref={sectionRef}
         className=" flex flex-col justify-center py-12 overflow-hidden relative"
         id="top"
       >

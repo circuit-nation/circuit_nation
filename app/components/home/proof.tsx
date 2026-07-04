@@ -1,5 +1,7 @@
 "use client";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { trackEvent } from "~/lib/analytics";
 import { cn } from "~/lib/utils";
 import { SectionEyebrow } from "./section-eyebrow";
 import MetricCard from "./metric-card";
@@ -48,9 +50,14 @@ export default function LandingProof() {
     threshold: 0.2,
     triggerOnce: true,
   });
+  const { ref: sectionRef, inView: sectionInView } = useInView({ threshold: 0.5, triggerOnce: true });
+
+  useEffect(() => {
+    if (sectionInView) trackEvent('section_view', { section: 'features' });
+  }, [sectionInView]);
 
   return (
-    <section className="py-24">
+    <section ref={sectionRef} className="py-24">
       <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={headRef}

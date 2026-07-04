@@ -1,12 +1,14 @@
 "use client";
+import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { trackEvent } from "~/lib/analytics";
 import { cn } from "~/lib/utils";
 import { SectionEyebrow } from "./section-eyebrow";
 
 const QUOTES = [
   {
-    body: "I've watched F1 for 20 years and never had people to scream at the TV with. Now I've got a thousand of them. This place ruined watching races alone forever.",
-    name: "Diego L.",
+    body: "I've watched F1 for last 3 years and never had people to scream at the TV with. Now I've got a lot of them. This place ruined watching races alone forever.",
+    name: "Animesh S.",
     role: "Member since 2023",
     delay: 0,
     highlight: true,
@@ -107,9 +109,14 @@ export default function LandingTestimonials() {
     threshold: 0.2,
     triggerOnce: true,
   });
+  const { ref: sectionRef, inView: sectionInView } = useInView({ threshold: 0.5, triggerOnce: true });
+
+  useEffect(() => {
+    if (sectionInView) trackEvent('section_view', { section: 'testimonials' });
+  }, [sectionInView]);
 
   return (
-    <section className="pt-[30px] pb-[130px]">
+    <section ref={sectionRef} className="pt-[30px] pb-[130px]">
       <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
         <div
           ref={headRef}
