@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -8,6 +9,7 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+import { initGA4 } from "~/lib/analytics";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -24,6 +26,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const clarityId = import.meta.env.VITE_CLARITY_ID
+
   return (
     <html lang="en">
       <head>
@@ -31,6 +35,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {clarityId && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","${clarityId}");`,
+            }}
+          />
+        )}
       </head>
       <body>
         {children}
@@ -42,6 +53,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useEffect(() => {
+    const consent = localStorage.getItem('cookie_consent')
+    const ga4Id = import.meta.env.VITE_GA4_ID
+    if (consent === 'accepted' && ga4Id) {
+      initGA4(ga4Id)
+    }
+  }, [])
+
   return <Outlet />;
 }
 
