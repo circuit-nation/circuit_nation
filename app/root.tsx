@@ -55,7 +55,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -67,6 +67,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
     if (localStorage.getItem('cookie_consent') === 'accepted') {
       trackEvent('page_view', { page_path: location.pathname })
     }
