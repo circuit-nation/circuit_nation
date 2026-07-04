@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import { SectionEyebrow } from "./section-eyebrow";
+import { trackEvent } from "~/lib/analytics";
 
 const PLATFORMS = [
   {
@@ -74,6 +75,7 @@ export default function LandingJoin() {
                   size="cn"
                   asChild
                   className="mt-2"
+                  onClick={() => trackEvent('join_cta_click', { platform: p.name.toLowerCase() })}
                 >
                   <a href={p.href}>{p.cta}</a>
                 </Button>
