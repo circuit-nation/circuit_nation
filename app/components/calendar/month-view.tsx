@@ -110,7 +110,7 @@ export const MonthView = ({ currentDate, events, spanMultiDay = false }: MonthVi
 
     return (
         <div className="animate-fade-in space-y-3">
-            <div className="grid grid-cols-7 bg-muted/10 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+            <div className="grid grid-cols-7 bg-muted/10 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                 {WEEKDAYS.map((day) => (
                     <div key={day} className="px-3 py-2 text-center">
                         {day}

@@ -34,6 +34,14 @@ pnpm dev
 
 Your application will be available at `http://localhost:5173`.
 
+### Environment variables
+
+Set `VITE_SUBSTACK_API_KEY` in your local environment and deployment platform (e.g. Netlify) to power the home and `/articles` Substack sections.
+
+Set `VITE_CN_API_URL` to your Circuit Nation backend base URL (e.g. `http://localhost:3001`) to power the home page YouTube videos section via `GET /youtube/videos`.
+
+Set `VITE_CN_API_TOKEN` to the bearer token used by server-side admin API fetchers (`adminFetch`, articles, events, social wall, YouTube).
+
 ## Building for Production
 
 Create a production build:

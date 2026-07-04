@@ -6,9 +6,6 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-import { ConvexProvider, ConvexReactClient } from "convex/react";
-
-const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -22,7 +19,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800;9..40,1000&family=Space+Grotesk:wght@400;500;600;700&display=swap",
   },
 ];
 
@@ -36,9 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ConvexProvider client={convex}>
-          {children}
-        </ConvexProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -16,3 +16,7 @@
 convex/_generated
 
 data-export/
+
+.claude/
+.cursor/
+.impeccable/

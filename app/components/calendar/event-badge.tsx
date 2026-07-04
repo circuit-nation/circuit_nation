@@ -78,18 +78,18 @@ export const EventBadge = ({
                         "transition-colors duration-150 hover:bg-muted/30",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50",
                         isWeek ? "h-full items-start px-2.5 py-1.5" : "py-1",
-                        compact ? "text-[11px]" : "text-xs",
+                        compact ? "text-xs" : "text-xs",
                         className,
                     )}
                 >
                     {isWeek ? (
                         <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                            <span className="truncate text-[11px] font-semibold leading-snug text-foreground">
+                            <span className="truncate text-xs font-semibold leading-snug text-foreground">
                                 {event.title}
                             </span>
                             {/* Only show type label if the event is tall enough to have vertical space */}
                             {!isShort && (
-                                <span className="truncate text-[10px] uppercase tracking-wide text-muted-foreground">
+                                <span className="truncate text-xs uppercase tracking-wide text-muted-foreground">
                                     {eventTypeLabel}
                                 </span>
                             )}
@@ -100,12 +100,12 @@ export const EventBadge = ({
                                 <span className="truncate font-semibold leading-snug text-foreground">
                                     {event.title}
                                 </span>
-                                <span className="truncate text-[10px] uppercase tracking-wide text-muted-foreground">
+                                <span className="truncate text-xs uppercase tracking-wide text-muted-foreground">
                                     {eventTypeLabel}
                                 </span>
                             </span>
                             {timeLabel && (
-                                <span className="ml-1 shrink-0 rounded-full border border-muted/40 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                                <span className="ml-1 shrink-0 rounded-full border border-muted/40 px-2 py-0.5 text-xs font-medium text-muted-foreground">
                                     {timeLabel}
                                 </span>
                             )}
@@ -124,12 +124,12 @@ export const EventBadge = ({
                 <div className="space-y-3 px-4 py-4">
                     <div className="flex items-center gap-2">
                         <span
-                            className="shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                            className="shrink-0 rounded-full border px-2 py-0.5 text-xs font-semibold uppercase tracking-wide"
                             style={{ borderColor: accent, color: accent }}
                         >
                             {eventTypeLabel}
                         </span>
-                        <span className="truncate text-[10px] uppercase tracking-wide text-muted-foreground">
+                        <span className="truncate text-xs uppercase tracking-wide text-muted-foreground">
                             {event.sportName}
                         </span>
                     </div>

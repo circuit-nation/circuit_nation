@@ -1,65 +1,74 @@
-import { Pen } from "lucide-react"
-import { motion } from "motion/react"
-import ComponentHeading from "../common/component-heading";
+"use client";
+import { useInView } from "react-intersection-observer";
+import { cn } from "~/lib/utils";
+import { Reveal } from "./reveal";
+import { cnCardClass } from "~/components/ui/card";
 
-export default function About() {
-    return (
-        <>
-            <section className="max-w-5xl mr-auto py-12 space-y-4">
-                <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-80px" }}
-                >
-                    <ComponentHeading
-                        title="Know more about Circuit Nation"
-                        subtitle="Learn more about our passion for motorsports and our mission to bring you the best insights and data."
-                        badgeText="About Us"
-                        badgeIcon={<Pen data-icon="align-start" />}
-                    />
-                </motion.div>
-                <div className="text-justify space-y-6 text-lg leading-relaxed">
-                    <motion.p
-                        className="first-letter:text-5xl first-letter:text-cn-red first-letter:font-bold first-letter:leading-none"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                        viewport={{ once: true, margin: "-80px" }}
-                    >
-                        We're a two developers who share a common passion, Motorsports. Our passion for racing, combined with a love for developing websites, inspired us to create this community.
-                        Here, you'll find comprehensive graphs and insights, designed to enhance your understanding and enjoyment of the sport of F1. Whether you're a die-hard fan or just getting into racing, our goal is to provide you with the tools and information you need to deepen your connection to the sport.
-                    </motion.p>
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.45, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-                        viewport={{ once: true, margin: "-80px" }}
-                    >
-                        Nostalgic for the V10 era, we'll remain factual and unbiased, focusing solely on delivering accurate data without favoring any team or driver.
-                        Join us on this journey through the world of Formula 1, where data meets passion, and every race tells a story.
-                    </motion.p>
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.45, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                        viewport={{ once: true, margin: "-80px" }}
-                    >
-                        Don't hesitate to contact us on the social networks if you have any suggestions for analyses, stats or data to add to the dashboard.
-                    </motion.p>
-                </div>
-                <motion.div
-                    className="font-handwriting flex gap-8 text-5xl mt-8"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-80px" }}
-                >
-                    <h3>Piyush Sharma</h3>
-                    <h3>&</h3>
-                    <h3>Pranav Tripathi</h3>
-                </motion.div>
-            </section >
-        </>
-    )
+export default function LandingWhat() {
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
+  return (
+    <section id="about" className="pt-12 pb-24">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2 flex flex-col items-center text-center">
+        <div
+          ref={headRef}
+          className={cn(
+            "w-full max-w-3xl transition-[opacity,transform] duration-800 ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+          )}
+        >
+          <h2 className="font-display font-extrabold uppercase leading-[0.96] text-[clamp(40px,5.5vw,64px)] mt-5">
+            Who Are We
+          </h2>
+          <p className="text-cn-muted mt-6 text-sm max-w-lg mx-auto">
+            Not a feed. Not a fan club. A living garage where strategy nerds,
+            sim racers, meme lords and lifelong tifosi argue, analyse and
+            celebrate every lap together.
+          </p>
+        </div>
+
+        <Reveal className="mt-16 w-full max-w-3xl">
+          <article
+            className={cn(cnCardClass, "hover:translate-0", "flex flex-col items-center gap-0")}
+          >
+            <div className="font-body text-[15px] leading-[1.8] text-cn-muted flex flex-col gap-6 max-w-[65ch] mx-auto">
+              <p>
+                We built Circuit Nation because the best part of race weekend
+                isn’t the race, it’s the{" "}
+                <strong className="text-cn-text font-semibold">
+                  people you watch it with.
+                </strong>{" "}
+                Fan-owned since 2025, series-agnostic, and always online.
+              </p>
+              <p>
+                Join F1 and MotoGP fans, sim racers, engineers, and newcomers
+                who love motorsport. From race breakdowns and strategy debates
+                to live chat, leagues, watch-alongs, and IRL meetups, this is
+                where motorsport fans hang out.
+              </p>
+              {/*<p>
+                From lights out to chequered flag, the live chat is electric.
+                Leagues, setups, and clean racing span rookies on a wheel to
+                alien-pace endurance crews. The funniest corner of motorsport
+                Twitter lives here too, relocated and refined. GP watch-alongs,
+                track days, and IRL link-ups spill the community off the screen
+                and onto the grid.
+              </p>*/}
+            </div>
+
+            <p
+              className="font-handwriting text-4xl text-cn-text mt-8 pb-1"
+              aria-hidden="true"
+            >
+              Circuit Nation
+            </p>
+            <span className="sr-only">Signed, Circuit Nation</span>
+          </article>
+        </Reveal>
+      </div>
+    </section>
+  );
 }

@@ -31,7 +31,7 @@ const CountdownUnit = ({ value, label, accentClass }: { value: number; label: st
 		transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
 	>
 		<NumberFlow value={value} className={`text-2xl font-semibold ${accentClass}`} />
-		<span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{label}</span>
+		<span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{label}</span>
 	</motion.div>
 );
 

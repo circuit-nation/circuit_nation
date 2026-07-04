@@ -2,329 +2,466 @@
 @import "tw-animate-css";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
-  --font-handwriting: "Mea Culpa", cursive;
+    --font-sans:
+        "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-handwriting: "Mea Culpa", cursive;
+    --font-display: "DM Sans", system-ui, sans-serif;
+    --font-body: "Space Grotesk", system-ui, sans-serif;
+    --font-mono: "Space Grotesk", ui-monospace, monospace;
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --breakpoint-nav: 61.25rem;
 }
 
 /* mea-culpa-latin-400-normal */
 @font-face {
-  font-family: 'Mea Culpa';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url(@fontsource/mea-culpa/files/mea-culpa-latin-400-normal.woff2) format('woff2'), url(@fontsource/mea-culpa/files/mea-culpa-latin-400-normal.woff) format('woff');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+    font-family: "Mea Culpa";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(@fontsource/mea-culpa/files/mea-culpa-latin-400-normal.woff2)
+            format("woff2"),
+        url(@fontsource/mea-culpa/files/mea-culpa-latin-400-normal.woff)
+            format("woff");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 :root {
-  /* Base theme colors */
-  --background: oklch(0.1822 0 0);
-  --foreground: oklch(0.9288 0.0126 255.5078);
-  --card: oklch(0.2046 0 0);
-  --card-foreground: oklch(0.9288 0.0126 255.5078);
-  --popover: oklch(0.2603 0 0);
-  --popover-foreground: oklch(0.7348 0 0);
-  --primary: oklch(0.9288 0.0126 255.5078);
-  --primary-foreground: oklch(0.1822 0 0);
-  --secondary: oklch(0.2603 0 0);
-  --secondary-foreground: oklch(0.9851 0 0);
-  --muted: oklch(0.2393 0 0);
-  --muted-foreground: oklch(0.7122 0 0);
-  --accent: oklch(0.3132 0 0);
-  --accent-foreground: oklch(0.9851 0 0);
-  --destructive: oklch(0.5523 0.1927 32.7272);
-  --destructive-foreground: oklch(0.9934 0.0032 17.2118);
-  --border: oklch(0.2809 0 0);
-  --input: oklch(0.2603 0 0);
-  --ring: oklch(0.4365 0.1044 156.7556);
+    /* Base theme colors */
+    --background: oklch(0.1822 0 0);
+    --foreground: oklch(0.9288 0.0126 255.5078);
+    --card: oklch(0.2046 0 0);
+    --card-foreground: oklch(0.9288 0.0126 255.5078);
+    --popover: oklch(0.2603 0 0);
+    --popover-foreground: oklch(0.7348 0 0);
+    --primary: oklch(0.9288 0.0126 255.5078);
+    --primary-foreground: oklch(0.1822 0 0);
+    --secondary: oklch(0.2603 0 0);
+    --secondary-foreground: oklch(0.9851 0 0);
+    --muted: oklch(0.2393 0 0);
+    --muted-foreground: oklch(0.7122 0 0);
+    --accent: oklch(0.3132 0 0);
+    --accent-foreground: oklch(0.9851 0 0);
+    --destructive: oklch(0.5523 0.1927 32.7272);
+    --destructive-foreground: oklch(0.9934 0.0032 17.2118);
+    --border: oklch(0.2809 0 0);
+    --input: oklch(0.2603 0 0);
+    --ring: oklch(0.4365 0.1044 156.7556);
 
-  /* Chart colors */
-  --chart-1: oklch(0.6231 0.1880 259.8145);
-  --chart-2: oklch(0.6959 0.1491 162.4796);
-  --chart-3: oklch(0.7686 0.1647 70.0804);
-  --chart-4: oklch(0.6056 0.2189 292.7172);
-  --chart-5: oklch(0.6959 0.1491 25.0000);
+    /* Chart colors */
+    --chart-1: oklch(0.6231 0.188 259.8145);
+    --chart-2: oklch(0.6959 0.1491 162.4796);
+    --chart-3: oklch(0.7686 0.1647 70.0804);
+    --chart-4: oklch(0.6056 0.2189 292.7172);
+    --chart-5: oklch(0.6959 0.1491 25);
 
-  /* Sidebar colors */
-  --sidebar: oklch(0.1822 0 0);
-  --sidebar-foreground: oklch(0.6301 0 0);
-  --sidebar-primary: oklch(0.4365 0.1044 156.7556);
-  --sidebar-primary-foreground: oklch(0.9213 0.0135 167.1556);
-  --sidebar-accent: oklch(0.3132 0 0);
-  --sidebar-accent-foreground: oklch(0.9851 0 0);
-  --sidebar-border: oklch(0.2809 0 0);
-  --sidebar-ring: oklch(0.8003 0.1821 151.7110);
+    /* Sidebar colors */
+    --sidebar: oklch(0.1822 0 0);
+    --sidebar-foreground: oklch(0.6301 0 0);
+    --sidebar-primary: oklch(0.4365 0.1044 156.7556);
+    --sidebar-primary-foreground: oklch(0.9213 0.0135 167.1556);
+    --sidebar-accent: oklch(0.3132 0 0);
+    --sidebar-accent-foreground: oklch(0.9851 0 0);
+    --sidebar-border: oklch(0.2809 0 0);
+    --sidebar-ring: oklch(0.8003 0.1821 151.711);
 
-  /* Circuit Nation brand colors */
-  --cn-red: oklch(0.5523 0.1927 32.7272);
-  --cn-red-dark: oklch(0.4500 0.1800 32.0000);
-  --cn-blue: oklch(0.5800 0.1850 259.8145);
-  --cn-blue-dark: oklch(0.5000 0.1700 259.0000);
-  --cn-orange: oklch(0.6500 0.1900 50.0000);
-  --cn-pink: oklch(0.6800 0.1950 340.0000);
-  --cn-teal: oklch(0.6200 0.1400 180.0000);
-  --cn-green: oklch(0.5500 0.1500 150.0000);
-  --cn-amber: oklch(0.5800 0.1600 70.0000);
+    /* Circuit Nation brand colors */
+    --cn-red: oklch(0.5523 0.1927 32.7272);
+    --cn-red-dark: oklch(0.45 0.18 32);
+    --cn-blue: oklch(0.58 0.185 259.8145);
+    --cn-blue-dark: oklch(0.5 0.17 259);
+    --cn-orange: oklch(0.65 0.19 50);
+    --cn-pink: oklch(0.68 0.195 340);
+    --cn-teal: oklch(0.62 0.14 180);
+    --cn-green: oklch(0.55 0.15 150);
+    --cn-amber: oklch(0.58 0.16 70);
 
-  /* Team colors */
-  --team-f1-redbull: oklch(0.5200 0.1850 258.0000);
-  --team-f1-mercedes: oklch(0.7400 0.1400 175.0000);
-  --team-f1-ferrari: oklch(0.5800 0.2000 32.0000);
-  --team-f1-mclaren: oklch(0.7100 0.1950 50.0000);
-  --team-f1-aston: oklch(0.5600 0.1600 155.0000);
-  --team-f1-alpine: oklch(0.6800 0.1400 230.0000);
-  --team-f1-williams: oklch(0.7200 0.1500 240.0000);
-  --team-f1-audi: oklch(0.7000 0.0100 0.0000);
-  --team-f1-sauber: oklch(0.6500 0.1700 145.0000);
-  --team-f1-vcarb: oklch(0.6400 0.1600 260.0000);
+    /* Team colors */
+    --team-f1-redbull: oklch(0.52 0.185 258);
+    --team-f1-mercedes: oklch(0.74 0.14 175);
+    --team-f1-ferrari: oklch(0.58 0.2 32);
+    --team-f1-mclaren: oklch(0.71 0.195 50);
+    --team-f1-aston: oklch(0.56 0.16 155);
+    --team-f1-alpine: oklch(0.68 0.14 230);
+    --team-f1-williams: oklch(0.72 0.15 240);
+    --team-f1-cadillac: oklch(0.7 0.01 0);
+    --team-f1-sauber: oklch(0.65 0.17 145);
+    --team-f1-vcarb: oklch(0.64 0.16 260);
+    --team-f1-haas: oklch(0.583 0.236 24);
 
-  --team-motogp-ducati: oklch(0.5800 0.2100 32.0000);
-  --team-motogp-ktm: oklch(0.7000 0.2000 55.0000);
-  --team-motogp-aprilia: oklch(0.5200 0.1500 140.0000);
-  --team-motogp-yamaha: oklch(0.5600 0.1900 255.0000);
-  --team-motogp-honda: oklch(0.5600 0.2000 28.0000);
-  --team-motogp-pramac: oklch(0.6000 0.1600 300.0000);
-  --team-motogp-gresini: oklch(0.6900 0.1400 230.0000);
-  --team-motogp-gasgas: oklch(0.6500 0.1900 15.0000);
-  --team-motogp-lcr: oklch(0.7000 0.1600 45.0000);
-  --team-motogp-trackhouse: oklch(0.6200 0.1500 195.0000);
+    --team-motogp-ducati: oklch(0.58 0.21 32);
+    --team-motogp-ktm: oklch(0.7 0.2 55);
+    --team-motogp-aprilia: oklch(0.52 0.15 140);
+    --team-motogp-yamaha: oklch(0.56 0.19 255);
+    --team-motogp-honda: oklch(0.56 0.2 28);
+    --team-motogp-pramac: oklch(0.6 0.16 300);
+    --team-motogp-gresini: oklch(0.69 0.14 230);
+    --team-motogp-gasgas: oklch(0.65 0.19 15);
+    --team-motogp-lcr: oklch(0.7 0.16 45);
+    --team-motogp-trackhouse: oklch(0.62 0.15 195);
 
-  /* Typography */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: monospace;
+    /* Typography */
+    --font-sans:
+        "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono: monospace;
 
-  /* Border radius */
-  --radius: 0.625rem;
+    /* Border radius */
+    --radius: 0.625rem;
 
-  /* Shadows */
-  --shadow-x: 0px;
-  --shadow-y: 1px;
-  --shadow-blur: 3px;
-  --shadow-spread: 0px;
-  --shadow-opacity: 0.17;
-  --shadow-color: #000000;
-  --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
-  --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
-  --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
-  --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
-  --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 2px 4px -1px hsl(0 0% 0% / 0.17);
-  --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 4px 6px -1px hsl(0 0% 0% / 0.17);
-  --shadow-xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 8px 10px -1px hsl(0 0% 0% / 0.17);
-  --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.43);
+    /* Shadows */
+    --shadow-x: 0px;
+    --shadow-y: 1px;
+    --shadow-blur: 3px;
+    --shadow-spread: 0px;
+    --shadow-opacity: 0.17;
+    --shadow-color: #000000;
+    --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
+    --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
+    --shadow-sm:
+        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
+        0px 1px 2px -1px hsl(0 0% 0% / 0.17);
+    --shadow:
+        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
+        0px 1px 2px -1px hsl(0 0% 0% / 0.17);
+    --shadow-md:
+        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
+        0px 2px 4px -1px hsl(0 0% 0% / 0.17);
+    --shadow-lg:
+        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
+        0px 4px 6px -1px hsl(0 0% 0% / 0.17);
+    --shadow-xl:
+        0px 1px 3px 0px hsl(0 0% 0% / 0.17),
+        0px 8px 10px -1px hsl(0 0% 0% / 0.17);
+    --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.43);
 
-  /* Letter spacing */
-  --tracking-normal: 0.025em;
+    /* Letter spacing */
+    --tracking-normal: 0.025em;
 
-  /* Spacing */
-  --spacing: 0.25rem;
+    /* Spacing */
+    --spacing: 0.25rem;
 }
 
 @theme inline {
-  /* Color mappings */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+    /* Color mappings */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Circuit Nation brand color mappings */
-  --color-cn-red: var(--cn-red);
-  --color-cn-red-dark: var(--cn-red-dark);
-  --color-cn-blue: var(--cn-blue);
-  --color-cn-blue-dark: var(--cn-blue-dark);
-  --color-cn-orange: var(--cn-orange);
-  --color-cn-pink: var(--cn-pink);
-  --color-cn-teal: var(--cn-teal);
-  --color-cn-green: var(--cn-green);
-  --color-cn-amber: var(--cn-amber);
+    /* Circuit Nation landing color tokens */
+    --color-cn-bg: var(--cn-bg);
+    --color-cn-bg-2: var(--cn-bg-2);
+    --color-cn-panel: var(--cn-panel);
+    --color-cn-panel-2: var(--cn-panel-2);
+    --color-cn-accent: var(--cn-accent);
+    --color-cn-accent-deep: var(--cn-accent-deep);
+    --color-cn-accent-glow: var(--cn-accent-glow);
+    --color-cn-text: var(--cn-text);
+    --color-cn-muted: var(--cn-muted);
+    --color-cn-muted-2: var(--cn-muted-2);
+    --color-cn-line: var(--cn-line);
+    --color-cn-line-strong: var(--cn-line-strong);
 
-  /* Font family mappings */
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-serif: var(--font-serif);
+    /* Circuit Nation brand color mappings */
+    --color-cn-red: var(--cn-red);
+    --color-cn-red-dark: var(--cn-red-dark);
+    --color-cn-blue: var(--cn-blue);
+    --color-cn-blue-dark: var(--cn-blue-dark);
+    --color-cn-orange: var(--cn-orange);
+    --color-cn-pink: var(--cn-pink);
+    --color-cn-teal: var(--cn-teal);
+    --color-cn-green: var(--cn-green);
+    --color-cn-amber: var(--cn-amber);
 
-  /* Radius scale */
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+    /* Font family mappings */
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+    --font-serif: var(--font-serif);
 
-  /* Shadow mappings */
-  --shadow-2xs: var(--shadow-2xs);
-  --shadow-xs: var(--shadow-xs);
-  --shadow-sm: var(--shadow-sm);
-  --shadow: var(--shadow);
-  --shadow-md: var(--shadow-md);
-  --shadow-lg: var(--shadow-lg);
-  --shadow-xl: var(--shadow-xl);
-  --shadow-2xl: var(--shadow-2xl);
+    /* Radius scale */
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --radius-2xl: calc(var(--radius) + 8px);
+    --radius-3xl: calc(var(--radius) + 12px);
+    --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Letter spacing scale */
-  --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
-  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
-  --tracking-normal: var(--tracking-normal);
-  --tracking-wide: calc(var(--tracking-normal) + 0.025em);
-  --tracking-wider: calc(var(--tracking-normal) + 0.05em);
-  --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+    /* Shadow mappings */
+    --shadow-2xs: var(--shadow-2xs);
+    --shadow-xs: var(--shadow-xs);
+    --shadow-sm: var(--shadow-sm);
+    --shadow: var(--shadow);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-xl: var(--shadow-xl);
+    --shadow-2xl: var(--shadow-2xl);
+
+    /* Letter spacing scale */
+    --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+    --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+    --tracking-normal: var(--tracking-normal);
+    --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+    --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+    --tracking-widest: calc(var(--tracking-normal) + 0.1em);
 }
 
 body {
-  letter-spacing: var(--tracking-normal);
+    letter-spacing: var(--tracking-normal);
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+    * {
+        @apply border-border;
+    }
 
-  body {
-    @apply bg-background text-foreground;
-  }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* ============================================================
+   CIRCUIT NATION LANDING — global CSS vars & keyframes
+   ============================================================ */
+:root {
+    --cn-bg: #0a0a0b;
+    --cn-bg-2: #0d0d0f;
+    --cn-panel: #111114;
+    --cn-panel-2: #161619;
+    --cn-line: rgba(255, 255, 255, 0.08);
+    --cn-line-strong: rgba(255, 255, 255, 0.16);
+    --cn-text: #f4f4f5;
+    --cn-muted: #a1a1aa;
+    --cn-muted-2: #6b6b73;
+    --cn-accent: #ff2d2d;
+    --cn-accent-deep: #c81616;
+    --cn-accent-glow: rgba(255, 45, 45, 0.55);
+    --cn-orange: #ff5a1f;
+    --cn-display: "DM Sans", system-ui, sans-serif;
+    --cn-body: "Space Grotesk", system-ui, sans-serif;
+    --cn-mono: "Space Grotesk", ui-monospace, monospace;
+    --cn-maxw: 1320px;
+}
+
+@keyframes cn-rise {
+    to {
+        transform: translateY(0);
+    }
+}
+@keyframes cn-fade {
+    to {
+        opacity: 1;
+    }
+}
+@keyframes cn-streak {
+    0% {
+        transform: translateX(-130%) rotate(-14deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(230%) rotate(-14deg);
+        opacity: 0;
+    }
+}
+@keyframes cn-marquee {
+    to {
+        transform: translateX(-50%);
+    }
+}
+@keyframes cn-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes cn-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 45, 45, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 9px rgba(255, 45, 45, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 45, 45, 0);
+    }
+}
+@keyframes cn-load {
+    to {
+        width: 100%;
+    }
 }
 
 @layer utilities {
+    /* Circuit Nation brand utilities - backgrounds */
+    .bg-cn-red {
+        background-color: var(--cn-red);
+    }
 
-  /* Circuit Nation brand utilities - backgrounds */
-  .bg-cn-red {
-    background-color: var(--cn-red);
-  }
+    .bg-cn-red-dark {
+        background-color: var(--cn-red-dark);
+    }
 
-  .bg-cn-red-dark {
-    background-color: var(--cn-red-dark);
-  }
+    .bg-cn-blue {
+        background-color: var(--cn-blue);
+    }
 
-  .bg-cn-blue {
-    background-color: var(--cn-blue);
-  }
+    .bg-cn-blue-dark {
+        background-color: var(--cn-blue-dark);
+    }
 
-  .bg-cn-blue-dark {
-    background-color: var(--cn-blue-dark);
-  }
+    .bg-cn-orange {
+        background-color: var(--cn-orange);
+    }
 
-  .bg-cn-orange {
-    background-color: var(--cn-orange);
-  }
+    .bg-cn-pink {
+        background-color: var(--cn-pink);
+    }
 
-  .bg-cn-pink {
-    background-color: var(--cn-pink);
-  }
+    .bg-cn-teal {
+        background-color: var(--cn-teal);
+    }
 
-  .bg-cn-teal {
-    background-color: var(--cn-teal);
-  }
+    .bg-cn-green {
+        background-color: var(--cn-green);
+    }
 
-  .bg-cn-green {
-    background-color: var(--cn-green);
-  }
+    .bg-cn-amber {
+        background-color: var(--cn-amber);
+    }
 
-  .bg-cn-amber {
-    background-color: var(--cn-amber);
-  }
+    /* Circuit Nation brand utilities - text colors */
+    .text-cn-red {
+        color: var(--cn-red);
+    }
 
-  /* Circuit Nation brand utilities - text colors */
-  .text-cn-red {
-    color: var(--cn-red);
-  }
+    .text-cn-red-dark {
+        color: var(--cn-red-dark);
+    }
 
-  .text-cn-red-dark {
-    color: var(--cn-red-dark);
-  }
+    .text-cn-blue {
+        color: var(--cn-blue);
+    }
 
-  .text-cn-blue {
-    color: var(--cn-blue);
-  }
+    .text-cn-blue-dark {
+        color: var(--cn-blue-dark);
+    }
 
-  .text-cn-blue-dark {
-    color: var(--cn-blue-dark);
-  }
+    .text-cn-orange {
+        color: var(--cn-orange);
+    }
 
-  .text-cn-orange {
-    color: var(--cn-orange);
-  }
+    .text-cn-pink {
+        color: var(--cn-pink);
+    }
 
-  .text-cn-pink {
-    color: var(--cn-pink);
-  }
+    .text-cn-teal {
+        color: var(--cn-teal);
+    }
 
-  .text-cn-teal {
-    color: var(--cn-teal);
-  }
+    .text-cn-green {
+        color: var(--cn-green);
+    }
 
-  .text-cn-green {
-    color: var(--cn-green);
-  }
+    .text-cn-amber {
+        color: var(--cn-amber);
+    }
 
-  .text-cn-amber {
-    color: var(--cn-amber);
-  }
+    /* Circuit Nation brand utilities - borders */
+    .border-cn-red {
+        border-color: var(--cn-red);
+    }
 
-  /* Circuit Nation brand utilities - borders */
-  .border-cn-red {
-    border-color: var(--cn-red);
-  }
+    .border-cn-red-dark {
+        border-color: var(--cn-red-dark);
+    }
 
-  .border-cn-red-dark {
-    border-color: var(--cn-red-dark);
-  }
+    .border-cn-blue {
+        border-color: var(--cn-blue);
+    }
 
-  .border-cn-blue {
-    border-color: var(--cn-blue);
-  }
+    .border-cn-blue-dark {
+        border-color: var(--cn-blue-dark);
+    }
 
-  .border-cn-blue-dark {
-    border-color: var(--cn-blue-dark);
-  }
+    .border-cn-orange {
+        border-color: var(--cn-orange);
+    }
 
-  .border-cn-orange {
-    border-color: var(--cn-orange);
-  }
+    .border-cn-pink {
+        border-color: var(--cn-pink);
+    }
 
-  .border-cn-pink {
-    border-color: var(--cn-pink);
-  }
+    .border-cn-teal {
+        border-color: var(--cn-teal);
+    }
 
-  .border-cn-teal {
-    border-color: var(--cn-teal);
-  }
+    .border-cn-green {
+        border-color: var(--cn-green);
+    }
 
-  .border-cn-green {
-    border-color: var(--cn-green);
-  }
+    .border-cn-amber {
+        border-color: var(--cn-amber);
+    }
 
-  .border-cn-amber {
-    border-color: var(--cn-amber);
-  }
+    /* Circuit Nation animation utilities */
+    .animate-cn-rise {
+        animation: cn-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .animate-cn-fade {
+        animation: cn-fade 0.8s ease forwards;
+    }
+    .animate-cn-marquee {
+        animation: cn-marquee 38s linear infinite;
+    }
+    .animate-cn-marquee-32 {
+        animation: cn-marquee 32s linear infinite;
+    }
+    .animate-cn-pulse {
+        animation: cn-pulse 1.8s infinite;
+    }
+    .animate-cn-spin-slow {
+        animation: cn-spin 60s linear infinite;
+    }
+    .animate-cn-load {
+        animation: cn-load 1.15s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    }
 }

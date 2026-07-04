@@ -35,7 +35,7 @@ export const CalendarDay = ({ date, currentDate, className, children }: Calendar
                     {date.getDate()}
                 </span>
                 {showMonthLabel && (
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                         {date.toLocaleDateString("en-US", { month: "short" })}
                     </span>
                 )}

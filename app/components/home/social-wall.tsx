@@ -1,139 +1,310 @@
-import { Heart, MessageCircle } from "lucide-react";
-import { motion } from "motion/react";
-import { Card, CardHeader, CardTitle } from "~/components/ui/card";
-import { IconBrandInstagram as Instagram } from "@tabler/icons-react";
-import ComponentHeading from "../common/component-heading";
+"use client";
+import { useMemo } from "react";
+import { useInView } from "react-intersection-observer";
+import { cn } from "~/lib/utils";
+import { Reveal } from "./reveal";
+import { SectionEyebrow } from "./section-eyebrow";
+import {
+  SOCIAL_WALL_SLOT_IDS,
+  type SocialWallSlot,
+  type SocialWallSlotId,
+} from "~/types/social-wall";
 
-interface Post {
-    id: number;
-    image: string;
-    likes: string;
-    comments: string;
-    caption: string;
-}
-
-const posts: Post[] = [
-    {
-        id: 1,
-        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&h=400&fit=crop",
-        likes: "12.4K",
-        comments: "234",
-        caption: "Race day vibes! 🏎️ Who's ready for the showdown?",
-    },
-    {
-        id: 2,
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
-        likes: "8.9K",
-        comments: "156",
-        caption: "Behind the scenes at the paddock 🔧",
-    },
-    {
-        id: 3,
-        image: "https://images.unsplash.com/photo-1541447271487-09612b3f49f7?w=400&h=400&fit=crop",
-        likes: "15.2K",
-        comments: "342",
-        caption: "That winning moment! 🏆",
-    },
-    {
-        id: 4,
-        image: "https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=400&h=400&fit=crop",
-        likes: "10.1K",
-        comments: "189",
-        caption: "Track walk with the community 🚶‍♂️",
-    },
-    {
-        id: 5,
-        image: "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=400&h=400&fit=crop",
-        likes: "7.3K",
-        comments: "98",
-        caption: "Sunset at the circuit 🌅",
-    },
-    {
-        id: 6,
-        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=400&fit=crop",
-        likes: "11.8K",
-        comments: "267",
-        caption: "Speed demons in action! 💨",
-    },
-];
-
-const SocialWall = () => {
-    return (
-        <section className="py-20">
-            <div className="mx-auto px-4 space-y-4">
-                <div>
-                    <ComponentHeading
-                        title="Social Wall"
-                        subtitle="Catch the latest from our Instagram feed and join the conversation with fellow motorsport enthusiasts!"
-                        badgeText="Instagram"
-                        badgeIcon={<Instagram data-icon="align-start" />}
-                    />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {posts.map((post, index) => (
-                        <motion.div
-                            key={post.id}
-                            className="group"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{
-                                duration: 0.5,
-                                delay: index * 0.05,
-                                ease: [0.22, 1, 0.36, 1]
-                            }}
-                        >
-                            <Card className="overflow-hidden border-muted/40 bg-background/80 shadow-sm pb-4 pt-1">
-                                <div className="relative">
-                                    <img
-                                        src={post.image}
-                                        alt={post.caption}
-                                        className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <CardHeader className="gap-2">
-                                    <CardTitle className="text-base line-clamp-1">
-                                        {post.caption}
-                                    </CardTitle>
-                                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                                        <span className="inline-flex items-center gap-1">
-                                            <Heart className="h-4 w-4 text-cn-red fill-cn-red" />
-                                            {post.likes}
-                                        </span>
-                                        <span className="inline-flex items-center gap-1">
-                                            <MessageCircle className="h-4 w-4" />
-                                            {post.comments}
-                                        </span>
-                                    </div>
-                                </CardHeader>
-                            </Card>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* CTA */}
-                <motion.div
-                    className="text-center mt-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <a
-                        href="https://instagram.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold border border-muted/50 bg-background/80 hover:scale-105 transition-transform duration-300"
-                    >
-                        <Instagram className="w-5 h-5 text-cn-pink" />
-                        View More on Instagram
-                    </a>
-                </motion.div>
-            </div>
-        </section>
-    );
+type LandingSocialWallProps = {
+  slots: SocialWallSlot[];
 };
 
-export default SocialWall;
+type PlatType = SocialWallSlot["platform"];
+
+const platformLabel: Record<PlatType, string> = {
+  yt: "YouTube",
+  reddit: "Reddit",
+  ig: "Instagram",
+  substack: "Substack",
+};
+
+const platformAccent: Record<PlatType, string> = {
+  yt: "text-cn-accent",
+  reddit: "text-cn-orange",
+  ig: "text-[#f58529]",
+  substack: "text-cn-text",
+};
+
+const platformGradient: Record<PlatType, string> = {
+  yt: "from-[rgba(255,45,45,0.22)] via-[rgba(20,20,23,0.92)] to-[#0d0d0f]",
+  reddit: "from-[rgba(255,120,40,0.2)] via-[rgba(20,20,23,0.94)] to-[#0d0d0f]",
+  ig: "from-[rgba(245,133,41,0.22)] via-[rgba(221,42,123,0.12)] to-[#0d0d0f]",
+  substack:
+    "from-[rgba(255,255,255,0.08)] via-[rgba(20,20,23,0.94)] to-[#0d0d0f]",
+};
+
+const slotAreaClass: Record<SocialWallSlotId, string> = {
+  "row1-horizontal-yt":
+    "md:col-span-2 md:row-span-2 md:col-start-1 md:row-start-1 min-h-[220px] md:min-h-0",
+  "row1-post-top": "md:col-start-3 md:row-start-1",
+  "row1-post-bottom": "md:col-start-3 md:row-start-2",
+  "row1-vertical-ig":
+    "md:col-start-4 md:row-span-2 md:row-start-1 min-h-[220px] md:min-h-0",
+  "row2-vertical-yt":
+    "md:col-start-1 md:row-span-2 md:row-start-3 min-h-[220px] md:min-h-0",
+  "row2-post-top": "md:col-start-2 md:row-start-3",
+  "row2-post-bottom": "md:col-start-2 md:row-start-4",
+  "row2-horizontal-substack":
+    "md:col-span-2 md:col-start-3 md:row-span-2 md:row-start-3 min-h-[220px] md:min-h-0",
+};
+
+const slotDelay: Partial<Record<SocialWallSlotId, number>> = {
+  "row1-horizontal-yt": 0,
+  "row1-post-top": 0.06,
+  "row1-post-bottom": 0.08,
+  "row1-vertical-ig": 0.1,
+  "row2-vertical-yt": 0.08,
+  "row2-post-top": 0.1,
+  "row2-post-bottom": 0.12,
+  "row2-horizontal-substack": 0.14,
+};
+
+function isWideSlot(slotId: SocialWallSlotId) {
+  return (
+    slotId === "row1-horizontal-yt" || slotId === "row2-horizontal-substack"
+  );
+}
+
+function isTallSlot(slotId: SocialWallSlotId) {
+  return slotId === "row1-vertical-ig" || slotId === "row2-vertical-yt";
+}
+
+function PlayMini() {
+  return (
+    <div className="absolute inset-0 grid place-items-center z-4 pointer-events-none">
+      <div className="w-14 h-14 rounded-full bg-cn-accent/92 grid place-items-center shadow-[0_10px_36px_-8px_var(--cn-accent-glow)] transition-transform duration-300 group-hover:scale-110">
+        <svg
+          viewBox="0 0 24 24"
+          className="w-5 h-5 fill-white ml-0.5"
+          aria-hidden
+        >
+          <path d="M6 4l14 8-14 8z" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function PlaceholderTile({
+  slotId,
+  platform,
+  delay = 0,
+}: {
+  slotId: SocialWallSlotId;
+  platform: PlatType;
+  delay?: number;
+}) {
+  return (
+    <Reveal
+      delay={delay}
+      className={cn("h-full min-h-42", slotAreaClass[slotId])}
+    >
+      <div
+        className={cn(
+          "rounded-4xl border border-dashed border-cn-line/80 h-full min-h-42 flex flex-col items-center justify-center gap-2",
+          isTallSlot(slotId) && "md:min-h-0",
+        )}
+      >
+        <span
+          className={cn(
+            "font-mono text-[10px] font-semibold tracking-[0.12em] uppercase",
+            platformAccent[platform],
+          )}
+        >
+          {platformLabel[platform]}
+        </span>
+        <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-cn-muted-2">
+          Coming soon
+        </span>
+      </div>
+    </Reveal>
+  );
+}
+
+function SocialSlotTile({
+  slot,
+  delay = 0,
+}: {
+  slot: SocialWallSlot;
+  delay?: number;
+}) {
+  const { slotId, platform, title, subtitle, url, thumbnailUrl, hasPlay } =
+    slot;
+  const wide = isWideSlot(slotId);
+  const hasImage = Boolean(thumbnailUrl);
+
+  const content = (
+    <article
+      className={cn(
+        "rounded-4xl overflow-hidden relative border border-cn-line h-full group transition-[transform,box-shadow,border-color] duration-300 ease-spring hover:-translate-y-1 hover:border-cn-line-strong hover:shadow-[0_24px_60px_-26px_rgba(255,45,45,0.35)]",
+        !hasImage && "min-h-42",
+      )}
+    >
+      {hasImage ? (
+        <>
+          <img
+            src={thumbnailUrl}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover scale-105 transition-transform duration-700 ease-spring group-hover:scale-110"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,9,0.15)_0%,rgba(8,8,9,0.55)_55%,rgba(8,8,9,0.94)_100%)]" />
+        </>
+      ) : (
+        <>
+          <div
+            className={cn(
+              "absolute inset-0 bg-linear-to-br",
+              platformGradient[platform],
+            )}
+          />
+          <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent,transparent_11px,rgba(255,255,255,0.018)_11px,rgba(255,255,255,0.018)_22px)]" />
+        </>
+      )}
+
+      {hasPlay && <PlayMini />}
+
+      <span
+        className={cn(
+          "absolute top-4 left-4 z-3 font-mono text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-xl bg-black/55 backdrop-blur-[6px] border border-white/8",
+          platformAccent[platform],
+        )}
+      >
+        {platformLabel[platform]}
+      </span>
+
+      <div className="absolute left-0 right-0 bottom-0 z-3 p-4 md:p-5">
+        <h3
+          className={cn(
+            "font-display font-bold leading-[1.15] tracking-[-0.01em]",
+            wide
+              ? "text-[clamp(18px,2.2vw,28px)]"
+              : isTallSlot(slotId)
+                ? "text-[clamp(16px,1.8vw,22px)]"
+                : "text-[15px]",
+          )}
+        >
+          {title}
+        </h3>
+        {subtitle ? (
+          <p className="font-mono text-xs text-cn-muted tracking-[0.06em] mt-1.5">
+            {subtitle}
+          </p>
+        ) : null}
+      </div>
+    </article>
+  );
+
+  return (
+    <Reveal
+      delay={delay}
+      className={cn("h-full min-h-42", slotAreaClass[slotId])}
+    >
+      {url ? (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block h-full"
+        >
+          {content}
+        </a>
+      ) : (
+        content
+      )}
+    </Reveal>
+  );
+}
+
+function orderSlots(slots: SocialWallSlot[]): SocialWallSlot[] {
+  const byId = new Map(slots.map((slot) => [slot.slotId, slot]));
+  return SOCIAL_WALL_SLOT_IDS.map(
+    (slotId) =>
+      byId.get(slotId) ?? {
+        _id: slotId,
+        slotId,
+        platform: defaultPlatformForSlot(slotId),
+        title: "",
+        subtitle: "",
+        url: "",
+        thumbnailUrl: "",
+        hasPlay: false,
+        isActive: false,
+        createdAt: "",
+        updatedAt: "",
+      },
+  );
+}
+
+function defaultPlatformForSlot(slotId: SocialWallSlotId): PlatType {
+  if (slotId.includes("yt")) return "yt";
+  if (slotId.includes("ig")) return "ig";
+  if (slotId.includes("substack")) return "substack";
+  return "reddit";
+}
+
+export default function LandingSocialWall({ slots }: LandingSocialWallProps) {
+  const { ref: headRef, inView: headIn } = useInView({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+
+  const orderedSlots = useMemo(() => orderSlots(slots), [slots]);
+
+  return (
+    <section className="py-12">
+      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
+        <div
+          ref={headRef}
+          className={cn(
+            "max-w-2xl transition-[opacity,transform] duration-800 ease-spring",
+            headIn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+          )}
+        >
+          <SectionEyebrow label="// Social wall" />
+          <h2 className="font-display font-extrabold uppercase leading-[0.96] text-[clamp(40px,5.5vw,64px)] mt-5">
+            Everywhere
+            <br />
+            at once.
+          </h2>
+          <p className="text-cn-muted mt-6 text-sm max-w-2xl">
+            One community, every platform. Here is what the grid is posting
+            right now.
+          </p>
+        </div>
+
+        <div
+          className={cn(
+            "grid gap-3 md:gap-4 mt-16",
+            "grid-cols-1 auto-rows-[minmax(168px,auto)]",
+            "md:grid-cols-4 md:grid-rows-[repeat(4,minmax(148px,1fr))]",
+          )}
+        >
+          {orderedSlots.map((slot) => {
+            const delay = slotDelay[slot.slotId] ?? 0;
+
+            if (!slot.isActive) {
+              return (
+                <PlaceholderTile
+                  key={slot.slotId}
+                  slotId={slot.slotId}
+                  platform={slot.platform}
+                  delay={delay}
+                />
+              );
+            }
+
+            return (
+              <SocialSlotTile key={slot.slotId} slot={slot} delay={delay} />
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
