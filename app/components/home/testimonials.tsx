@@ -7,8 +7,8 @@ import { SectionEyebrow } from "./section-eyebrow";
 
 const QUOTES = [
   {
-    body: "I've watched F1 for last 3 years and never had people to scream at the TV with. Now I've got a lot of them. This place ruined watching races alone forever.",
-    name: "Animesh S.",
+    body: "I've watched F1 for 20 years and never had people to scream at the TV with. Now I've got a thousand of them. This place ruined watching races alone forever.",
+    name: "Diego L.",
     role: "Member since 2023",
     delay: 0,
     highlight: true,
