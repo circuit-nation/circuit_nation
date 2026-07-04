@@ -34,7 +34,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
-        <Links />
         {clarityId && (
           <script
             dangerouslySetInnerHTML={{
@@ -42,6 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             }}
           />
         )}
+        <Links />
       </head>
       <body>
         {children}
@@ -54,6 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   useEffect(() => {
+    if (typeof window === 'undefined') return
     const consent = localStorage.getItem('cookie_consent')
     const ga4Id = import.meta.env.VITE_GA4_ID
     if (consent === 'accepted' && ga4Id) {
