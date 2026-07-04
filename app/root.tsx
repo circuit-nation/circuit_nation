@@ -10,6 +10,7 @@ import {
 
 import type { Route } from "./+types/root";
 import { initGA4 } from "~/lib/analytics";
+import CookieConsent from "~/components/analytics/CookieConsent";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -62,7 +63,12 @@ export default function App() {
     }
   }, [])
 
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <CookieConsent />
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
