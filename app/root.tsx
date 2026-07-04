@@ -6,10 +6,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import { initGA4 } from "~/lib/analytics";
+import { initGA4, trackEvent } from "~/lib/analytics";
 import CookieConsent from "~/components/analytics/CookieConsent";
 import "./app.css";
 
@@ -54,6 +55,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const location = useLocation()
+
   useEffect(() => {
     if (typeof window === 'undefined') return
     const consent = localStorage.getItem('cookie_consent')
@@ -62,6 +65,12 @@ export default function App() {
       initGA4(ga4Id)
     }
   }, [])
+
+  useEffect(() => {
+    if (localStorage.getItem('cookie_consent') === 'accepted') {
+      trackEvent('page_view', { page_path: location.pathname })
+    }
+  }, [location.pathname])
 
   return (
     <>
