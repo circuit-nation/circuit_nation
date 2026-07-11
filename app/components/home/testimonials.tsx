@@ -1,6 +1,14 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "~/components/ui/carousel";
 import { trackEvent } from "~/lib/analytics";
 import { cn } from "~/lib/utils";
 import { SectionEyebrow } from "./section-eyebrow";
@@ -73,7 +81,7 @@ function QuoteCard({
     <div
       ref={ref}
       className={cn(
-        "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-800 ease-spring",
+        "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-5 sm:p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-800 ease-spring",
         highlight
           ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.12),rgba(255,255,255,0.004))]"
           : "bg-linear-to-b from-white/[0.028] to-white/[0.004]",
@@ -111,10 +119,24 @@ export default function LandingTestimonials() {
     triggerOnce: true,
   });
   const { ref: sectionRef, inView: sectionInView } = useInView({ threshold: 0.5, triggerOnce: true });
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (sectionInView) trackEvent('section_view', { section: 'testimonials' });
   }, [sectionInView]);
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+    const onSelect = () => setCurrent(api.selectedScrollSnap() + 1);
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   return (
     <section ref={sectionRef} className={landingSectionClass}>
@@ -134,7 +156,34 @@ export default function LandingTestimonials() {
           </h2>
         </div>
 
-        <div className="columns-3 max-nav:columns-2 max-[620px]:columns-1 gap-[18px] mt-16">
+        {/* Mobile / tablet: carousel */}
+        <div className="mt-16 md:hidden">
+          <Carousel
+            setApi={setApi}
+            opts={{ align: "start", loop: true }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {QUOTES.map((q) => (
+                <CarouselItem key={q.name} className="basis-full">
+                  <QuoteCard {...q} delay={0} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="mt-6 flex items-center justify-between gap-4">
+              <p className="font-mono text-xs tracking-[0.08em] uppercase text-cn-muted-2">
+                {current} / {count}
+              </p>
+              <div className="flex items-center gap-2">
+                <CarouselPrevious className="static translate-y-0 border-cn-line bg-cn-panel text-cn-text hover:bg-cn-panel-2" />
+                <CarouselNext className="static translate-y-0 border-cn-line bg-cn-panel text-cn-text hover:bg-cn-panel-2" />
+              </div>
+            </div>
+          </Carousel>
+        </div>
+
+        {/* Desktop: masonry columns */}
+        <div className="mt-16 hidden md:block columns-3 max-nav:columns-2 gap-[18px]">
           {QUOTES.map((q) => (
             <QuoteCard key={q.name} {...q} />
           ))}
