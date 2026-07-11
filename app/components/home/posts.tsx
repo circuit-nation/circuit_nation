@@ -43,7 +43,7 @@ function FeaturedPost({ article }: { article: Article }) {
           rel="noopener noreferrer"
           className="flex h-full flex-col"
         >
-          <div className="relative h-90 shrink-0 overflow-hidden border-b border-cn-line bg-[#141417]">
+          <div className="relative h-48 sm:h-90 shrink-0 overflow-hidden border-b border-cn-line bg-[#141417]">
             <img
               src={article.thumbnail}
               alt={article.title}
@@ -52,7 +52,7 @@ function FeaturedPost({ article }: { article: Article }) {
               decoding="async"
             />
           </div>
-          <div className="p-8">
+          <div className="p-5 sm:p-8">
             <span className="font-mono text-xs tracking-[0.12em] uppercase text-cn-accent inline-flex items-center gap-2">
               <span className="size-2 rounded-full bg-cn-accent inline-block" />
               Substack
@@ -90,16 +90,16 @@ function CompactPost({
       <article
         className={cn(
           cnCardClass,
-          "p-[22px_24px]! flex gap-5 items-center group",
+          "p-4! sm:p-[22px_24px]! flex flex-col sm:flex-row gap-4 sm:gap-5 items-stretch sm:items-center group",
         )}
       >
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center gap-5"
+          className="flex w-full flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5"
         >
-          <div className="w-24 h-24 rounded-2xl shrink-0 overflow-hidden border border-cn-line">
+          <div className="w-full sm:w-24 aspect-video sm:aspect-auto sm:h-24 rounded-2xl shrink-0 overflow-hidden border border-cn-line">
             <img
               src={article.thumbnail}
               alt=""

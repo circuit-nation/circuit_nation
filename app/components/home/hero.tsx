@@ -115,7 +115,7 @@ export default function LandingHero() {
         />
 
         <div className={landingContainerClass}>
-          <h1 className="font-display font-extrabold uppercase text-center leading-[0.8] text-[clamp(68px,11vw,122px)] animate-cn-fade opacity-0 [animation-delay:0.5s] mt-6">
+          <h1 className="font-display font-extrabold uppercase text-center leading-[0.85] sm:leading-[0.8] text-[clamp(48px,14vw,122px)] animate-cn-fade opacity-0 [animation-delay:0.5s] mt-6">
             Circuit <span className="text-cn-accent">Nation</span>
           </h1>
 
@@ -129,7 +129,7 @@ export default function LandingHero() {
               never miss lights-out.
             </p>
           </div>
-          <div className="w-full grid gap-4 mt-16 grid-cols-[1.6fr_1fr_1fr] auto-rows-[minmax(180px,auto)] max-[1080px]:grid-cols-[repeat(2,1fr)] max-[620px]:grid-cols-[1fr]">
+          <div className="w-full grid gap-4 mt-12 sm:mt-16 grid-cols-[1.6fr_1fr_1fr] auto-rows-[minmax(140px,auto)] sm:auto-rows-[minmax(180px,auto)] max-[1080px]:grid-cols-[repeat(2,1fr)] max-[620px]:grid-cols-[1fr]">
             {STATS.map((stat, index) => (
               <MetricCard key={index} {...stat} />
             ))}

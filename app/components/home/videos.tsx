@@ -90,7 +90,7 @@ function FeaturedVideo({ video }: { video: YoutubeVideo }) {
           <div className="border-b border-cn-line">
             <VideoThumbnail video={video} hero />
           </div>
-          <div className="p-8">
+          <div className="p-5 sm:p-8">
             <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.06] mt-3 text-[clamp(26px,3vw,40px)]">
               {video.title}
             </h3>
@@ -119,18 +119,18 @@ function CompactVideo({
       <article
         className={cn(
           videoCardClass,
-          "p-[18px_20px] flex gap-5 items-center group",
+          "p-4 sm:p-[18px_20px] flex flex-col sm:flex-row gap-4 sm:gap-5 items-stretch sm:items-center group",
         )}
       >
         <a
           href={video.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center gap-5"
+          className="flex w-full flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5"
         >
           <VideoThumbnail
             video={video}
-            className="w-42 rounded-xl border border-cn-line"
+            className="w-full sm:w-42 rounded-xl border border-cn-line"
           />
           <div className="min-w-0">
             <h3 className="font-display font-bold tracking-[-0.01em] leading-[1.2] mt-2 text-sm line-clamp-2">
