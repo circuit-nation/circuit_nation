@@ -195,8 +195,8 @@ export default function MetricCard({
           className={cn(
             "font-display font-extrabold tracking-[-0.03em] leading-[0.9]",
             featured
-              ? "text-[clamp(72px,9vw,120px)]"
-              : "text-[clamp(44px,5vw,64px)]",
+              ? "text-[clamp(56px,16vw,120px)]"
+              : "text-[clamp(40px,12vw,64px)]",
           )}
         >
           0
@@ -220,9 +220,9 @@ export default function MetricCard({
   );
 
   const sharedClassName = cn(
-    "group relative border border-cn-line rounded-4xl p-6 flex flex-col justify-between transition-[opacity,transform] duration-800 ease-spring overflow-hidden",
+    "group relative border border-cn-line rounded-4xl p-5 sm:p-6 flex flex-col justify-between transition-[opacity,transform] duration-800 ease-spring overflow-hidden",
     featured
-      ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] row-span-2"
+      ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.14),rgba(255,255,255,0.004))] row-span-2 max-[620px]:row-span-1"
       : "bg-linear-to-b from-white/[0.028] to-white/[0.004]",
     inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
     link && "cursor-pointer",

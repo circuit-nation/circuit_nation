@@ -5,25 +5,26 @@ import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import { SectionEyebrow } from "./section-eyebrow";
 import { trackEvent } from "~/lib/analytics";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 const PLATFORMS = [
   {
     name: "Newsletter",
     count: "50+ Readers",
-    cta: "Subscribe to our Newsletter",
+    cta: "Subscribe",
     href: "https://circuitnation.substack.com/",
     red: true,
   },
   {
     name: "Reddit",
     count: "98K+ Visitors",
-    cta: "Follow r/circuit_nation",
+    cta: "Follow on Reddit",
     href: "https://www.reddit.com/r/circuit_nation/",
   },
   {
     name: "YouTube",
     count: "1.2K+ Subscribers",
-    cta: "Subscribe Circuit Nation",
+    cta: "Subscribe on YouTube",
     href: "https://www.youtube.com/@circuit_nation",
   },
 ];
@@ -32,8 +33,8 @@ export default function LandingJoin() {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true });
 
   return (
-    <section id="join" className="py-12">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
+    <section id="join" className={landingSectionClass}>
+      <div className={landingContainerClass}>
         <div
           ref={ref}
           className={cn(
@@ -56,7 +57,7 @@ export default function LandingJoin() {
             you think, don't watch it alone.
           </p>
 
-          <div className="grid grid-cols-3 max-nav:grid-cols-1 gap-4 mt-12 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-12 relative">
             {PLATFORMS.map((p) => (
               <div
                 key={p.name}
@@ -74,7 +75,7 @@ export default function LandingJoin() {
                   variant={p.red ? "cn-primary" : "cn-ghost"}
                   size="cn"
                   asChild
-                  className="mt-2"
+                  className="mt-2 w-full whitespace-nowrap"
                   onClick={() => trackEvent('join_cta_click', { platform: p.name.toLowerCase() })}
                 >
                   <a href={p.href}>{p.cta}</a>

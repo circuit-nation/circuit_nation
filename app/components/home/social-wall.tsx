@@ -9,6 +9,7 @@ import {
   type SocialWallSlot,
   type SocialWallSlotId,
 } from "~/types/social-wall";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 type LandingSocialWallProps = {
   slots: SocialWallSlot[];
@@ -77,7 +78,7 @@ function isTallSlot(slotId: SocialWallSlotId) {
 function PlayMini() {
   return (
     <div className="absolute inset-0 grid place-items-center z-4 pointer-events-none">
-      <div className="w-14 h-14 rounded-full bg-cn-accent/92 grid place-items-center shadow-[0_10px_36px_-8px_var(--cn-accent-glow)] transition-transform duration-300 group-hover:scale-110">
+      <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-cn-accent/92 grid place-items-center shadow-[0_10px_36px_-8px_var(--cn-accent-glow)] transition-transform duration-300 group-hover:scale-110">
         <svg
           viewBox="0 0 24 24"
           className="w-5 h-5 fill-white ml-0.5"
@@ -181,7 +182,7 @@ function SocialSlotTile({
       <div className="absolute left-0 right-0 bottom-0 z-3 p-4 md:p-5">
         <h3
           className={cn(
-            "font-display font-bold leading-[1.15] tracking-[-0.01em]",
+            "font-display font-bold leading-[1.15] tracking-[-0.01em] line-clamp-3",
             wide
               ? "text-[clamp(18px,2.2vw,28px)]"
               : isTallSlot(slotId)
@@ -257,8 +258,8 @@ export default function LandingSocialWall({ slots }: LandingSocialWallProps) {
   const orderedSlots = useMemo(() => orderSlots(slots), [slots]);
 
   return (
-    <section className="py-12">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
+    <section className={landingSectionClass}>
+      <div className={landingContainerClass}>
         <div
           ref={headRef}
           className={cn(
