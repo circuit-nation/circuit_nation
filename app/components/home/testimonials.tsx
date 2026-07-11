@@ -16,9 +16,9 @@ import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 const QUOTES = [
   {
-    body: "I've watched F1 for 20 years and never had people to scream at the TV with. Now I've got a thousand of them. This place ruined watching races alone forever.",
-    name: "Diego L.",
-    role: "Member since 2023",
+    body: "I've watched F1 for 3 years and never had people to watch with. Now I've got them. I love the watch parties and discord watchalongs.",
+    name: "Animesh S.",
+    role: "Member since 2025",
     delay: 0,
     highlight: true,
   },
@@ -81,7 +81,7 @@ function QuoteCard({
     <div
       ref={ref}
       className={cn(
-        "break-inside-avoid mb-[18px] border border-cn-line rounded-[20px] p-5 sm:p-7 flex flex-col gap-[18px] transition-[opacity,transform] duration-800 ease-spring",
+        "break-inside-avoid mb-4 border border-cn-line rounded-2xl p-5 sm:p-7 flex flex-col gap-4 transition-[opacity,transform] duration-800 ease-spring",
         highlight
           ? "bg-[linear-gradient(160deg,rgba(255,45,45,0.12),rgba(255,255,255,0.004))]"
           : "bg-linear-to-b from-white/[0.028] to-white/[0.004]",
