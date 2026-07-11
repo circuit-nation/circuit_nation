@@ -9,6 +9,7 @@ import {
   type SocialWallSlot,
   type SocialWallSlotId,
 } from "~/types/social-wall";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 type LandingSocialWallProps = {
   slots: SocialWallSlot[];
@@ -257,8 +258,8 @@ export default function LandingSocialWall({ slots }: LandingSocialWallProps) {
   const orderedSlots = useMemo(() => orderSlots(slots), [slots]);
 
   return (
-    <section className="py-12">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
+    <section className={landingSectionClass}>
+      <div className={landingContainerClass}>
         <div
           ref={headRef}
           className={cn(

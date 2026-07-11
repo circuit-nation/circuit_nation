@@ -3,6 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { cn } from "~/lib/utils";
 import { Reveal } from "./reveal";
 import { cnCardClass } from "~/components/ui/card";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 export default function LandingWhat() {
   const { ref: headRef, inView: headIn } = useInView({
@@ -11,8 +12,8 @@ export default function LandingWhat() {
   });
 
   return (
-    <section id="about" className="pt-12 pb-24">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2 flex flex-col items-center text-center">
+    <section id="about" className={landingSectionClass}>
+      <div className={cn(landingContainerClass, "flex flex-col items-center text-center")}>
         <div
           ref={headRef}
           className={cn(

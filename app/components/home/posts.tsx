@@ -5,6 +5,7 @@ import { Reveal } from "./reveal";
 import { SectionEyebrow } from "./section-eyebrow";
 import { cnCardClass } from "~/components/ui/card";
 import type { Article } from "~/types/articles";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 type LandingPostsProps = {
   articles: Article[];
@@ -136,8 +137,8 @@ export default function LandingPosts({ articles }: LandingPostsProps) {
   const [featured, ...compact] = sanitized.slice(0, 5);
 
   return (
-    <section id="content" className="py-24">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
+    <section id="content" className={landingSectionClass}>
+      <div className={landingContainerClass}>
         <div
           ref={headRef}
           className={cn(

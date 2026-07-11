@@ -5,6 +5,7 @@ import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import { SectionEyebrow } from "./section-eyebrow";
 import { trackEvent } from "~/lib/analytics";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 const PLATFORMS = [
   {
@@ -32,8 +33,8 @@ export default function LandingJoin() {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true });
 
   return (
-    <section id="join" className="py-12">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
+    <section id="join" className={landingSectionClass}>
+      <div className={landingContainerClass}>
         <div
           ref={ref}
           className={cn(

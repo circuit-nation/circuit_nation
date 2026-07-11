@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { trackEvent } from "~/lib/analytics";
 import { cn } from "~/lib/utils";
 import { SectionEyebrow } from "./section-eyebrow";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 const QUOTES = [
   {
@@ -116,8 +117,8 @@ export default function LandingTestimonials() {
   }, [sectionInView]);
 
   return (
-    <section ref={sectionRef} className="pt-[30px] pb-[130px]">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
+    <section ref={sectionRef} className={landingSectionClass}>
+      <div className={landingContainerClass}>
         <div
           ref={headRef}
           className={cn(

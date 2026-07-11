@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { trackEvent } from "~/lib/analytics";
 import MetricCard from "./metric-card";
+import { landingContainerClass } from "./landing-shell";
 
 const STATS = [
   {
@@ -90,7 +91,7 @@ export default function LandingHero() {
     <>
       <section
         ref={sectionRef}
-        className=" flex flex-col justify-center py-12 overflow-hidden relative"
+        className="flex flex-col justify-center py-12 overflow-hidden relative"
         id="top"
       >
         {/* Speed streaks — JS-injected, inline styles intentional */}
@@ -113,7 +114,7 @@ export default function LandingHero() {
           }}
         />
 
-        <div className="max-w-(--cn-maxw) mx-auto relative z-2 px-4 md:p-0">
+        <div className={landingContainerClass}>
           <h1 className="font-display font-extrabold uppercase text-center leading-[0.8] text-[clamp(68px,11vw,122px)] animate-cn-fade opacity-0 [animation-delay:0.5s] mt-6">
             Circuit <span className="text-cn-accent">Nation</span>
           </h1>

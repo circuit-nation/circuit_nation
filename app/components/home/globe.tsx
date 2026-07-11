@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { cn } from "~/lib/utils";
 import type { EventLocation, GlobeEvent } from "~/types/events";
 import { SectionEyebrow } from "./section-eyebrow";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 import GlobeEventCard, {
   getNextTwoEvents,
   isEventLive,
@@ -105,9 +106,9 @@ export default function LandingGlobe({
   }, [markers]);
 
   return (
-    <section id="globe" ref={sectionRef} className="py-24">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2">
-        <div className="grid grid-cols-[1.05fr_1fr] max-nav:grid-cols-1 gap-15 items-center">
+    <section id="globe" ref={sectionRef} className={landingSectionClass}>
+      <div className={landingContainerClass}>
+        <div className="grid grid-cols-[1.05fr_1fr] max-nav:grid-cols-1 gap-8 md:gap-15 items-center">
           <div
             className={cn(
               "transition-[opacity,transform] duration-800 ease-spring",

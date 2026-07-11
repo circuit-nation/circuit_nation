@@ -6,6 +6,7 @@ import { Reveal } from "./reveal";
 import { SectionEyebrow } from "./section-eyebrow";
 import { cnCardClass } from "~/components/ui/card";
 import type { YoutubeVideo } from "~/types/youtube";
+import { landingContainerClass, landingSectionClass } from "./landing-shell";
 
 type LandingVideosProps = {
   videos: YoutubeVideo[];
@@ -157,8 +158,8 @@ export default function LandingVideos({ videos }: LandingVideosProps) {
   const [featured, ...compact] = sanitized.slice(0, 5);
 
   return (
-    <section className="py-12">
-      <div className="max-w-(--cn-maxw) mx-auto px-8 relative z-2 max-sm:px-4">
+    <section className={landingSectionClass}>
+      <div className={landingContainerClass}>
         <div
           ref={headRef}
           className={cn(
