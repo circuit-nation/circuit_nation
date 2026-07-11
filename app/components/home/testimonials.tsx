@@ -120,8 +120,8 @@ export default function LandingTestimonials() {
   });
   const { ref: sectionRef, inView: sectionInView } = useInView({ threshold: 0.5, triggerOnce: true });
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const [current, setCurrent] = useState(1);
+  const [count, setCount] = useState(QUOTES.length);
 
   useEffect(() => {
     if (sectionInView) trackEvent('section_view', { section: 'testimonials' });
