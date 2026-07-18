@@ -57,7 +57,7 @@ export default function LandingNav() {
       <div className="max-w-(--cn-maxw) mx-auto py-2 flex items-center justify-center gap-8 md:gap-12">
         <nav className="flex items-center gap-8">
           <Link
-            to="/about"
+            to="/#about"
             className="font-mono tracking-[0.1em] uppercase text-sm text-white/80 no-underline transition-colors duration-200 hover:text-cn-text"
           >
             About
@@ -73,7 +73,7 @@ export default function LandingNav() {
 
         <nav className="flex items-center gap-8">
           <Link
-            to="/about"
+            to="mailto:circuitnation4u@gmail.com"
             className="font-mono tracking-[0.1em] uppercase text-sm text-white/80 no-underline transition-colors duration-200 hover:text-cn-text"
           >
             Connect
