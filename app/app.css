@@ -455,6 +455,9 @@ body {
     .animate-cn-marquee-32 {
         animation: cn-marquee 32s linear infinite;
     }
+    .animate-cn-marquee-60 {
+        animation: cn-marquee 60s linear infinite;
+    }
     .animate-cn-pulse {
         animation: cn-pulse 1.8s infinite;
     }

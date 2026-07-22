@@ -24,7 +24,7 @@ export function RaceMarquee({ upcomingEvents }: RaceMarqueeProps) {
   }));
 
   return (
-    <div className="border-t border-b border-cn-line bg-cn-bg-2 mt-14 md:mt-26 my-4 overflow-hidden relative z-3">
+    <div className="border-t border-b border-cn-line bg-cn-bg-2 mt-14 md:mt-18 my-4 overflow-hidden relative z-3">
       <div
         className="flex w-max animate-cn-marquee"
         onMouseEnter={(e) =>
